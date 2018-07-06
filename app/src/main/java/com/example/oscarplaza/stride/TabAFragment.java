@@ -95,6 +95,7 @@ public class TabAFragment extends SupportMapFragment implements OnMapReadyCallba
     }
 
 
+    @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
         GoogleMap mMap = googleMap;
@@ -104,23 +105,18 @@ public class TabAFragment extends SupportMapFragment implements OnMapReadyCallba
 
         googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         // Posicionar el mapa en una localización y con un nivel de zoom
-        float zoom = 25;
-        takeGPSLocation();
-        final LatLng latLng = new LatLng(getLat(), getLng());
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
+        //float zoom = 10;
+        //takeGPSLocation();
+        //final LatLng latLng = new LatLng(getLat(), getLng());
+        //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
 
         // Colocar un marcador en la misma posición
-        mMap.addMarker(new MarkerOptions().position(latLng).title("Position for GPS Service"));
-        Circle circle = mMap.addCircle(new CircleOptions()
-                .center(latLng)
-                .radius(500)
-                .strokeColor(Color.GREEN)
-                .fillColor(Color.argb(128, 255, 0, 0)));
+        //mMap.addMarker(new MarkerOptions().position(latLng).title("Position for GPS Service"));
 
 
 
 
-/*
+
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getContext());
         mFusedLocationClient.getLastLocation()
                 .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
@@ -135,7 +131,8 @@ public class TabAFragment extends SupportMapFragment implements OnMapReadyCallba
                 });
 
        LatLng gogle = new LatLng(getLat(),getLng());
-        googleMap.addMarker(new MarkerOptions().position(gogle).title("Position for google service"));*/
+       googleMap.addMarker(new MarkerOptions().position(gogle).title("Position for google service"));
+
 
 
 
