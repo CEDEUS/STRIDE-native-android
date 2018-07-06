@@ -9,15 +9,27 @@
     <string name="error_invalid_email">This emails is incorrect</string>
     <string name="Success">Success</string>
     <string name="Loading">Loading</string>
-    <string name="title_activity_dashboard">dashboard</string>
+    <string name="title_activity_dashboard">Dashboard</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="title_activity_modo">Mode</string>
+    <string name="dummy_content">" select the way you want to insert data"</string>
+    <string name="my_maps">map</string>
+    <string name="activitys_user">activitys</string>
+    <string name="buttonObservador">observer</string>
+    <string name="buttonInspector">inspector</string>
+
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="title_activity_observador">Observador</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string name="tab_text_3">Tab 3</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="registrar">register</string>
 </resources>

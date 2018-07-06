@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity{
                     // Magic here
                 }
             }, 1000);
-            Intent i = new Intent(this,MainActivity.class);
+            Intent i = new Intent(this,Modo.class);
             startActivity(i);
 
 

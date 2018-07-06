@@ -6,4 +6,16 @@
     <string name="action_sign_in_short">Ingresar</string>
     <string name="error_incorrect_password">Esta clave es incorecta</string>
     <string name="error_invalid_email">Este email es invalido</string>
+    <string name="my_maps">Mapas</string>
+    <string name="activitys_user">Mis actividades</string>
+    <string name="buttonObservador">Observador</string>
+    <string name="buttonInspector">inspector</string>
+    <string name="Success">Exito!</string>
+    <string name="Loading">Cargando...</string>
+    <string name="title_activity_dashboard">Todo</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="title_activity_maps">mapas</string>
+    <string name="title_activity_modo">Modo</string>
+    <string name="dummy_content">selecciones la manera como quiere insertar datos</string>
+    <string name="registrar">register</string>
 </resources>

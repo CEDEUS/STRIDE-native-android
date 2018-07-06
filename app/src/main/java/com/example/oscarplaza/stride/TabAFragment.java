@@ -62,9 +62,6 @@ public class TabAFragment extends SupportMapFragment implements OnMapReadyCallba
     }
 
     private double lng=0;
-    public static final int TAG_CODE_PERMISSION_LOCATION = 301;
-    private FusedLocationProviderClient mFusedLocationClient;
-
 
 
 
