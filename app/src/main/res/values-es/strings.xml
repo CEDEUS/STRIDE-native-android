@@ -6,4 +6,21 @@
     <string name="action_sign_in_short">Ingresar</string>
     <string name="error_incorrect_password">Esta clave es incorecta</string>
     <string name="error_invalid_email">Este email es invalido</string>
+    <string name="Empty" />
+    <string name="Kid">Niño</string>
+    <string name="adole">adolescentes</string>
+    <string name="adults">Adulto</string>
+    <string name="Elderly">Anciano</string>
+    <string name="groupE">Grupo etario</string>
+    <string name="sexo">sexo</string>
+    <string name="male">Hombre</string>
+    <string name="female">Mujer</string>
+    <string name="no_define">No observado</string>
+    <string name="movility">Dificultades fisica</string>
+    <string name="action_settings">Configuraciones</string>
+    <string name="my_position">mi ubicacion</string>
+    <string name="title_activity_forms">Observacion</string>
+    <string name="normal">Normal</string>
+    <string name="asistida">Con restricciones</string>
+    <string name="mecanica">Asistida</string>
 </resources>

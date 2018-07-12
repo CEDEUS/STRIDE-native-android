@@ -1,6 +1,7 @@
 package com.example.oscarplaza.stride;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -45,13 +46,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
      */
     private ViewPager mViewPager;
 
-    View.OnClickListener undoOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
 
-            Toast.makeText(view.getContext(),"APRETE UNO",Toast.LENGTH_LONG).show();
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +74,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Observar persona", Snackbar.LENGTH_LONG)
-                        .setAction("Observar",undoOnClickListener ).show();
+                Intent intent = new Intent(view.getContext(), forms.class);
+                startActivity(intent);
             }
         });
 
