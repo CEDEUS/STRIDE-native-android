@@ -1,7 +1,15 @@
 package com.example.oscarplaza.stride.Utils;
 
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.util.Log;
+
+import com.example.oscarplaza.stride.LoginActivity;
 import com.example.oscarplaza.stride.R;
+import com.example.oscarplaza.stride.forms;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class Utils {
     public String getURL() {
@@ -37,50 +45,75 @@ public class Utils {
     }
 
 
-    public int GetRangeName(int progress) {
-        int output = 0;
-        switch(progress){
 
-            case 0:
-            case 100:
-                output = R.string.Kid;
+    public boolean seesion(LoginActivity loginActivity){
+        SharedPreferences loginPreferences = loginActivity.getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        if (loginPreferences.contains("id"))
+        {
+            return true;
 
-            break;
-            case 1:
-
-            case 133:
-                output = R.string.adole;
-
-            break;
-            case 2:
-
-            case 167:
-                output = R.string.adults;
-
-            break;
-            case 3:
-
-            case 200:
-            case 250:
-                output = R.string.Elderly;
-
-            break;
         }
-        return  output;
+        else
+            {
+                return false;
+            }
+
     }
-    public int Sex(int id){
-        int output = 0;
-        switch (id){
-            case 2131230875:
-                output =  R.string.no_define;
-                break;
-            case 2131230876:
-                output = R.string.female;
-                break;
-            case 2131230877:
-                output = R.string.male;
-        }
-        return output;
 
+
+    public int getIdAbility(String s, forms forms) {
+        int as = 0;
+        if (s.equals(forms.getString(R.string.normal)))
+        {
+            as =1;
+        }
+        else if (s.equals(forms.getString(R.string.asistida)))
+        {
+            as=2;
+        }
+        else if (s.equals(forms.getString(R.string.mecanica)))
+        {
+            as=3;
+        }
+        return as;
+
+
+    }
+
+
+    public int getIdEdad(String s, forms forms) {
+        int as = 0;
+        if (s.equals(forms.getString(R.string.Kid)))
+        {
+            as =1;
+        }
+        else if (s.equals(forms.getString(R.string.adole)))
+        {
+            as=2;
+        }
+        else if (s.equals(forms.getString(R.string.adults)))
+        {
+            as=3;
+        }
+        else if(s.equals(forms.getString(R.string.Elderly))){as=4;}
+        return as;
+
+    }
+
+    public String GetIdGeneto(String s, forms forms) {
+        String  as = "";
+        if (s.equals(forms.getString(R.string.male)))
+        {
+            as ="H";
+        }
+        else if (s.equals(forms.getString(R.string.female)))
+        {
+            as="M";
+        }
+        else if (s.equals(forms.getString(R.string.no_define)))
+        {
+            as="O";
+        }
+        return as;
     }
 }

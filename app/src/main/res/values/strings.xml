@@ -28,17 +28,23 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="Empty" />
-    <string name="Kid">child</string>
-    <string name="adole">adolescence</string>
-    <string name="adults">adult</string>
+    <string name="Kid">Child</string>
+    <string name="adole">Adolescence</string>
+    <string name="adults">Adult</string>
     <string name="Elderly">Elderly</string>
     <string name="groupE">Age group</string>
-    <string name="sexo">sexo</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
-    <string name="no_define">not observed</string>
+    <string name="no_define">Other</string>
     <string name="movility">physical disabilities</string>
-    <string name="normal">Normal</string>
-    <string name="asistida">With restrictions</string>
+    <string name="normal">Able</string>
+    <string name="asistida">Impaired</string>
     <string name="mecanica">Assisted</string>
+    <string name="error_incorrect_email">this email, no register</string>
+
+    <string name="title_activity_splash">" "</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="todo">TODO</string>
+    <string name="sexo">Gender</string>
 </resources>

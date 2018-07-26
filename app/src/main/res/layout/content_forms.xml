@@ -5,168 +5,252 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".forms"
-    tools:showIn="@layout/app_bar_forms">
+    tools:context=".forms">
 
-
-    <TableLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints">
 
-        <TableRow
-            android:gravity="center"
-
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
->
+            android:paddingTop="@dimen/appbar_padding_top"
+            android:theme="@style/AppTheme.AppBarOverlay">
 
-            <LinearLayout
-                android:gravity="center"
-
-                android:id="@+id/seekbarcontent"
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-            </LinearLayout>
-
-
-        </TableRow>
-
-        <TableRow
-            android:gravity="center"
-
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:paddingTop="10dp">
-
-            <LinearLayout
-                android:gravity="center"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:title="@string/app_name">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="fill_horizontal"
-                    android:orientation="vertical">
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="end"
 
-                    <TextView
-                        android:gravity="center"
 
-                        android:id="@+id/textView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/sexo" />
 
-                    <RadioGroup
+                    android:gravity="right"
+                    android:layout_alignParentRight="true">
 
-                        android:id="@+id/radiog"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/radioButton3"
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:checked="true"
-                            android:text="@string/male" />
-
-                        <RadioButton
-                            android:id="@+id/radioButton2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/female" />
-
-                        <RadioButton
-                            android:id="@+id/radioButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/no_define" />
-                    </RadioGroup>
+                    <at.markushi.ui.CircleButton
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
+                        android:layout_width="64dip"
+                        android:layout_height="64dip"
+                        android:id="@+id/sucsessess"
+                        android:src="@android:drawable/ic_menu_save"
+                        app:cb_color="#99CC00"
+                        app:cb_pressedRingWidth="8dip"
+                        android:layout_alignParentRight="true" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/button_Red"
-                        android:layout_width="wrap_content"
-                        android:layout_height="100dp"
-                        android:layout_gravity="end"
-                        android:background="@drawable/round_buttonred"
-                        android:gravity="end"
-                        android:text="" />
-
-                    <Button
-                        android:id="@+id/button_2"
-                        android:layout_width="wrap_content"
-
-                        android:layout_height="81dp"
-                        android:layout_gravity="end"
-                        android:background="@drawable/round_buttonyellow"
-                        android:gravity="right|end"
-                        android:text="" />
-
-                    <Button
-                        android:id="@+id/button_3"
-                        android:layout_width="wrap_content"
-
-                        android:layout_height="98dp"
-                        android:layout_gravity="end"
-                        android:background="@drawable/round_buttongreen"
-                        android:gravity="end"
-                        android:text="" />
-                </LinearLayout>
-            </LinearLayout>
+            </android.support.v7.widget.Toolbar>
 
 
+        </android.support.design.widget.AppBarLayout>
 
-
-        </TableRow>
-
-
-        <TableRow
-            android:gravity="center"
-
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="30dp">
+            app:layout_behavior="appbar">
 
             <LinearLayout
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="vertical">
 
-                android:id="@+id/content_refer_physicar_capacity"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-               >
+                <!--
+                 1)TODO: los chekbox
+                -->
+                <TextView
+                    android:id="@+id/textView5"
 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/groupE" />
+
+                <RadioGroup
+
+                    android:id="@+id/radioge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/radioButton8"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="@string/Kid" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/adole" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/adults" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/Elderly" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/textView4"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/sexo" />
+
+                <RadioGroup
+
+                    android:id="@+id/radiog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/radioButton3"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="@string/male" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/female" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/no_define" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/textView9"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/movility" />
+
+                <RadioGroup
+
+                    android:id="@+id/radiops"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <RadioButton
+                        android:id="@+id/radioButton19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+
+                        android:text="@string/normal" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/asistida" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton31"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/mecanica" />
+                </RadioGroup>
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="83dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal|center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
+                android:background="@drawable/round_button"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                tools:background="@android:color/background_dark"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="311dp"
+                tools:layout_editor_absoluteY="183dp">
 
-        </TableRow>
+                <Button
+                    android:id="@+id/button_Red"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_buttonred"
+                    android:gravity="center"
+                    android:text="" />
 
+                <Button
+                    android:id="@+id/button_2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_buttonyellow"
+                    android:text="" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+                <Button
+                    android:id="@+id/button_3"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_buttongreen"
+                    android:text="" />
+            </LinearLayout>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
+        </LinearLayout>
+        <!--
+ 3) TODO: List
+-->
 
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -1,67 +1,51 @@
 package com.example.oscarplaza.stride;
 
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
+
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Switch;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.oscarplaza.stride.Entidades.Observacion;
+import com.example.oscarplaza.stride.Entidades.PuntoVotados;
 import com.example.oscarplaza.stride.Utils.Utils;
-import com.warkiz.widget.IndicatorSeekBar;
-import com.warkiz.widget.IndicatorType;
-import com.warkiz.widget.OnSeekChangeListener;
-import com.warkiz.widget.SeekParams;
-import com.warkiz.widget.TickMarkType;
+import com.google.gson.Gson;
 
-public class forms extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+
+public class forms extends AppCompatActivity {
     // Atributos para su uso y metodos de Edicion en los listner
     private static String  TAG = "forms";
-    private String radioButtonInicatos = "";
+    ArrayList<PuntoVotados> p = new ArrayList<PuntoVotados>();
+    private final Observacion observacion = new Observacion(p);
 
-    public String getRadioButtonInicatos() {
-        return radioButtonInicatos;
+    public String getDatemaker() {
+        return Datemaker;
     }
 
-    public void setRadioButtonInicatos(String radioButtonInicatos) {
-        this.radioButtonInicatos = radioButtonInicatos;
+    public void setDatemaker(String datemaker) {
+        Datemaker = datemaker;
     }
 
-    public int isSwitchIscheked() {
-        return switchIscheked;
-    }
+    String Datemaker;
 
-    public void setSwitchIscheked(int switchIscheked) {
-        this.switchIscheked = switchIscheked;
-    }
 
-    private int switchIscheked = 0;
-
-    public int getSeekbarThumbr() {
-        return seekbarThumbr;
-    }
-
-    public void setSeekbarThumbr(int seekbarThumbr) {
-        this.seekbarThumbr = seekbarThumbr;
-    }
-
-    private int seekbarThumbr = 0;
     GPSTracker gps;
     private double lat=0;
 
@@ -81,179 +65,140 @@ public class forms extends AppCompatActivity implements NavigationView.OnNavigat
         this.lng = lng;
     }
 
+
     private double lng=0;
+
+
+
     //fin metodos y caracteristicas
+    private String genero;
+    private int edad;
+    private int  ability;
+
+    public Observacion getObservacion() {
+        return observacion;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public int getAbility() {
+        return ability;
+    }
+
+    public void setAbility(int ability) {
+        this.ability = ability;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);     //  Fixed Portrait orientation
+        Long tsLong = System.currentTimeMillis()/1000;
+        String ts = tsLong.toString();
+        setDatemaker(ts);
 
-        setContentView(R.layout.activity_forms);
-        RadioGroup rg = (RadioGroup)findViewById(R.id.radiog);
+        setContentView(R.layout.content_forms);
+        TextView etario = (TextView)findViewById(R.id.textView5);
+        SpannableString content = new SpannableString(getString(R.string.groupE));
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        etario.setText(content);
+        TextView tv = (TextView)findViewById(R.id.textView4);
+        content = new SpannableString(getString(R.string.sexo));
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        tv.setText(content);
+        TextView tv2 = (TextView)findViewById(R.id.textView9);
+        content = new SpannableString(getString(R.string.movility));
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        tv2.setText(content);
         Button btnred =(Button)findViewById(R.id.button_Red);
         Button btnyellow =(Button)findViewById(R.id.button_2);
         Button btngreen =(Button)findViewById(R.id.button_3);
-        String[] array = {getString(R.string.Kid), getString(R.string.adole),getString(R.string.adults),getString(R.string.Elderly)};
-         final IndicatorSeekBar discrete_ticks_texts1 = IndicatorSeekBar
-                .with(this)
-                .max(2000)
-                .min(1000)
-                .progress(100)
-                .tickCount(4)
-                .showTickMarksType(TickMarkType.OVAL)
-                .tickTextsArray(array)
-                .tickMarksSize(10)//dp
-                .showTickTexts(true)
-                .indicatorTextColor(Color.parseColor("#ffffff"))
-                .showIndicatorType(IndicatorType.CIRCULAR_BUBBLE)
-                .thumbColor(Color.parseColor("#ff0000"))
-                .tickTextsSize(8)//sp
-                .indicatorTextSize(8)//sp
-                .thumbSize(12)
-                .trackProgressSize(8)
-                .trackBackgroundSize(8)
-                .build();
-        String[] arraycapacity = {getString(R.string.normal), getString(R.string.asistida),getString(R.string.mecanica)};
-        final IndicatorSeekBar dtt = IndicatorSeekBar
-                .with(this)
-                .max(2000)
-                .min(1000)
-                .progress(100)
-                .tickCount(3)
-                .showTickMarksType(TickMarkType.OVAL)
-                .tickTextsArray(arraycapacity)
-                .tickMarksSize(10)//dp
-                .showTickTexts(true)
-                .indicatorTextColor(Color.parseColor("#ffffff"))
-                .showIndicatorType(IndicatorType.CIRCULAR_BUBBLE)
-                .thumbColor(Color.parseColor("#ff0000"))
-                .tickTextsSize(8)//sp
-                .indicatorTextSize(8)//sp
-                .thumbSize(12)
-                .trackProgressSize(8)
-                .trackBackgroundSize(8)
-                .build();
+        findViewById(R.id.sucsessess).setVisibility(View.GONE);
+        findViewById(R.id.sucsessess).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Gson gson = new Gson();
+                String jsArray = gson.toJson(getObservacion().getPuntos());
+
+
+
+                Toast.makeText(getApplicationContext(),jsArray,Toast.LENGTH_LONG).show();
+            }
+        });
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final LinearLayout content = (LinearLayout) findViewById(R.id.seekbarcontent);
-        final LinearLayout contentstatus = (LinearLayout)findViewById(R.id.content_refer_physicar_capacity);
-        TextView tv2 = new TextView(this);
-        TextView textView1 = new TextView(this);
-        tv2.setText(R.string.movility);
-        textView1.setText(R.string.groupE);
-        content.addView(textView1);
-        contentstatus.addView(tv2);
 
-
-        discrete_ticks_texts1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT));
-        content.addView(discrete_ticks_texts1);
-        discrete_ticks_texts1.setIndicatorTextFormat("${TICK_TEXT}");
-        discrete_ticks_texts1.setMinimumWidth(550);
-
-        dtt.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT));
-        contentstatus.addView(dtt);
-        dtt.setIndicatorTextFormat("${TICK_TEXT}");
-        dtt.setMinimumWidth(550);
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        RadioButton rb=(RadioButton)findViewById(rg.getCheckedRadioButtonId());
-        setRadioButtonInicatos(rb.getText().toString());
-        // lo que esta abajo esta poco claro
-        setSwitchIscheked(0);
-        setSeekbarThumbr(0);
-        // eso de arriba
-        //Listners y los seteo se las variables
         btnred.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GetAndDrivenparams("Rojo");
+                GetAndDrivenparams(1);
             }
         });
         btnyellow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GetAndDrivenparams("Amarillo");
+                GetAndDrivenparams(2);
 
             }
         });
         btngreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GetAndDrivenparams("Vende");
+                GetAndDrivenparams(3);
             }
         });
-
-        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton rb=(RadioButton)findViewById(checkedId);
-                setRadioButtonInicatos(rb.getText().toString());
-            }
-        });
-        dtt.setOnSeekChangeListener(new OnSeekChangeListener() {
-            @Override
-            public void onSeeking(SeekParams seekParams) {
-                setSwitchIscheked(seekParams.thumbPosition);
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(IndicatorSeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(IndicatorSeekBar seekBar) {
-
-            }
-        });
-        discrete_ticks_texts1.setOnSeekChangeListener(new OnSeekChangeListener() {
-            @Override
-            public void onSeeking(SeekParams seekParams) {
-                setSeekbarThumbr(seekParams.thumbPosition);
-            }
-
-            @Override
-            public void onStartTrackingTouch(IndicatorSeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(IndicatorSeekBar seekBar) {
-
-            }
-        });
-//hasta aca
-
     }
-
-    private void GetAndDrivenparams(String semaforo) {
-        takeGPSLocation();
+    private void GetAndDrivenparams(int semaforo) {
         Utils u = new Utils();
-        Log.d(TAG, "GetAndDrivenparams: _____________________________________________________");
+        RadioGroup rgenero = (RadioGroup)findViewById(R.id.radiog);
+        RadioGroup retario = (RadioGroup)findViewById(R.id.radioge);
+        RadioGroup ability = (RadioGroup)findViewById(R.id.radiops);
+        RadioButton rb=(RadioButton)findViewById(rgenero.getCheckedRadioButtonId());
+        setGenero(u.GetIdGeneto(rb.getText().toString(),this));
+        rb=(RadioButton)findViewById(retario.getCheckedRadioButtonId());
+        setEdad(u.getIdEdad(rb.getText().toString(),this));
+        rb=(RadioButton)findViewById(ability.getCheckedRadioButtonId());
+        setAbility(u.getIdAbility(rb.getText().toString(),this));
+        takeGPSLocation();
 
-        Log.d(TAG, "GetAndDrivenparams: possition del seekbar "+getString(u.GetRangeName(getSeekbarThumbr())));
-        Log.d(TAG, "GetAndDrivenparams:  id del sexo "+getRadioButtonInicatos());
-
-
-        Log.d(TAG, "GetAndDrivenparams: "+isSwitchIscheked());
-
-        Log.d(TAG, "GetAndDrivenparams: semaforo "+semaforo);
-        Log.d(TAG, "GetAndDrivenparams: latitud "+getLat());
-        Log.d(TAG, "GetAndDrivenparams: longitud "+getLng());
-        Log.d(TAG, "GetAndDrivenparams: _____________________________________________________");
-
+        getObservacion().getPuntos().add(new PuntoVotados(semaforo,getEdad(),getAbility(),getGenero(),getDatemaker(),getLat(),getLng()));
+        PuntoVotados P = getObservacion().getPuntos().get(getObservacion().getPuntos().size() - 1);
+        //Toast.makeText(getApplicationContext(),P.toString(),Toast.LENGTH_LONG).show();
+        if (getObservacion().getPuntos().size() >2) {
+            findViewById(R.id.sucsessess).setVisibility(View.VISIBLE);
+            block();
+            }
 
 
     }
+
+    private void block() {
+        RadioGroup rgenero = (RadioGroup)findViewById(R.id.radiog);
+
+        RadioGroup retario = (RadioGroup)findViewById(R.id.radioge);
+        RadioGroup ability = (RadioGroup)findViewById(R.id.radiops);
+        rgenero.setEnabled(false);
+        retario.setEnabled(false);
+        ability.setEnabled(false);
+        rgenero.setClickable(false);
+        retario.setClickable(false);
+        ability.setClickable(false);
+    }
+
 
     private void takeGPSLocation() {
 
@@ -264,63 +209,12 @@ public class forms extends AppCompatActivity implements NavigationView.OnNavigat
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.forms, menu);
-        return true;
+        return false;
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
 
 
 }
