@@ -23,4 +23,6 @@
     <string name="normal">Puede</string>
     <string name="asistida">Dificultad</string>
     <string name="mecanica">Asistida</string>
+    <string name="title_activity_check_button">Perfil</string>
+    <string name="profile_ok">Siguiente</string>
 </resources>

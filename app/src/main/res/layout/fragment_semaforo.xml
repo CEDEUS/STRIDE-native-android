@@ -5,10 +5,47 @@
     android:layout_height="match_parent"
     tools:context=".semaforoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+
+    <LinearLayout
+        android:layout_width="183dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal|center"
+        android:background="@drawable/round_button"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        tools:background="@android:color/background_dark">
+
+        <Button
+            android:id="@+id/button_Red"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/round_buttonred"
+            android:gravity="center"
+            android:text="" />
+
+        <Button
+            android:id="@+id/button_2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/round_buttonyellow"
+            android:text="" />
+
+        <Button
+            android:id="@+id/button_3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/round_buttongreen"
+            android:text="" />
+    </LinearLayout>
 
 </FrameLayout>

@@ -47,4 +47,10 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="todo">TODO</string>
     <string name="sexo">Gender</string>
+    <string name="title_activity_form4votation">Observacion</string>
+    <string name="my_observation">Registrer</string>
+    <string name="title_activity_check_button">Profile</string>
+    <string name="title_activity_semaforo">Semaforo</string>
+    <string name="profile_ok">Next</string>
+    <string name="maps_and_votations">Position was votation</string>
 </resources>

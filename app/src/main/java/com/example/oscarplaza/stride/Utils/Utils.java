@@ -2,12 +2,10 @@ package com.example.oscarplaza.stride.Utils;
 
 
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.util.Log;
 
+import com.example.oscarplaza.stride.CheckButton;
 import com.example.oscarplaza.stride.LoginActivity;
 import com.example.oscarplaza.stride.R;
-import com.example.oscarplaza.stride.forms;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -60,20 +58,19 @@ public class Utils {
 
     }
 
-
-    public int getIdAbility(String s, forms forms) {
-        int as = 0;
+    public String getIdAbility(String s,CheckButton forms) {
+        String as = "";
         if (s.equals(forms.getString(R.string.normal)))
         {
-            as =1;
+            as ="1";
         }
         else if (s.equals(forms.getString(R.string.asistida)))
         {
-            as=2;
+            as="2";
         }
         else if (s.equals(forms.getString(R.string.mecanica)))
         {
-            as=3;
+            as="3";
         }
         return as;
 
@@ -81,7 +78,7 @@ public class Utils {
     }
 
 
-    public int getIdEdad(String s, forms forms) {
+    public int getIdEdad(String s, CheckButton forms) {
         int as = 0;
         if (s.equals(forms.getString(R.string.Kid)))
         {
@@ -100,7 +97,7 @@ public class Utils {
 
     }
 
-    public String GetIdGeneto(String s, forms forms) {
+    public String GetIdGeneto(String s, CheckButton forms) {
         String  as = "";
         if (s.equals(forms.getString(R.string.male)))
         {

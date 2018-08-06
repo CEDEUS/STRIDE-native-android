@@ -20,12 +20,38 @@ public class PuntoVotados {
     }
 
     private String secuence_end;
-    private int votacion;
+    private String score;
     private int age;
-    private int ability;
-    private String sexo;
+    private String ability;
+    private String sex;
     private String secuence;
     private double lat=0;
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getCreate_by() {
+        return create_by;
+    }
+
+    public void setCreate_by(String create_by) {
+        this.create_by = create_by;
+    }
+
+    private String create_by;
 
     public String getCreated_by() {
         return created_by;
@@ -64,39 +90,38 @@ public class PuntoVotados {
     private double lon=0;
 
 
-    public PuntoVotados(int votacion, int age, int ability, String sexo, String secuence, double lat, double lng) {
-        this.votacion = votacion;
+    public PuntoVotados(String votacion, int age, String ability, String sexo, String secuence, double lat, double lng) {
+        this.score = votacion;
         this.age = age;
         this.ability = ability;
-        this.sexo = sexo;
+        this.sex = sexo;
         this.secuence = secuence;
-
         this.lat = lat;
         this.lon = lng;
     }
 
-    public PuntoVotados(int votacion, int age, int ability, String sexo) {
-        this.votacion = votacion;
+    public PuntoVotados(String votacion, int age, String ability, String sexo) {
+        this.score = votacion;
         this.age = age;
         this.ability = ability;
-        this.sexo = sexo;
+        this.sex = sexo;
     }
     public PuntoVotados(){}
 
-    public PuntoVotados(int votacion, int age, int ability, String sexo, String secuence) {
-        this.votacion = votacion;
+    public PuntoVotados(String votacion, int age, String ability, String sexo, String secuence) {
+        this.score = votacion;
         this.age = age;
         this.ability = ability;
-        this.sexo = sexo;
+        this.sex = sexo;
         secuence = secuence;
     }
 
-    public int getVotacion() {
-        return votacion;
+    public String getVotacion() {
+        return score;
     }
 
-    public void setVotacion(int votacion) {
-        this.votacion = votacion;
+    public void setVotacion(String votacion) {
+        this.score = votacion;
     }
 
     public int getAge() {
@@ -107,20 +132,20 @@ public class PuntoVotados {
         this.age = age;
     }
 
-    public int getAbility() {
+    public String getAbility() {
         return ability;
     }
 
-    public void setAbility(int ability) {
+    public void setAbility(String ability) {
         this.ability = ability;
     }
 
     public String getSexo() {
-        return sexo;
+        return sex;
     }
 
     public void setSexo(String sexo) {
-        this.sexo = sexo;
+        this.sex = sexo;
     }
 
     public String getButtonpress() {
@@ -129,5 +154,10 @@ public class PuntoVotados {
 
     public void setButtonpress(String buttonpress) {
         secuence = buttonpress;
+    }
+    public String getCreat(String id)
+    {
+
+        return getCreate_by();
     }
 }

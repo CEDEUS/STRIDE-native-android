@@ -31,6 +31,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.view.Window;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), forms.class);
+                Intent intent = new Intent(view.getContext(), CheckButton.class);
                 startActivity(intent);
             }
         });
@@ -253,10 +254,10 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
             switch (position) {
                 case 0:
-                    section = "MAPA";
+                    section = getString(R.string.my_position);
                     break;
                 case 1:
-                    section = "MIS OBSERVACIONES";
+                    section = getString(R.string.my_observation);
                     break;
             }
             return section;

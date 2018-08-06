@@ -106,29 +106,23 @@ public class TabAFragment extends SupportMapFragment implements OnMapReadyCallba
     @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
-
-
-
         Log.d(TAG, "onMapReady: ");
-
         googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         // Posicionar el mapa en una localización y con un nivel de zoom
-        float zoom = 19;
+        float zoom = 16;
         takeGPSLocation();
         final LatLng latLng = new LatLng(getLat(), getLng());
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
+        googleMap.setMyLocationEnabled(true);
+        googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+
         //Toast.makeText(getActivity().getApplicationContext(),"latitude "+getLat()+" & longitud"+getLng(),Toast.LENGTH_LONG).show();
-
         // Colocar un marcador en la misma posición
-        googleMap.addMarker(new MarkerOptions().position(latLng).title(getString(R.string.my_position)));
+        //googleMap.addMarker(new MarkerOptions().position(latLng).title(getString(R.string.my_position)));
         googleMap.getUiSettings().setAllGesturesEnabled(true);
-
         googleMap.setOnMapLongClickListener(this);
-
         Utils u = new Utils();
         Geocoder geocoder = new Geocoder(getActivity().getApplicationContext());
-
         List<Address> addresses = null;
         try {
             addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude,1);
@@ -137,22 +131,10 @@ public class TabAFragment extends SupportMapFragment implements OnMapReadyCallba
         }
         if(addresses != null && addresses.size() > 0 ){
             Address address = addresses.get(0);
-
             String street = address.getAddressLine(0);
             Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
             toolbar.setTitle(street);
-
         }
-
-
-
-
-
-
-
-
-
-
         //googleMap.addMarker(new MarkerOptions().position(gogle).title("Position for Google service"));
         // Más opciones para el marcador en:
         // https://developers.google.com/maps/documentation/android/marker

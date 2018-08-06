@@ -29,9 +29,7 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/app_name">
-
-        </activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
@@ -53,11 +51,13 @@
             android:value="AIzaSyC6Bvp1XwLWy_ZhlXTsF_rU1kVfGEHqnAw" />
 
         <activity
-            android:name=".forms"
-            android:label="@string/title_activity_forms"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
+            android:name=".CheckButton"
+            android:label="@string/title_activity_check_button"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Semaforo"
+            android:label="@string/title_activity_semaforo"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
