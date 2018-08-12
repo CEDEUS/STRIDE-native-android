@@ -107,14 +107,29 @@ public class TabAFragment extends SupportMapFragment implements OnMapReadyCallba
     @Override
     public void onMapReady(GoogleMap googleMap) {
         Log.d(TAG, "onMapReady: ");
-        googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         // Posicionar el mapa en una localización y con un nivel de zoom
-        float zoom = 16;
+        float zoom = 15;
         takeGPSLocation();
         final LatLng latLng = new LatLng(getLat(), getLng());
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
         googleMap.setMyLocationEnabled(true);
         googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+        googleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+            @Override
+            public boolean onMyLocationButtonClick() {
+                return false;
+            }
+        });
+        googleMap.setOnMyLocationClickListener(new GoogleMap.OnMyLocationClickListener() {
+            @Override
+            public void onMyLocationClick(@NonNull Location location) {
+
+
+            }
+        });
+
+
 
         //Toast.makeText(getActivity().getApplicationContext(),"latitude "+getLat()+" & longitud"+getLng(),Toast.LENGTH_LONG).show();
         // Colocar un marcador en la misma posición
@@ -165,7 +180,7 @@ public class TabAFragment extends SupportMapFragment implements OnMapReadyCallba
 
     @Override
     public void onMapLongClick(LatLng latLng) {
-        Geocoder geocoder = new Geocoder(getContext());
+       /* Geocoder geocoder = new Geocoder(getContext());
 
         List<Address> addresses = null;
         try {
@@ -181,7 +196,7 @@ public class TabAFragment extends SupportMapFragment implements OnMapReadyCallba
         alert.showDialog(getContext(), street,latLng);}else{alert.showDialog(getActivity(),"No se pudo obtener el nombre de la calle",latLng);}
 
 
-
+*/
     }
 
     @Override
@@ -218,4 +233,6 @@ public class TabAFragment extends SupportMapFragment implements OnMapReadyCallba
 
 
     }
+
+
 }

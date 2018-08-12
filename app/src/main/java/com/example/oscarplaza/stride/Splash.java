@@ -10,6 +10,8 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.concurrent.TimeUnit;
 
@@ -33,9 +35,37 @@ public class Splash extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                ExecuteRedirect();
+                ImageView im = (ImageView)findViewById(R.id.imgLogo);
+                im.setVisibility(View.GONE);
+                TextView tx = (TextView)findViewById(R.id.presentation);
+                tx.setVisibility(View.VISIBLE);
 
-            }
+
+                new Handler().postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        new  Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                TextView tx = (TextView)findViewById(R.id.presentation);
+                                tx.setVisibility(View.GONE);
+                                TextView tx2 = (TextView)findViewById(R.id.presentation2);
+                                tx2.setVisibility(View.VISIBLE);
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ExecuteRedirect();
+
+                                    }
+                                },1000);
+                            }
+                        },1000);
+
+                    }
+
+                    },1300);
+                }
         }, 1000);
 
 

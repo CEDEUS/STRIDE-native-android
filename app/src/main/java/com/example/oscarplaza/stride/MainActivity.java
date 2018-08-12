@@ -2,7 +2,9 @@ package com.example.oscarplaza.stride;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -64,10 +66,6 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
 
         setContentView(R.layout.activity_main_drawable);
-
-
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -162,22 +160,49 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            about();
         } else if (id == R.id.nav_gallery) {
+            feedback();
 
         } else if (id == R.id.nav_slideshow) {
+            logout();
 
         } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+            killapp();
 
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void about() {
+        ViewDialog  about = new ViewDialog();
+        about.showAbout(this);
+
+    }
+
+    private void feedback() {
+        ViewDialog  about = new ViewDialog();
+        about.showFeedback(this);
+    }
+
+    private void logout() {
+        SharedPreferences loginPreferences =getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = loginPreferences.edit();
+        editor.clear();
+        editor.apply();
+
+
+        Intent homepage = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(homepage);
+    }
+
+    private void killapp() 
+    {
+        finishAffinity();
+        System.exit(0);
     }
 
     /**
@@ -244,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         @Override
         public int getCount() {
-            return 2;
+            return 1;
         }
 
         @Nullable

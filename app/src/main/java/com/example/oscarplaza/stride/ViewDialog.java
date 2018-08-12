@@ -32,5 +32,26 @@ public class ViewDialog {
         dialog.show();
 
     }
+
+    public void showAbout(Context activity) {
+        DialogPlus dialog = DialogPlus.newDialog(activity)
+                .setAdapter(new Simpleadaptera())
+                .setContentHolder(new ViewHolder(R.layout.content_dialogabout))
+                .setExpanded(true)  // This will enable the expand feature, (similar to android L share dialog)
+                .create();
+        dialog.show();
+
+
+
+    }
+
+    public void showFeedback(Context activity) {
+        DialogPlus dialog = DialogPlus.newDialog(activity)
+                .setAdapter(new Simpleadaptera())
+                .setContentHolder(new ViewHolder(R.layout.content_dialogfeedback))
+                .setExpanded(true)  // This will enable the expand feature, (similar to android L share dialog)
+                .create();
+        dialog.show();
+    }
 }
 

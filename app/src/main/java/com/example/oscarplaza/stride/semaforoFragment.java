@@ -221,27 +221,31 @@ public class semaforoFragment extends Fragment implements View.OnClickListener, 
         setGenero(itemSex);
         setAbility(itemAbility);
         setEdad(itemRangoEtario);
+        getObservacion().setAbility(getAbility());
+        getObservacion().setAge(getEdad());
+        getObservacion().setSex(getGenero());
+        getObservacion().setVersion("1.0.0-beta");
 
         if (getAccuary() >=  15) {
             if(!samepoint(Votacion,getLatgoogle(),getLngoogle()))
             {
-                addelement(Votacion,getLatgoogle(),getLngoogle());
+                addelement(Votacion,getLatgoogle(),getLngoogle(),getAccuary());
             }
       }
         else
         {
             if(!samepoint(Votacion,getLat(),getLng()))
             {
-                addelement(Votacion,getLat(),getLng());
+                addelement(Votacion,getLat(),getLng(),getAccuary());
             }
         }
       }
 
-    private void addelement(String votacion, double lat, double lng) {
+    private void addelement(String votacion, double lat, double lng,double hdop) {
 
-        getObservacion().getPuntos().add(new PuntoVotados(votacion,getEdad(),getAbility(),getGenero(),getDatemaker(),lat,lng));
-        //Semaforo activity = (Semaforo) getActivity();
-        //activity.SetData(getObservacion());
+        getObservacion().getData().add(new PuntoVotados(votacion,hdop,lat,lng));
+        Semaforo activity = (Semaforo) getActivity();
+        activity.SetData(getObservacion());
 
     }
 
@@ -249,12 +253,12 @@ public class semaforoFragment extends Fragment implements View.OnClickListener, 
     {
 
         boolean comparacion = true;
-        if (getObservacion().getPuntos().size() == 0)
+        if (getObservacion().getData().size() == 0)
         {
             comparacion = false;
         }
         else{
-            PuntoVotados last = getObservacion().getPuntos().get(getObservacion().getPuntos().size() - 1);
+            PuntoVotados last = getObservacion().getData().get(getObservacion().getData().size() - 1);
             int retvallat = Double.compare(last.getLat(), lat);
             int retvallng = Double.compare(last.getLng(), lng);
             if (retvallat > 0 || retvallng > 0) {
@@ -270,24 +274,6 @@ public class semaforoFragment extends Fragment implements View.OnClickListener, 
 
 
         }
-        LatLng latLngre = new LatLng(lat, lng);
-
-        Geocoder geocoder = new Geocoder(getActivity().getApplicationContext());
-
-        List<Address> addresses = null;
-        try {
-            addresses = geocoder.getFromLocation(latLngre.latitude, latLngre.longitude,1);
-        } catch (IOException e) {
-            Log.d("TAG", "onMapReady: LLOREMOS");
-        }
-        String street;
-        if(addresses != null && addresses.size() > 0 ){
-            Address address = addresses.get(0);
-
-            street = address.getAddressLine(0);}
-        else{street="no found";}
-        Log.d("TAG", "samepoint: "+comparacion);
-        Toast.makeText(getActivity(),""+comparacion+" "+getObservacion().getPuntos().size()+" "+street+" "+lat+" "+lng,Toast.LENGTH_SHORT).show();
 
         return comparacion;
     }

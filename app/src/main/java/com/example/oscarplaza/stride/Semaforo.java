@@ -3,7 +3,6 @@ package com.example.oscarplaza.stride;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +19,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -34,15 +32,13 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.oscarplaza.stride.Entidades.Observacion;
+import com.example.oscarplaza.stride.Entidades.ObservacionOld;
 import com.example.oscarplaza.stride.Entidades.PuntoVotados;
-import com.example.oscarplaza.stride.Entidades.RespLogin;
-import com.example.oscarplaza.stride.Entidades.SeverUrl;
+import com.example.oscarplaza.stride.Entidades.PuntoVotadosOld;
 import com.google.gson.Gson;
 
 import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -82,9 +78,7 @@ public class Semaforo extends AppCompatActivity {
 
         setContentView(R.layout.activity_semaforo);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("ddmmyyyyhhmmss");
-        String marktimend = dateFormat.format(new Date()).toString();
-        setMarktimeinicio(marktimend);
+
 
         setSupportActionBar(toolbar);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -96,23 +90,38 @@ public class Semaforo extends AppCompatActivity {
         findViewById(R.id.sucsessess).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ((getObservacion().getPuntos().isEmpty() && getObservacion().getPuntos().contains(null)) || getObservacion().getPuntos().size() <= 0)
+                if ((getObservacion().getData().isEmpty() && getObservacion().getData().contains(null)) || getObservacion().getData().size() <= 0)
                 {
-                    Toast.makeText(getApplicationContext(),"sin votaciones",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"no votation yet",Toast.LENGTH_SHORT).show();
 
                 }
                 else{
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("ddmmyyyyhhmmss");
-                    String marktimend = dateFormat.format(new Date()).toString();
-                    sendData(marktimend);
+                    v.setClickable(false);
+
+                    sendData();
 
 
                 }
             }
         });
+        findViewById(R.id.newerspm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showMyalert();
+
+
+        }
+        });
     }
 
-    private void sendData(String marktimend) {
+    private void showMyalert() {
+        ConfigOrNotSend alert = new ConfigOrNotSend();
+        alert.showDialog(this,getObservacion());
+
+
+}
+
+    private void sendData() {
         SharedPreferences prefs = getSharedPreferences("loginPrefs", MODE_PRIVATE);
 
             final String tokken = prefs.getString("token", "");//"No name defined" is the default value.
@@ -122,35 +131,101 @@ public class Semaforo extends AppCompatActivity {
         //final String tokken = prefs.getString("token", "");
         //String id = prefs.getString("id", "");
         Gson gson = new Gson();
-        for(PuntoVotados p : getObservacion().getPuntos())
-        {
-            p.setCreate_by("http://146.155.17.18:18080/users/"+idName+"/");
-            p.setSecuence(getMarktimeinicio());
 
-            p.setSecuence_end(marktimend);
+        getObservacion().setCreate_by("http://146.155.17.18:18080/users/" + idName + "/");
+        ArrayList<PuntoVotadosOld> p = new ArrayList<PuntoVotadosOld>();
+        Long tsLong = System.currentTimeMillis()/1000;
+        String ts = tsLong.toString();
+
+        ObservacionOld Oold = new ObservacionOld(p);
+        for (PuntoVotados Pnew:getObservacion().getData())
+        {
+
+            Oold.getPuntos().add(new PuntoVotadosOld(ts,Pnew.getVotacion(),getObservacion().getAge(),getObservacion().getAbility(),getObservacion().getSex(),ts,Pnew.getLat(),getObservacion().getCreate_by(),Pnew.getLon(),Pnew.getHdop(), getObservacion().getVersion()));
+
         }
 
 
-        String jsArray = gson.toJson(getObservacion().getPuntos());
+        String jsArrayOld = gson.toJson(Oold.getPuntos());
+        String jsArray = gson.toJson(getObservacion());
 
 
         Log.d("casa", "onResponse: "+jsArray);
-        final String requestBody = jsArray;
-        String EndPoint = "http://146.155.17.18:18080/points/";
-        RequestQueue queue = Volley.newRequestQueue(this);
+        Log.d("casa", "onResponse2: "+jsArrayOld);
+        final String requestBody2 = jsArrayOld;
 
+
+        final String requestBody = jsArray;
+        String EndPoint = "http://146.155.17.18:18080/observed/";
+
+        RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoint, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getBaseContext(),"Se a guardado en la DB", Toast.LENGTH_LONG).show();
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
+
+                String EndPoint2 = "http://146.155.17.18:18080/points/";
+
+
+                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoint2, new Response.Listener<String>() {
                     @Override
-                    public void run() {
-                        // Do something after 5s = 5000ms
-                        Semaforo.this.startActivity(new Intent(Semaforo.this,MainActivity.class));
+                    public void onResponse(String response) {
+                        sendExit();
+
                     }
-                }, 5000);
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        findViewById(R.id.sucsessess).setClickable(true);
+
+
+                    }
+                }){
+                    @Override
+                    public String getBodyContentType() {
+                        return "application/json; charset=utf-8";
+
+                    }
+
+
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put("Content-Type", "application/json");
+                        params.put("Authorization","Token "+tokken);
+                        return  params;
+                    }
+
+
+
+
+                    @Override
+                    public byte[] getBody() throws AuthFailureError {
+                        try {
+                            return requestBody2 == null ? null : requestBody2.getBytes("utf-8");
+                        } catch (UnsupportedEncodingException uee) {
+                            VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody2, "utf-8");
+                            return null;
+                        }
+
+                    }
+
+                    @Override
+                    protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                        String value="";
+                        try {
+                            value = new String(response.data, "UTF-8");
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
+                        String responseString = "";
+                        if (response != null) {
+                            responseString = String.valueOf(response.data);
+                        }
+                        return Response.success(value, HttpHeaderParser.parseCacheHeaders(response));
+                    }
+                };
+                queue.add(stringRequest);
 
 
 
@@ -158,7 +233,7 @@ public class Semaforo extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("PRUEBA DE FUEGO", "onResponse: "+error.getMessage());
+                findViewById(R.id.sucsessess).setClickable(false);
 
 
             }
@@ -211,9 +286,26 @@ queue.add(stringRequest);
 
 
 
+
 }
 
-@Override
+    private void sendExit() {
+        Toast.makeText(this,"points saved to server",Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                Intent intent = new Intent(Semaforo.this, LoginActivity.class);
+                startActivity(intent);
+
+
+            }
+
+        },100);
+    }
+
+    @Override
 public boolean onCreateOptionsMenu(Menu menu) {
 // Inflate the menu; this adds items to the action bar if it is present.
 getMenuInflater().inflate(R.menu.menu_semaforo, menu);
@@ -302,6 +394,8 @@ public static class PlaceholderFragment extends Fragment {
                 case 1:
                     tabFragment = new ListFragmentinSeccion();
                     break;
+
+
             }
 
             return tabFragment;

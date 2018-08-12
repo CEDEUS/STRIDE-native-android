@@ -13,6 +13,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@mipmap/cedeus_walk_wewew_round" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:id="@+id/presentation"
+            android:text="STRIDE"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:gravity="center"
+            android:visibility="gone"
+            android:id="@+id/presentation2"
+            android:text="Shared Travel  Reality of  Individual Deficient Environments"/>
     </LinearLayout>
 
 

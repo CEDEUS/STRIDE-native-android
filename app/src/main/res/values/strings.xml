@@ -53,4 +53,5 @@
     <string name="title_activity_semaforo">Semaforo</string>
     <string name="profile_ok">Next</string>
     <string name="maps_and_votations">Position was votation</string>
+    <string name="pdfc">STRIDE : Shared Travel Reality of Individual Deficient Environments</string>
 </resources>

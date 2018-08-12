@@ -31,6 +31,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 
 /**
@@ -81,7 +82,7 @@ public class ListFragmentinSeccion extends SupportMapFragment implements OnMapRe
         {
             Semaforo activity = (Semaforo) getActivity();
 
-            if(!activity.getData().getPuntos().isEmpty() && !activity.getData().getPuntos().contains(null) )
+            if(!activity.getData().getData().isEmpty() && !activity.getData().getData().contains(null) )
             {
 
                 float zoom = 19;
@@ -90,41 +91,13 @@ public class ListFragmentinSeccion extends SupportMapFragment implements OnMapRe
                 LatLng latLng = new LatLng(getLat(), getLng());
                 getmMap().clear();
                 getmMap().moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
+                getmMap().addMarker(new MarkerOptions().position(latLng));
 
-                int number =0;
-                for(PuntoVotados p : o.getPuntos())
+
+                for(PuntoVotados p : o.getData())
                 {
-                    LatLng latLngre = new LatLng(p.getLat(), p.getLng());
+                        CreateMarket(p.getLat(),p.getLng(),p.getScore(),getmMap());
 
-                    Geocoder geocoder = new Geocoder(getActivity().getApplicationContext());
-
-                    List<Address> addresses = null;
-                    try {
-                        addresses = geocoder.getFromLocation(latLngre.latitude, latLngre.longitude,1);
-                    } catch (IOException e) {
-                        Log.d("TAG", "onMapReady: LLOREMOS");
-                    }
-                    String street;
-                    if(addresses != null && addresses.size() > 0 ){
-                        Address address = addresses.get(0);
-
-                        street = address.getAddressLine(0);}
-                    else{street="no found";}
-
-                  switch (p.getVotacion()){
-                      case "G":
-                          getmMap().addMarker(new MarkerOptions().position(latLngre).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)).title(number+") "+street));
-
-                          break;
-                      case "Y":
-                          getmMap().addMarker(new MarkerOptions().position(latLngre).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)).title(number+") "+street));
-
-                          break;
-                      case "R":
-                          getmMap().addMarker(new MarkerOptions().position(latLngre).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)).title(number+") "+street));
-                          break;
-                  }
-                  number++;
                 }
                 }else{ }
 
@@ -132,7 +105,33 @@ public class ListFragmentinSeccion extends SupportMapFragment implements OnMapRe
         else
         {
 
+
         }
+    }
+
+    private void CreateMarket(double lat, double lng, String score, GoogleMap googleMap)  {
+        LatLng lngre = new LatLng(lat,lng);
+
+
+
+        switch (score){
+            case "G":
+
+                googleMap.addMarker(new MarkerOptions().position(lngre).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)).title(score));
+
+                break;
+            case "Y":
+
+
+                googleMap.addMarker(new MarkerOptions().position(lngre).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)).title(score));
+
+                break;
+            case "R":
+
+                googleMap.addMarker(new MarkerOptions().position(lngre).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)).title(score));
+                break;
+        }
+
     }
 
     public ListFragmentinSeccion() {
@@ -227,14 +226,9 @@ public class ListFragmentinSeccion extends SupportMapFragment implements OnMapRe
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
         // Posicionar el mapa en una localización y con un nivel de zoom
-        float zoom = 19;
-        takeGPSLocation();
-        LatLng latLng = new LatLng(getLat(), getLng());
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
-        googleMap.setMyLocationEnabled(true);
 
         setmMap(googleMap);
         }

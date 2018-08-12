@@ -9,6 +9,8 @@
                 android:topRightRadius="10dp" />
             <solid android:color="#ff4500"/>
             <size android:height="1dp" android:width="1dp" />
+            <gradient android:angle="90" android:startColor="#ff4500" android:endColor="#b2431a" />
+
 
         </shape>
     </item>
