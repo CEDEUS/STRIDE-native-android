@@ -408,6 +408,8 @@ public static class PlaceholderFragment extends Fragment {
                 case 1:
                     tabFragment = new ListFragmentinSeccion();
                     break;
+                case 2:
+                    tabFragment = new ListFragmentandDelete();
 
 
             }
