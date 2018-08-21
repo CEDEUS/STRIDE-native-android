@@ -12,10 +12,10 @@
             android:title="Feedback" />
         <item
             android:id="@+id/nav_slideshow"
-            android:title="logout" />
+            android:title="Logout" />
         <item
             android:id="@+id/nav_manage"
-            android:title="exit/close app" />
+            android:title="Close app" />
     </group>
 
 

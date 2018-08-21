@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -42,12 +43,14 @@ public class ConfigOrNotSend {
                 .setContentHolder(new ViewHolder(R.layout.content_dialog2))
                 .setHeader(R.layout.header2)
                 .setFooter(R.layout.footer2)
+                .setGravity(Gravity.CENTER)
+
                 .setExpanded(true)  // This will enable the expand feature, (similar to android L share dialog)
                 .create();
         View header = dialog.getHeaderView();
         View content = dialog.getHolderView();
         TextView tx = (TextView)content.findViewById(R.id.information);
-        tx.setText("you have  "+latLng.getData().size()+" points\n save first or lost the data");
+        tx.setText("You collected "+latLng.getData().size()+" points.\n Do you want to save?");
         Button btnsave = (Button)content.findViewById(R.id.footer_close_button);
 
         Button btndontsave = (Button)content.findViewById(R.id.footer_confirm_button);
@@ -104,7 +107,7 @@ public class ConfigOrNotSend {
                         StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoint2, new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                Toast.makeText(activity,"points saved to server",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(activity,"SAVED...",Toast.LENGTH_SHORT).show();
 
                                 new Handler().postDelayed(new Runnable() {
 

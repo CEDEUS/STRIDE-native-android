@@ -54,6 +54,7 @@
         android:elevation="6dp"
         android:textSize="13sp"
         android:textStyle="bold"
+        android:gravity="center"
 
         android:textColor="#fff"
         app:layout_anchor="@id/fab"

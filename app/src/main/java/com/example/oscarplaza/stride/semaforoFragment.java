@@ -243,7 +243,7 @@ public class semaforoFragment extends Fragment implements View.OnClickListener, 
 
     private void addelement(String votacion, double lat, double lng,double hdop) {
 
-        getObservacion().getData().add(new PuntoVotados(votacion,hdop,lat,lng));
+        getObservacion().getData().add(new PuntoVotados(votacion,hdop,lng,lat));
         Semaforo activity = (Semaforo) getActivity();
         activity.SetData(getObservacion());
 

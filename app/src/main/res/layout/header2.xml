@@ -14,8 +14,11 @@
         android:layout_gravity="center_vertical|center"
         android:foregroundGravity="center_vertical|center_horizontal"
         android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="12sp"
+
         android:paddingLeft="75dp"
-        android:text="save data?" />
+        android:text="Save Data?" />
 
 </LinearLayout>
 

@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -22,6 +23,8 @@ public class ViewDialog {
                 .setContentHolder(new ViewHolder(R.layout.content_dialog))
                 .setHeader(R.layout.header)
                 .setFooter(R.layout.footer)
+                .setGravity(Gravity.CENTER)
+
                 .setExpanded(true)  // This will enable the expand feature, (similar to android L share dialog)
                 .create();
         View header = dialog.getHeaderView();
@@ -37,6 +40,8 @@ public class ViewDialog {
         DialogPlus dialog = DialogPlus.newDialog(activity)
                 .setAdapter(new Simpleadaptera())
                 .setContentHolder(new ViewHolder(R.layout.content_dialogabout))
+                .setGravity(Gravity.CENTER)
+
                 .setExpanded(true)  // This will enable the expand feature, (similar to android L share dialog)
                 .create();
         dialog.show();
@@ -49,6 +54,8 @@ public class ViewDialog {
         DialogPlus dialog = DialogPlus.newDialog(activity)
                 .setAdapter(new Simpleadaptera())
                 .setContentHolder(new ViewHolder(R.layout.content_dialogfeedback))
+                .setGravity(Gravity.CENTER)
+
                 .setExpanded(true)  // This will enable the expand feature, (similar to android L share dialog)
                 .create();
         dialog.show();

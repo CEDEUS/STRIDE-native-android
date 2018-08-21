@@ -13,9 +13,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/cedeus_later"
+        android:icon="@mipmap/cedeus_walk_wewew_round"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/cedeus"
+        android:roundIcon="@mipmap/cedeus_walk_wewew_sda"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity

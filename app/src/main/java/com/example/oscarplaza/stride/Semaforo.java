@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
@@ -59,6 +61,9 @@ public class Semaforo extends AppCompatActivity {
     }
 
     private String marktimeinicio;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
 
 
@@ -78,6 +83,15 @@ public class Semaforo extends AppCompatActivity {
 
         setContentView(R.layout.activity_semaforo);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_layour_recycler);
+        //mRecyclerView.setHasFixedSize(true);
+        //mLayoutManager = new LinearLayoutManager(this);
+        //mRecyclerView.setLayoutManager(mLayoutManager);
+        // specify an adapter (see also next example)
+        //mAdapter = new AdapterObservacion(getObservacion().getData());
+        ///mRecyclerView.setAdapter(mAdapter);
+
+
 
 
         setSupportActionBar(toolbar);
@@ -290,7 +304,7 @@ queue.add(stringRequest);
 }
 
     private void sendExit() {
-        Toast.makeText(this,"points saved to server",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"SAVED...",Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
 

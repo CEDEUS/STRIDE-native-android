@@ -91,7 +91,6 @@ public class ListFragmentinSeccion extends SupportMapFragment implements OnMapRe
                 LatLng latLng = new LatLng(getLat(), getLng());
                 getmMap().clear();
                 getmMap().moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
-                getmMap().addMarker(new MarkerOptions().position(latLng));
 
 
                 for(PuntoVotados p : o.getData())
@@ -109,32 +108,21 @@ public class ListFragmentinSeccion extends SupportMapFragment implements OnMapRe
         }
     }
 
-    private void CreateMarket(double lat, double lng, String score, GoogleMap googleMap)  {
-        LatLng lngre = new LatLng(lat,lng);
-
-
+    public void CreateMarket(double lat, double lng, String score, GoogleMap googleMap)  {
 
         switch (score){
             case "G":
-
-                googleMap.addMarker(new MarkerOptions().position(lngre).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)).title(score));
-
+                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat,lng)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)).title(score));
                 break;
             case "Y":
-
-
-                googleMap.addMarker(new MarkerOptions().position(lngre).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)).title(score));
-
+                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat,lng)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)).title(score));
                 break;
             case "R":
-
-                googleMap.addMarker(new MarkerOptions().position(lngre).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)).title(score));
+                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat,lng)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)).title(score));
                 break;
         }
-
-    }
-
-    public ListFragmentinSeccion() {
+        }
+        public ListFragmentinSeccion() {
         // Required empty public constructor
     }
 
