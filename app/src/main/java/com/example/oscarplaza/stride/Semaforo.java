@@ -3,6 +3,7 @@ package com.example.oscarplaza.stride;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -342,6 +343,18 @@ public void SetData(Observacion observacion) {
 setObservacion(observacion);
 
 }
+public void Deletedata()
+{
+    if (!getObservacion().getData().isEmpty() && !getObservacion().getData().contains(null) ) {
+        int countObservacion =  getObservacion().getData().size();
+
+        getObservacion().getData().remove(countObservacion - 1);
+    }
+    else{
+        Toast.makeText(this,"no hay elementos por eliminar",Toast.LENGTH_SHORT).show();
+    }
+}
+@NonNull
 public Observacion getData(){return getObservacion();}
 
 public static class PlaceholderFragment extends Fragment {
@@ -410,9 +423,7 @@ public static class PlaceholderFragment extends Fragment {
                     break;
                 case 2:
                     tabFragment = new ListFragmentandDelete();
-
-
-            }
+                    }
 
             return tabFragment;
         }
@@ -420,7 +431,7 @@ public static class PlaceholderFragment extends Fragment {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 2;
+            return 3;
         }
 
         @Nullable

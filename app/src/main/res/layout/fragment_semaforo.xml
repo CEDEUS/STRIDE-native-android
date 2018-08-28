@@ -14,12 +14,18 @@
         android:text="Is this place safe, nice and easy?"
         android:textSize="20dp"
         android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal|center"
+
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
 
 
     <LinearLayout
         android:layout_width="183dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal|center"
         android:background="@drawable/round_button"
         android:orientation="vertical"
         android:paddingBottom="10dp"
@@ -56,6 +62,12 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/round_buttongreen"
             android:text="safe, nice, easy" />
+    </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Undo Last Vote"
+        android:id="@+id/undo"/>
     </LinearLayout>
 
 </FrameLayout>

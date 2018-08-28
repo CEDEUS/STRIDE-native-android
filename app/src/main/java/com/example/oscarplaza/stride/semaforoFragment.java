@@ -165,9 +165,18 @@ public class semaforoFragment extends Fragment implements View.OnClickListener, 
         Button rojo = (Button)rootView.findViewById(R.id.button_Red);
         Button yellow = (Button)rootView.findViewById(R.id.button_2);
         Button verde = (Button)rootView.findViewById(R.id.button_3);
+        Button undo = (Button)rootView.findViewById(R.id.undo);
         rojo.setOnClickListener(this);
         verde.setOnClickListener(this);
         yellow.setOnClickListener(this);
+        undo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Semaforo activity = (Semaforo) getActivity();
+                activity.Deletedata();
+
+            }
+        });
         setC(container.getContext());
         return rootView;
     }
