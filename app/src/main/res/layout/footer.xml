@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/margin"
+    android:paddingBottom="@dimen/margin">
+
+
+    <Button
+        android:id="@+id/footer_close_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ciao"
+        android:textColor="@color/colorAccent"/>
+
+
+    <Button
+        android:id="@+id/footer_confirm_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hasta luego"/>
+
+
+</LinearLayout>

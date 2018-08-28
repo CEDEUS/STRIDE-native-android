@@ -1,15 +1,23 @@
 package com.example.oscarplaza.stride;
 
 import android.Manifest;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -24,10 +32,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.Window;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements ActionBar.TabListener, ViewPager.OnPageChangeListener  {
+public class MainActivity extends AppCompatActivity implements ActionBar.TabListener, ViewPager.OnPageChangeListener, NavigationView.OnNavigationItemSelectedListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -45,23 +55,17 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
      */
     private ViewPager mViewPager;
 
-    View.OnClickListener undoOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
 
-            Toast.makeText(view.getContext(),"APRETE UNO",Toast.LENGTH_LONG).show();
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        //getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+        //getActionBar().hide();
 
 
-
-
+        setContentView(R.layout.activity_main_drawable);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -71,6 +75,13 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -79,8 +90,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Observar persona", Snackbar.LENGTH_LONG)
-                        .setAction("Observar",undoOnClickListener ).show();
+                Intent intent = new Intent(view.getContext(), CheckButton.class);
+                startActivity(intent);
             }
         });
 
@@ -88,11 +99,11 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
 
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        return false;
     }
 
     @Override
@@ -141,6 +152,57 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
 
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+// Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_camera) {
+            about();
+        } else if (id == R.id.nav_gallery) {
+            feedback();
+
+        } else if (id == R.id.nav_slideshow) {
+            logout();
+
+        } else if (id == R.id.nav_manage) {
+            killapp();
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    private void about() {
+        ViewDialog  about = new ViewDialog();
+        about.showAbout(this);
+
+    }
+
+    private void feedback() {
+        ViewDialog  about = new ViewDialog();
+        about.showFeedback(this);
+    }
+
+    private void logout() {
+        SharedPreferences loginPreferences =getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = loginPreferences.edit();
+        editor.clear();
+        editor.apply();
+
+
+        Intent homepage = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(homepage);
+    }
+
+    private void killapp() 
+    {
+        finishAffinity();
+        System.exit(0);
     }
 
     /**
@@ -207,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         @Override
         public int getCount() {
-            return 2;
+            return 1;
         }
 
         @Nullable
@@ -217,10 +279,10 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
             switch (position) {
                 case 0:
-                    section = "MAPA";
+                    section = getString(R.string.my_position);
                     break;
                 case 1:
-                    section = "MIS OBSERVACIONES";
+                    section = getString(R.string.my_observation);
                     break;
             }
             return section;
