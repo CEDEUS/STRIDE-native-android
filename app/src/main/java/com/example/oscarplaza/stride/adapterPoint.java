@@ -10,21 +10,28 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.oscarplaza.stride.Entidades.PuntoVotados;
 
 import java.util.ArrayList;
 
 public class adapterPoint extends ArrayAdapter<PuntoVotados> {
+    private final Object mContext;
+
     public adapterPoint(Context listFragmentandDelete, ArrayList<PuntoVotados> data) {
         super(listFragmentandDelete,0,data);
+
+        this.mContext= listFragmentandDelete;
 
     }
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull final ViewGroup parent) {
         Log.d("TAG", "getView: ");
+        final Semaforo activity = (Semaforo) mContext;
+
 
         PuntoVotados user = getItem(position);
         if (convertView == null) {
@@ -32,10 +39,27 @@ public class adapterPoint extends ArrayAdapter<PuntoVotados> {
         }
         TextView tvnombre = (TextView) convertView.findViewById(R.id.txtnombre);
         TextView tvPresio = (TextView) convertView.findViewById(R.id.txtpresio);
+        convertView.setClickable(true);
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.Deletedatan(position);
+                activity.changeTabs();
+
+
+            }
+        });
+
 
         tvnombre.setText(user.getVotacion());
-        tvPresio.setText(String.valueOf(user.getHdop()));
+        tvPresio.setText(getnameStrett(user.getLat(),user.getLng(),activity));
         return  convertView;
 
     }
+
+    private String getnameStrett(double lat, double lng, Semaforo activity) {
+        return activity.nameofstreet(lat,lng);
+    }
+
+
 }

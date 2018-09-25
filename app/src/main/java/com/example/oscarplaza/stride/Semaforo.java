@@ -2,6 +2,8 @@ package com.example.oscarplaza.stride;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -40,9 +43,12 @@ import com.example.oscarplaza.stride.Entidades.PuntoVotados;
 import com.example.oscarplaza.stride.Entidades.PuntoVotadosOld;
 import com.google.gson.Gson;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class Semaforo extends AppCompatActivity {
@@ -177,6 +183,22 @@ public class Semaforo extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoint, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(),"SAVED...",Toast.LENGTH_SHORT).show();
+
+                new Handler().postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        getApplicationContext().startActivity(intent);
+
+
+                    }
+
+                },100);
+                sendExit();
+
+
 
                 String EndPoint2 = "http://146.155.17.18:18080/points/";
 
@@ -357,7 +379,44 @@ public void Deletedata()
 @NonNull
 public Observacion getData(){return getObservacion();}
 
-public static class PlaceholderFragment extends Fragment {
+    public void Deletedatan(int position) {
+        if (!getObservacion().getData().isEmpty() && !getObservacion().getData().contains(null) ) {
+            int countObservacion =  getObservacion().getData().size();
+
+            getObservacion().getData().remove(position);
+        }
+        else{
+            Toast.makeText(this,"no hay elementos por eliminar",Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    public void changeTabs() {
+        mViewPager.setCurrentItem(0, true); // set it to the third tab    }
+    }
+
+    public String nameofstreet(double lat, double lng) {
+        String andres ="";
+        Geocoder geocoder = new Geocoder(this);
+
+        List<Address> addresses = null;
+        try {
+            addresses = geocoder.getFromLocation(lat, lng,1);
+        } catch (IOException e) {
+        }
+        if(addresses != null && addresses.size() > 0 ){
+            Address address = addresses.get(0);
+            String street = address.getAddressLine(0);
+            andres = street;
+
+          }
+        else{
+            andres ="no found";
+            }
+            return andres;
+    }
+
+    public static class PlaceholderFragment extends Fragment {
 /**
 * The fragment argument representing the section number for this
 * fragment.

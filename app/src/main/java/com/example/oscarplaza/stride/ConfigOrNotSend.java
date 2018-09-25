@@ -101,6 +101,20 @@ public class ConfigOrNotSend {
                     public void onResponse(String response) {
 
                         String EndPoint2 = "http://146.155.17.18:18080/points/";
+                        Toast.makeText(activity,"SAVED...",Toast.LENGTH_SHORT).show();
+
+                        new Handler().postDelayed(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                Intent intent = new Intent(activity, LoginActivity.class);
+                                activity.startActivity(intent);
+
+
+                            }
+
+                        },100);
+
 
 
                         RequestQueue queue = Volley.newRequestQueue(activity);
@@ -125,6 +139,7 @@ public class ConfigOrNotSend {
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
+                                Log.d("TAG", "onErrorResponse: "+error.getMessage());
 
 
                             }
@@ -181,6 +196,9 @@ public class ConfigOrNotSend {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Log.d("TAG", "onErrorResponse: "+error.getMessage());
+                        Log.d("TAG", "onErrorResponse: "+error.getCause());
+
 
 
                     }
