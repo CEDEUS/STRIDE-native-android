@@ -3,8 +3,6 @@ package com.example.oscarplaza.stride;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -23,20 +22,15 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.gson.Gson;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class semaforoFragment extends Fragment implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class semaforoFragment extends Fragment implements  GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, View.OnClickListener, View.OnTouchListener {
     ArrayList<PuntoVotados> p = new ArrayList<PuntoVotados>();
     private final Observacion observacion = new Observacion(p);
     private FusedLocationProviderClient mFusedLocationClient;
@@ -58,6 +52,7 @@ public class semaforoFragment extends Fragment implements View.OnClickListener, 
     public void setDatemaker(String datemaker) {
         Datemaker = datemaker;
     }
+    private long pressStartTime;
 
     String Datemaker;
 
@@ -166,9 +161,9 @@ public class semaforoFragment extends Fragment implements View.OnClickListener, 
         Button yellow = (Button)rootView.findViewById(R.id.button_2);
         Button verde = (Button)rootView.findViewById(R.id.button_3);
         Button undo = (Button)rootView.findViewById(R.id.undo);
-        rojo.setOnClickListener(this);
-        verde.setOnClickListener(this);
-        yellow.setOnClickListener(this);
+        rojo.setOnTouchListener(this);
+        verde.setOnTouchListener(this);
+        yellow.setOnTouchListener(this);
         undo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,51 +176,9 @@ public class semaforoFragment extends Fragment implements View.OnClickListener, 
         return rootView;
     }
 
-    @SuppressLint("MissingPermission")
-    @Override
-    public void onClick(View v) {
-        int id = v.getId ();
-        takeGPSLocation();
-
-        String ItemSex = getActivity().getIntent().getExtras().getString("sex");
-        int ItemRangoEtario = getActivity().getIntent().getExtras().getInt("etario");
-        String ItemAbility = getActivity().getIntent().getExtras().getString("ability");
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
-        mFusedLocationClient.getLastLocation()
-                .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        // Got last known location. In some rare situations this can be null.
-                        if (location != null) {
-                            setLatgoogle(location.getLatitude());
-                            setLngoogle(location.getLongitude());
-                            setAccuary(location.getAccuracy());
-
-                        }
-                    }
-                });
 
 
-
-
-        switch (id) {
-            case R.id.button_Red :
-                process("R",ItemSex,ItemAbility,ItemRangoEtario);
-                break;
-            case R.id.button_2 :
-                process("Y",ItemSex,ItemAbility,ItemRangoEtario);
-
-                break;
-            case R.id.button_3 :
-                process("G",ItemSex,ItemAbility,ItemRangoEtario);
-
-                break;
-
-        }
-
-    }
-
-    private void process(String Votacion, String itemSex, String itemAbility, int itemRangoEtario) {
+    private void process(String Votacion, String itemSex, String itemAbility, int itemRangoEtario,String categoria) {
 
         setGenero(itemSex);
         setAbility(itemAbility);
@@ -233,27 +186,28 @@ public class semaforoFragment extends Fragment implements View.OnClickListener, 
         getObservacion().setAbility(getAbility());
         getObservacion().setAge(getEdad());
         getObservacion().setSex(getGenero());
-        getObservacion().setVersion("1.0.0-beta");
+        getObservacion().setVersion("2.0.0-beta");
 
         if (getAccuary() >=  15) {
             if(!samepoint(Votacion,getLatgoogle(),getLngoogle()))
             {
-                addelement(Votacion,getLatgoogle(),getLngoogle(),getAccuary());
+                addelement(Votacion,getLatgoogle(),getLngoogle(),getAccuary(),categoria);
             }
       }
         else
         {
             if(!samepoint(Votacion,getLat(),getLng()))
             {
-                addelement(Votacion,getLat(),getLng(),getAccuary());
+                addelement(Votacion,getLat(),getLng(),getAccuary(),categoria);
             }
         }
       }
 
-    private void addelement(String votacion, double lat, double lng,double hdop) {
+    private void addelement(String votacion, double lat, double lng, double hdop, String categoria) {
 
-        getObservacion().getData().add(new PuntoVotados(votacion,hdop,lng,lat));
+        getObservacion().getData().add(new PuntoVotados(votacion,hdop,lng,lat,categoria));
         Semaforo activity = (Semaforo) getActivity();
+        Toast.makeText(getActivity(),getObservacion().getData().get(getObservacion().getData().size() -1).getCategory(),Toast.LENGTH_SHORT).show();
         activity.SetData(getObservacion());
 
     }
@@ -312,4 +266,146 @@ public class semaforoFragment extends Fragment implements View.OnClickListener, 
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
+    @SuppressLint("MissingPermission")
+    @Override
+    public void onClick(View view) {
+
+
+    }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        switch(motionEvent.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                pressStartTime = System.currentTimeMillis();
+
+                // PRESSED
+                break;
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
+                long pressDuration = System.currentTimeMillis() - pressStartTime;
+                preprocces(view.getId(),pressDuration);
+
+
+                break;
+        }
+        return false;
+    }
+
+    @SuppressLint("MissingPermission")
+    private void preprocces(int id, long pressDuration) {
+        takeGPSLocation();
+        String ItemSex = getActivity().getIntent().getExtras().getString("sex");
+        int ItemRangoEtario = getActivity().getIntent().getExtras().getInt("etario");
+        String ItemAbility = getActivity().getIntent().getExtras().getString("ability");
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
+        mFusedLocationClient.getLastLocation()
+                .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            setLatgoogle(location.getLatitude());
+                            setLngoogle(location.getLongitude());
+                            setAccuary(location.getAccuracy());
+
+                        }
+                    }
+                });
+
+        switch (id) {
+            case R.id.button_Red :
+                process("R",ItemSex,ItemAbility,ItemRangoEtario,determinarCategoria(pressDuration));
+                break;
+            case R.id.button_2 :
+                process("Y",ItemSex,ItemAbility,ItemRangoEtario,determinarCategoria(pressDuration));
+
+                break;
+            case R.id.button_3 :
+                process("G",ItemSex,ItemAbility,ItemRangoEtario,"");
+
+                break;
+
+        }
+    }
+
+    private String determinarCategoria(long pressDuration) {
+        String salida ="";
+
+        if (pressDuration <=100)
+        {
+            salida ="None";
+        }
+        if(pressDuration >= 101 && pressDuration <= 1000 )
+        {
+            salida="Dangerous traffic";
+
+        }
+        if (pressDuration >= 1001 && pressDuration <= 2000)
+        {
+            salida="Feeling unsafe";
+        }
+        if (pressDuration >= 2001 && pressDuration <= 3000)
+        {
+            salida="Bad quality sidewalk";
+        }
+        if (pressDuration >= 3001 && pressDuration <= 4000)
+        {
+            salida="Not attractive";
+        }
+        if (pressDuration >= 4001)
+        {
+            salida="All is bad!";
+        }
+        return  salida;
+
+    }
+/*
+    @SuppressLint("MissingPermission")
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        int id = view.getId();
+        takeGPSLocation();
+        Toast.makeText(getActivity(),""+motionEvent.getDownTime(),Toast.LENGTH_SHORT).show();
+
+
+        String ItemSex = getActivity().getIntent().getExtras().getString("sex");
+        int ItemRangoEtario = getActivity().getIntent().getExtras().getInt("etario");
+        String ItemAbility = getActivity().getIntent().getExtras().getString("ability");
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
+        mFusedLocationClient.getLastLocation()
+                .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            setLatgoogle(location.getLatitude());
+                            setLngoogle(location.getLongitude());
+                            setAccuary(location.getAccuracy());
+
+                        }
+                    }
+                });
+
+
+
+
+
+        switch (id) {
+            case R.id.button_Red :
+                process("R",ItemSex,ItemAbility,ItemRangoEtario);
+                break;
+            case R.id.button_2 :
+                process("Y",ItemSex,ItemAbility,ItemRangoEtario);
+
+                break;
+            case R.id.button_3 :
+                process("G",ItemSex,ItemAbility,ItemRangoEtario);
+
+                break;
+
+        }
+    return  false;
+    }*/
 }

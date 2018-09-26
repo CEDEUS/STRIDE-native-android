@@ -9,6 +9,7 @@ public class Observacion {
     private String create_by;
     private String version;
 
+
     public String getVersion() {
         return version;
     }

@@ -37,8 +37,10 @@ public class adapterPoint extends ArrayAdapter<PuntoVotados> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list, parent, false);
         }
+
         TextView tvnombre = (TextView) convertView.findViewById(R.id.txtnombre);
         TextView tvPresio = (TextView) convertView.findViewById(R.id.txtpresio);
+        TextView tvCategory = (TextView) convertView.findViewById(R.id.txtcategory);
         convertView.setClickable(true);
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +52,7 @@ public class adapterPoint extends ArrayAdapter<PuntoVotados> {
             }
         });
 
-
+        tvCategory.setText(user.getCategory());
         tvnombre.setText(user.getVotacion());
         tvPresio.setText(getnameStrett(user.getLat(),user.getLng(),activity));
         return  convertView;

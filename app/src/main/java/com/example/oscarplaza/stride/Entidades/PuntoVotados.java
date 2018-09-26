@@ -9,11 +9,30 @@ public class PuntoVotados {
     private String score;
     private double hdop;
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    private String category;
+
+
+
     public PuntoVotados(String score, double hdop, double lon, double lat) {
         this.score = score;
         this.hdop = hdop;
         this.lon = lon;
         this.lat = lat;
+    }
+    public PuntoVotados(String score, double hdop, double lon, double lat,String cat) {
+        this.score = score;
+        this.hdop = hdop;
+        this.lon = lon;
+        this.lat = lat;
+        this.category = cat;
     }
 
     public double getHdop() {
