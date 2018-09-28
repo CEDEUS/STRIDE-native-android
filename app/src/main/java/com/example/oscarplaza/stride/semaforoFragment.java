@@ -285,7 +285,24 @@ public class semaforoFragment extends Fragment implements  GoogleApiClient.Conne
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 long pressDuration = System.currentTimeMillis() - pressStartTime;
-                preprocces(view.getId(),pressDuration);
+                if (pressDuration >= 500) {
+                    switch (view.getId()) {
+                        case R.id.button_Red :
+                            preprocces("R");
+                            break;
+                        case R.id.button_2 :
+                            preprocces("Y");
+
+                            break;
+                        case R.id.button_3 :
+                            generate();
+                            break;
+
+                    }
+                }else
+                    {
+                        generate();
+                    }
 
 
                 break;
@@ -294,11 +311,12 @@ public class semaforoFragment extends Fragment implements  GoogleApiClient.Conne
     }
 
     @SuppressLint("MissingPermission")
-    private void preprocces(int id, long pressDuration) {
+    private String[] generate() {
         takeGPSLocation();
-        String ItemSex = getActivity().getIntent().getExtras().getString("sex");
-        int ItemRangoEtario = getActivity().getIntent().getExtras().getInt("etario");
-        String ItemAbility = getActivity().getIntent().getExtras().getString("ability");
+        String[] toppings = new String[3];
+        toppings[0] = getActivity().getIntent().getExtras().getString("sex");
+        toppings[1] = String.valueOf(getActivity().getIntent().getExtras().getInt("etario"));
+        toppings[2]  = getActivity().getIntent().getExtras().getString("ability");
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
         mFusedLocationClient.getLastLocation()
                 .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
@@ -313,21 +331,21 @@ public class semaforoFragment extends Fragment implements  GoogleApiClient.Conne
                         }
                     }
                 });
+        return toppings;
 
-        switch (id) {
-            case R.id.button_Red :
-                process("R",ItemSex,ItemAbility,ItemRangoEtario,determinarCategoria(pressDuration));
-                break;
-            case R.id.button_2 :
-                process("Y",ItemSex,ItemAbility,ItemRangoEtario,determinarCategoria(pressDuration));
+    }
 
-                break;
-            case R.id.button_3 :
-                process("G",ItemSex,ItemAbility,ItemRangoEtario,"");
+    private void preprocces(String votacion) {
 
-                break;
+        String[] caca = generate();
+        Categorymodal  alert= new Categorymodal();
+        alert.showDialog(getActivity(),caca,getAccuary(),getLatgoogle(),getLngoogle(),votacion);
 
-        }
+
+
+
+
+
     }
 
     private String determinarCategoria(long pressDuration) {
