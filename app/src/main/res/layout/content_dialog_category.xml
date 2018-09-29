@@ -1,6 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:layout_width="368dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_vertical|center"
+        android:text="@string/category"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/radioGroup">
+
+        <RadioButton
+            android:id="@+id/excelentID"
+            android:text="@string/dangerous_traffic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:id="@+id/goodID"
+            android:text="@string/feeling_unsafe_people"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:id="@+id/avdID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bad_quality_sidewalk"/>
+
+        <RadioButton
+            android:id="@+id/poorID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/not_attractive" />
+        <RadioButton
+            android:id="@+id/allisID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/all_is_bad" />
+        <RadioButton
+            android:id="@+id/otherID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/other" />
+
+
+    </RadioGroup>
 
 </android.support.constraint.ConstraintLayout>

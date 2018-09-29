@@ -178,11 +178,13 @@ public class semaforoFragment extends Fragment implements  GoogleApiClient.Conne
 
 
 
-    private void process(String Votacion, String itemSex, String itemAbility, int itemRangoEtario,String categoria) {
+    private void process(String Votacion,String categoria) {
+        String[] caca = generate();
 
-        setGenero(itemSex);
-        setAbility(itemAbility);
-        setEdad(itemRangoEtario);
+
+        setGenero(caca[0]);
+        setAbility(caca[2]);
+        setEdad(Integer.valueOf(caca[1]));
         getObservacion().setAbility(getAbility());
         getObservacion().setAge(getEdad());
         getObservacion().setSex(getGenero());
@@ -207,7 +209,6 @@ public class semaforoFragment extends Fragment implements  GoogleApiClient.Conne
 
         getObservacion().getData().add(new PuntoVotados(votacion,hdop,lng,lat,categoria));
         Semaforo activity = (Semaforo) getActivity();
-        Toast.makeText(getActivity(),getObservacion().getData().get(getObservacion().getData().size() -1).getCategory(),Toast.LENGTH_SHORT).show();
         activity.SetData(getObservacion());
 
     }
@@ -291,17 +292,30 @@ public class semaforoFragment extends Fragment implements  GoogleApiClient.Conne
                             preprocces("R");
                             break;
                         case R.id.button_2 :
+
                             preprocces("Y");
 
                             break;
                         case R.id.button_3 :
-                            generate();
+                            process("G","none");
                             break;
-
-                    }
+                            }
                 }else
                     {
-                        generate();
+                        switch (view.getId()) {
+                            case R.id.button_Red :
+                                process("R","none");
+                                break;
+                            case R.id.button_2 :
+
+                                process("Y","none");
+
+                                break;
+                            case R.id.button_3 :
+                                process("G","none");
+                                break;
+                        }
+
                     }
 
 
@@ -337,9 +351,8 @@ public class semaforoFragment extends Fragment implements  GoogleApiClient.Conne
 
     private void preprocces(String votacion) {
 
-        String[] caca = generate();
         Categorymodal  alert= new Categorymodal();
-        alert.showDialog(getActivity(),caca,getAccuary(),getLatgoogle(),getLngoogle(),votacion);
+        alert.showDialog(getActivity(),votacion,this);
 
 
 
@@ -348,6 +361,10 @@ public class semaforoFragment extends Fragment implements  GoogleApiClient.Conne
 
     }
 
+    public void Metodoenvio(String category, String votacion) {
+        process(votacion,category);
+    }
+/*
     private String determinarCategoria(long pressDuration) {
         String salida ="";
 
