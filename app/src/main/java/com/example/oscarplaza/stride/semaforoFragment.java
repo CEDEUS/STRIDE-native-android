@@ -188,9 +188,9 @@ public class semaforoFragment extends Fragment implements  GoogleApiClient.Conne
         getObservacion().setAbility(getAbility());
         getObservacion().setAge(getEdad());
         getObservacion().setSex(getGenero());
-        getObservacion().setVersion("2.0.0-beta");
+        getObservacion().setVersion("1.1.0-beta");
 
-        if (getAccuary() >=  15) {
+        if (getAccuary() >=  20) {
             if(!samepoint(Votacion,getLatgoogle(),getLngoogle()))
             {
                 addelement(Votacion,getLatgoogle(),getLngoogle(),getAccuary(),categoria);
