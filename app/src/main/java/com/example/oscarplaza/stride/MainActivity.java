@@ -170,11 +170,19 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         } else if (id == R.id.nav_manage) {
             killapp();
 
+        }else if (id == R.id.change_idioms){
+            ShowIdiomsAvaible();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void ShowIdiomsAvaible() {
+        ViewDialog idioms = new ViewDialog();
+        idioms.showIdiomsOptions(this);
+
     }
 
     private void about() {
@@ -189,17 +197,26 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     }
 
     private void logout() {
+        ConfirLogout alert = new ConfirLogout();
+        alert.showAlert(this);
+       // SharedPreferences loginPreferences =getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        //SharedPreferences.Editor editor = loginPreferences.edit();
+       // editor.clear();
+       // editor.apply();
+       // Intent homepage = new Intent(MainActivity.this, LoginActivity.class);
+       // startActivity(homepage);
+    }
+    public void confirmlogout()
+    {
         SharedPreferences loginPreferences =getSharedPreferences("loginPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = loginPreferences.edit();
         editor.clear();
         editor.apply();
-
-
         Intent homepage = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(homepage);
     }
 
-    private void killapp() 
+    private void killapp()
     {
         finishAffinity();
         System.exit(0);

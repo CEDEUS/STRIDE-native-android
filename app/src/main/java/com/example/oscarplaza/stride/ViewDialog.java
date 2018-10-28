@@ -60,5 +60,17 @@ public class ViewDialog {
                 .create();
         dialog.show();
     }
+
+    public void showIdiomsOptions(MainActivity activity) {
+        DialogPlus dialog = DialogPlus.newDialog(activity)
+                .setAdapter(new Simpleadaptera())
+                .setContentHolder(new ViewHolder(R.layout.content_dialogchosenidioms))
+                .setGravity(Gravity.CENTER)
+
+                .setExpanded(true)  // This will enable the expand feature, (similar to android L share dialog)
+                .create();
+        dialog.show();
+
+    }
 }
 

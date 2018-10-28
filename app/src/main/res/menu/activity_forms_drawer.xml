@@ -11,6 +11,11 @@
             android:id="@+id/nav_gallery"
             android:title="Feedback" />
         <item
+            android:id="@+id/change_idioms"
+            android:title="@string/change_idioms"/>
+
+
+        <item
             android:id="@+id/nav_slideshow"
             android:title="Logout" />
         <item

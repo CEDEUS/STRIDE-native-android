@@ -55,10 +55,14 @@
     <string name="maps_and_votations">Position was votation</string>
     <string name="pdfc">STRIDE : Shared Travel Reality of Individual Deficient Environments</string>
     <string name="category">Category</string>
-    <string name="dangerous_traffic">Dangerous traffic</string>
-    <string name="feeling_unsafe_people">Feeling unsafe (people)</string>
-    <string name="bad_quality_sidewalk">Bad quality sidewalk</string>
-    <string name="not_attractive">Not attractive</string>
-    <string name="all_is_bad">All is bad!</string>
-    <string name="other">other</string>
+    <string name="dangerous_traffic">Inclusion</string>
+    <string name="feeling_unsafe_people">Design</string>
+    <string name="bad_quality_sidewalk">Integration</string>
+    <string name="not_attractive">Planned</string>
+    <string name="all_is_bad">Safe</string>
+    <string name="other">Security</string>
+    <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout?</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="change_idioms">Change idioms</string>
 </resources>
