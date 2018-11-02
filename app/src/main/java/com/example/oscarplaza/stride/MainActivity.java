@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -26,6 +28,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,6 +39,8 @@ import android.view.Window;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements ActionBar.TabListener, ViewPager.OnPageChangeListener, NavigationView.OnNavigationItemSelectedListener {
 
@@ -222,6 +227,25 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         System.exit(0);
     }
 
+    public void setIdioms(String s) {
+        Locale myLocale = new Locale(s);
+
+        Resources res = getResources();
+
+        DisplayMetrics dm = res.getDisplayMetrics();
+
+        Configuration conf = res.getConfiguration();
+
+        conf.locale = myLocale;
+
+        res.updateConfiguration(conf, dm);
+
+        Intent refresh = new Intent(this, MainActivity.class);
+
+        startActivity(refresh);
+
+    }
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -286,7 +310,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         @Override
         public int getCount() {
-            return 1;
+            return 2;
         }
 
         @Nullable
@@ -299,7 +323,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                     section = getString(R.string.my_position);
                     break;
                 case 1:
-                    section = getString(R.string.my_observation);
+                    section = getString(R.string.my_statistics);
                     break;
             }
             return section;

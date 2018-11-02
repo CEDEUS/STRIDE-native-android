@@ -35,6 +35,7 @@ public class ConfirLogout {
                 dialog.dismiss();
             }
         });
+        dialog.show();
 
 
 

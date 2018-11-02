@@ -45,6 +45,7 @@ public class ConfigOrNotSend {
                 .setFooter(R.layout.footer2)
                 .setGravity(Gravity.CENTER)
 
+
                 .setExpanded(true)  // This will enable the expand feature, (similar to android L share dialog)
                 .create();
         View header = dialog.getHeaderView();

@@ -18,7 +18,7 @@
         android:textSize="12sp"
 
         android:paddingLeft="75dp"
-        android:text="Save Data?" />
+        android:text="@string/save_data" />
 
 </LinearLayout>
 

@@ -65,4 +65,8 @@
     <string name="yes">YES</string>
     <string name="no">NO</string>
     <string name="change_idioms">Change idioms</string>
+    <string name="save_data">Save Data?</string>
+    <string name="english">english</string>
+    <string name="spanish">spanish</string>
+    <string name="my_statistics">My Statistics</string>
 </resources>

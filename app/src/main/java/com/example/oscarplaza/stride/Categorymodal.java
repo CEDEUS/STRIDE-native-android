@@ -71,7 +71,6 @@ public class Categorymodal {
                 break;
             case 4:
                 output="All is bad!";
-
                 break;
             case 5:
                 output="Other";
@@ -81,3 +80,4 @@ public class Categorymodal {
         return output;
     }
 }
+

@@ -16,6 +16,21 @@ public class TabBFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser)
+        {
+            getInfo();
+        }
+        else{
+
+        }
+    }
+
+    private void getInfo() {
+
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,6 +42,8 @@ public class TabBFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab_b, container, false);
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+
+        return rootView;
     }
 }
