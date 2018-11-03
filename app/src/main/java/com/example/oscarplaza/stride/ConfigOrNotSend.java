@@ -64,17 +64,13 @@ public class ConfigOrNotSend {
 
                 final String tokken = prefs.getString("token", "");//"No name defined" is the default value.
                 int idName = prefs.getInt("id", 0); //0 is the default value.
-
-
                 //final String tokken = prefs.getString("token", "");
                 //String id = prefs.getString("id", "");
                 Gson gson = new Gson();
-
                 latLng.setCreate_by("http://146.155.17.18:18080/users/" + idName + "/");
                 ArrayList<PuntoVotadosOld> p = new ArrayList<PuntoVotadosOld>();
                 Long tsLong = System.currentTimeMillis()/1000;
                 String ts = tsLong.toString();
-
                 ObservacionOld Oold = new ObservacionOld(p);
                 for (PuntoVotados Pnew:latLng.getData())
                 {
@@ -82,17 +78,9 @@ public class ConfigOrNotSend {
                     Oold.getPuntos().add(new PuntoVotadosOld(ts,Pnew.getVotacion(),latLng.getAge(),latLng.getAbility(),latLng.getSex(),ts,Pnew.getLat(),latLng.getCreate_by(),Pnew.getLon(),Pnew.getHdop(),latLng.getVersion()));
 
                 }
-
-
                 String jsArrayOld = gson.toJson(Oold.getPuntos());
                 String jsArray = gson.toJson(latLng);
-
-
-                Log.d("casa", "onResponse: "+jsArray);
-                Log.d("casa", "onResponse2: "+jsArrayOld);
                 final String requestBody2 = jsArrayOld;
-
-
                 final String requestBody = jsArray;
                 String EndPoint = "http://146.155.17.18:18080/observed/";
 

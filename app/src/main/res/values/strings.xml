@@ -69,4 +69,12 @@
     <string name="english">english</string>
     <string name="spanish">spanish</string>
     <string name="my_statistics">My Statistics</string>
+    <string name="email_ex">Email</string>
+    <string name="id_for_user">id for user</string>
+    <string name="user_name_in_app">User name in app</string>
+    <string name="date_joined_in_stride">date joined in Stride</string>
+    <string name="total_observed_person">total observed person</string>
+    <string name="total_points_voted">total points voted</string>
+    <string name="today_observed_person">Today observed person</string>
+    <string name="days_surveyed">Days surveyed</string>
 </resources>

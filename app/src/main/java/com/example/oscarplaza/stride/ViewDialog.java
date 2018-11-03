@@ -86,10 +86,10 @@ public class ViewDialog {
         String output ="";
         switch (index){
             case 0:
-                output="en";
+                output="es";
                 break;
             case 1:
-                output="es";
+                output="en";
                 break;
                 }
         return output;
