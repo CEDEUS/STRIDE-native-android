@@ -26,4 +26,24 @@
     <string name="title_activity_check_button">Perfil</string>
     <string name="profile_ok">Siguiente</string>
     <string name="pdfc">STRIDE : Shared Travel Reality of Individual Deficient Environments</string>
+    <string name="category">Categoria</string>
+    <string name="my_observation">Registrar</string>
+    <string name="saved">Guardando...</string>
+    <string name="not_notacion_yet">No hay votacion Registrada</string>
+    <string name="user">Usuario</string>
+    <string name="error_no_internet">No hay conexion de internet</string>
+    <string name="days_surveyed">Dias Observados</string>
+    <string name="today_observed_person">Personas observadas hoy</string>
+    <string name="total_points_voted">Puntos votados</string>
+    <string name="total_observed_person">Personas Votadas</string>
+
+
+    <string name="category.category1">inclusivo</string>
+    <string name="category.category2">diseño</string>
+    <string name="category.category3">integracion</string>
+    <string name="category.category4">planeado</string>
+    <string name="category.category5">seguro</string>
+    <string name="category.category6">protegido</string>
+    <string name="category.category7">other</string>
+
 </resources>

@@ -1,5 +1,7 @@
 package com.example.oscarplaza.stride;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.view.Gravity;
 import android.view.View;
@@ -31,7 +33,7 @@ public class Categorymodal {
                 .setAdapter(new Simpleadaptera())
                 .setContentHolder(new ViewHolder(R.layout.content_dialog_category))
                 .setGravity(Gravity.CENTER)
-                .setExpanded(true)  // This will enable the expand feature, (similar to android L share dialog)
+                .setExpanded(true,1100)  // This will enable the expand feature, (similar to android L share dialog)
                 .create();
         View content = dialog.getHolderView();
         RadioGroup rcategory = (RadioGroup)content.findViewById(R.id.radioGroup);
@@ -40,7 +42,7 @@ public class Categorymodal {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 View radioButton = radioGroup.findViewById(i);
                 int index = radioGroup.indexOfChild(radioButton);
-                setCategory(nameCategory(index));
+                setCategory(nameCategory(index,activity));
                 semaforoFragment.Metodoenvio(getCategory(),votacion);
                 dialog.dismiss();
 
@@ -54,26 +56,30 @@ public class Categorymodal {
 
     }
 
-    private String nameCategory(int index) {
+    private String nameCategory(int index, FragmentActivity activity) {
         String output ="";
+
         switch (index){
             case 0:
-                output="Dangerous traffic";
+                output= "Inclusion";
                 break;
             case 1:
-                output="Feeling unsafe (people)";
+                output= "Design";
                 break;
             case 2:
-                output="Bad quality sidewalk";
+                output="Integration";
                 break;
             case 3:
-                output="Not attractive";
+                output="Planned";
                 break;
             case 4:
-                output="All is bad!";
+                output="Safe";
                 break;
             case 5:
-                output="Other";
+                output="Security";
+                break;
+            case 6:
+                output=activity.getString(R.string.category_category7);
                 break;
 
         }

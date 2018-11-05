@@ -55,12 +55,12 @@
     <string name="maps_and_votations">Position was votation</string>
     <string name="pdfc">STRIDE : Shared Travel Reality of Individual Deficient Environments</string>
     <string name="category">Category</string>
-    <string name="dangerous_traffic">Inclusion</string>
-    <string name="feeling_unsafe_people">Design</string>
-    <string name="bad_quality_sidewalk">Integration</string>
-    <string name="not_attractive">Planned</string>
-    <string name="all_is_bad">Safe</string>
-    <string name="other">Security</string>
+    <string name="category.category1">Inclusion</string>
+    <string name="category.category2">Design</string>
+    <string name="category.category3">Integration</string>
+    <string name="category.category4">Planned</string>
+    <string name="category.category5">Safe</string>
+    <string name="category.category6">Security</string>
     <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout?</string>
     <string name="yes">YES</string>
     <string name="no">NO</string>
@@ -77,4 +77,9 @@
     <string name="total_points_voted">total points voted</string>
     <string name="today_observed_person">Today observed person</string>
     <string name="days_surveyed">Days surveyed</string>
+    <string name="user">User</string>
+    <string name="error_no_internet">No Internet connection</string>
+    <string name="not_notacion_yet">Not votation yet</string>
+    <string name="saved">Saved...</string>
+    <string name="category.category7">Other</string>
 </resources>

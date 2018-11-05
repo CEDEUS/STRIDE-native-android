@@ -113,7 +113,7 @@ public class Semaforo extends AppCompatActivity {
             public void onClick(View v) {
                 if ((getObservacion().getData().isEmpty() && getObservacion().getData().contains(null)) || getObservacion().getData().size() <= 0)
                 {
-                    Toast.makeText(getApplicationContext(),"no votation yet",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),getString(R.string.not_notacion_yet),Toast.LENGTH_SHORT).show();
 
                 }
                 else{
@@ -143,183 +143,183 @@ public class Semaforo extends AppCompatActivity {
 }
 
     private void sendData() {
-        SharedPreferences prefs = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+
+
+
+
+            SharedPreferences prefs = getSharedPreferences("loginPrefs", MODE_PRIVATE);
 
             final String tokken = prefs.getString("token", "");//"No name defined" is the default value.
             int idName = prefs.getInt("id", 0); //0 is the default value.
 
 
-        //final String tokken = prefs.getString("token", "");
-        //String id = prefs.getString("id", "");
-        Gson gson = new Gson();
+            //final String tokken = prefs.getString("token", "");
+            //String id = prefs.getString("id", "");
+            Gson gson = new Gson();
 
-        getObservacion().setCreate_by("http://146.155.17.18:18080/users/" + idName + "/");
-        ArrayList<PuntoVotadosOld> p = new ArrayList<PuntoVotadosOld>();
-        Long tsLong = System.currentTimeMillis()/1000;
-        String ts = tsLong.toString();
+            getObservacion().setCreate_by("http://146.155.17.18:18080/users/" + idName + "/");
+            ArrayList<PuntoVotadosOld> p = new ArrayList<PuntoVotadosOld>();
+            Long tsLong = System.currentTimeMillis() / 1000;
+            String ts = tsLong.toString();
 
-        ObservacionOld Oold = new ObservacionOld(p);
-        for (PuntoVotados Pnew:getObservacion().getData())
-        {
+            ObservacionOld Oold = new ObservacionOld(p);
+            for (PuntoVotados Pnew : getObservacion().getData()) {
 
-            Oold.getPuntos().add(new PuntoVotadosOld(ts,Pnew.getVotacion(),getObservacion().getAge(),getObservacion().getAbility(),getObservacion().getSex(),ts,Pnew.getLat(),getObservacion().getCreate_by(),Pnew.getLon(),Pnew.getHdop(), getObservacion().getVersion()));
+                Oold.getPuntos().add(new PuntoVotadosOld(ts, Pnew.getVotacion(), getObservacion().getAge(), getObservacion().getAbility(), getObservacion().getSex(), ts, Pnew.getLat(), getObservacion().getCreate_by(), Pnew.getLon(), Pnew.getHdop(), getObservacion().getVersion()));
 
-        }
-
-
-        String jsArrayOld = gson.toJson(Oold.getPuntos());
-        String jsArray = gson.toJson(getObservacion());
+            }
 
 
-        Log.d("casa", "onResponse: "+jsArray);
-        Log.d("casa", "onResponse2: "+jsArrayOld);
-        final String requestBody2 = jsArrayOld;
+            String jsArrayOld = gson.toJson(Oold.getPuntos());
+            String jsArray = gson.toJson(getObservacion());
 
 
-        final String requestBody = jsArray;
-        String EndPoint = "http://146.155.17.18:18080/observed/";
-
-        RequestQueue queue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoint, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(),"SAVED...",Toast.LENGTH_SHORT).show();
-
-                new Handler().postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                        getApplicationContext().startActivity(intent);
+            Log.d("casa", "onResponse: " + jsArray);
+            Log.d("casa", "onResponse2: " + jsArrayOld);
+            final String requestBody2 = jsArrayOld;
 
 
-                    }
+            final String requestBody = jsArray;
+            String EndPoint = "http://146.155.17.18:18080/observed/";
 
-                },100);
-                sendExit();
+            RequestQueue queue = Volley.newRequestQueue(this);
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoint, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Toast.makeText(getApplicationContext(), getString(R.string.saved), Toast.LENGTH_SHORT).show();
 
+                    new Handler().postDelayed(new Runnable() {
 
-
-                String EndPoint2 = "http://146.155.17.18:18080/points/";
-
-
-                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoint2, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        sendExit();
-
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        findViewById(R.id.sucsessess).setClickable(true);
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                            getApplicationContext().startActivity(intent);
 
 
-                    }
-                }){
-                    @Override
-                    public String getBodyContentType() {
-                        return "application/json; charset=utf-8";
-
-                    }
-
-
-                    @Override
-                    public Map<String, String> getHeaders() throws AuthFailureError {
-                        Map<String, String> params = new HashMap<String, String>();
-                        params.put("Content-Type", "application/json");
-                        params.put("Authorization","Token "+tokken);
-                        return  params;
-                    }
-
-
-
-
-                    @Override
-                    public byte[] getBody() throws AuthFailureError {
-                        try {
-                            return requestBody2 == null ? null : requestBody2.getBytes("utf-8");
-                        } catch (UnsupportedEncodingException uee) {
-                            VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody2, "utf-8");
-                            return null;
                         }
 
+                    }, 100);
+                    sendExit();
+
+
+                    String EndPoint2 = "http://146.155.17.18:18080/points/";
+
+
+                    RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoint2, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            sendExit();
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            findViewById(R.id.sucsessess).setClickable(true);
+
+
+                        }
+                    }) {
+                        @Override
+                        public String getBodyContentType() {
+                            return "application/json; charset=utf-8";
+
+                        }
+
+
+                        @Override
+                        public Map<String, String> getHeaders() throws AuthFailureError {
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("Content-Type", "application/json");
+                            params.put("Authorization", "Token " + tokken);
+                            return params;
+                        }
+
+
+                        @Override
+                        public byte[] getBody() throws AuthFailureError {
+                            try {
+                                return requestBody2 == null ? null : requestBody2.getBytes("utf-8");
+                            } catch (UnsupportedEncodingException uee) {
+                                VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody2, "utf-8");
+                                return null;
+                            }
+
+                        }
+
+                        @Override
+                        protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                            String value = "";
+                            try {
+                                value = new String(response.data, "UTF-8");
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                            }
+                            String responseString = "";
+                            if (response != null) {
+                                responseString = String.valueOf(response.data);
+                            }
+                            return Response.success(value, HttpHeaderParser.parseCacheHeaders(response));
+                        }
+                    };
+                    queue.add(stringRequest);
+
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    findViewById(R.id.sucsessess).setClickable(false);
+                    Toast.makeText(getApplicationContext(),getString(R.string.error_no_internet),Toast.LENGTH_SHORT).show();
+
+
+
+                }
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+
+                }
+
+
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("Content-Type", "application/json");
+                    params.put("Authorization", "Token " + tokken);
+                    return params;
+                }
+
+
+                @Override
+                public byte[] getBody() throws AuthFailureError {
+                    try {
+                        return requestBody == null ? null : requestBody.getBytes("utf-8");
+                    } catch (UnsupportedEncodingException uee) {
+                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                        return null;
                     }
 
-                    @Override
-                    protected Response<String> parseNetworkResponse(NetworkResponse response) {
-                        String value="";
-                        try {
-                            value = new String(response.data, "UTF-8");
-                        } catch (UnsupportedEncodingException e) {
-                            e.printStackTrace();
-                        }
-                        String responseString = "";
-                        if (response != null) {
-                            responseString = String.valueOf(response.data);
-                        }
-                        return Response.success(value, HttpHeaderParser.parseCacheHeaders(response));
+                }
+
+                @Override
+                protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                    String value = "";
+                    try {
+                        value = new String(response.data, "UTF-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
                     }
-                };
-                queue.add(stringRequest);
+                    String responseString = "";
+                    if (response != null) {
+                        responseString = String.valueOf(response.data);
+                    }
+                    return Response.success(value, HttpHeaderParser.parseCacheHeaders(response));
+                }
+            };
+            queue.add(stringRequest);
 
-
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                findViewById(R.id.sucsessess).setClickable(false);
-
-
-            }
-        }){
-            @Override
-            public String getBodyContentType() {
-                return "application/json; charset=utf-8";
-
-            }
-
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("Content-Type", "application/json");
-                params.put("Authorization","Token "+tokken);
-                return  params;
-            }
-
-
-
-
-@Override
-public byte[] getBody() throws AuthFailureError {
-try {
-    return requestBody == null ? null : requestBody.getBytes("utf-8");
-} catch (UnsupportedEncodingException uee) {
-    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
-    return null;
-}
-
-}
-
-@Override
-protected Response<String> parseNetworkResponse(NetworkResponse response) {
-String value="";
-try {
-    value = new String(response.data, "UTF-8");
-} catch (UnsupportedEncodingException e) {
-    e.printStackTrace();
-}
-String responseString = "";
-if (response != null) {
-    responseString = String.valueOf(response.data);
-}
-return Response.success(value, HttpHeaderParser.parseCacheHeaders(response));
-}
-};
-queue.add(stringRequest);
 
 
 

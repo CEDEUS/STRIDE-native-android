@@ -26,38 +26,45 @@
 
         <RadioButton
             android:id="@+id/excelentID"
-            android:text="@string/dangerous_traffic"
+            android:text="@string/category.category1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <RadioButton
             android:id="@+id/goodID"
-            android:text="@string/feeling_unsafe_people"
+            android:text="@string/category.category2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <RadioButton
             android:id="@+id/avdID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/bad_quality_sidewalk"/>
+            android:text="@string/category.category3"/>
 
         <RadioButton
             android:id="@+id/poorID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/not_attractive" />
+            android:text="@string/category.category4" />
         <RadioButton
             android:id="@+id/allisID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/all_is_bad" />
+            android:text="@string/category.category5" />
 
         <RadioButton
             android:id="@+id/otherID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="@string/other" />
+            android:text="@string/category.category6" />
+        <RadioButton
+            android:id="@+id/otherIDsd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/category.category7" />
+
 
 
     </RadioGroup>
