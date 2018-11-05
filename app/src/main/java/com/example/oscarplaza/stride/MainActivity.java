@@ -37,6 +37,8 @@ import android.view.ViewGroup;
 
 import android.view.Window;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -108,7 +110,21 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        return false;
+        // preguntar la opcion de poner un mas opciones y abrir un modal
+        getMenuInflater().inflate(R.menu.activity_forms_drawer, menu);
+        MenuItem item = menu.findItem(R.id.myswitch);
+        item.setActionView(R.layout.switch_layout);
+        Switch mySwitch = item.getActionView().findViewById(R.id.caca);
+        mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            }
+        });
+
+
+
+
+        return true;
     }
 
     @Override
