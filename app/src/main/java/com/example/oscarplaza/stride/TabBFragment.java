@@ -131,7 +131,6 @@ public class TabBFragment extends Fragment {
             @Override
             public void onResponse(String response) {
 
-                Log.d("TabBFragment", "onResponse: " + response);
                 Gson g = new Gson();
                 RespStatics r = g.fromJson(response,RespStatics.class);
                 DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -147,7 +146,6 @@ public class TabBFragment extends Fragment {
                 getDays_surveyed().setText(r.getDaysSurveyed().toString());
                 getEmails().setText(r.getEmail().toString());
                 //getGroups().setText(r.getGroups().toString());
-                getIds().setText(r.getId().toString());
                 getUsername().setText(r.getUsername().toString());
                 getEmails().setText(r.getEmail().toString());
                 getToday_observed_person().setText(r.getTodayObservedPerson().toString());
@@ -199,7 +197,6 @@ public class TabBFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_tab_b, container, false);
         setEmails((TextView)rootView.findViewById(R.id.email_ex_ex));
-        setIds((TextView)rootView.findViewById(R.id.id_for_user_ex));
         setUsername((TextView)rootView.findViewById(R.id.user_name_in_app_ex));
         setDate_joined((TextView)rootView.findViewById(R.id.date_joined_in_stride_ex));
         setTotal_observed_person((TextView)rootView.findViewById(R.id.total_observed_person_ex));
