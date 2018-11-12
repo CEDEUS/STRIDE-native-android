@@ -53,11 +53,16 @@
         <activity
             android:name=".CheckButton"
             android:label="@string/title_activity_check_button"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Semaforo"
+            android:name=".Semaforo"ACCESS_FINE_LOCATION
             android:label="@string/title_activity_semaforo"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <service
+            android:name=".LocationService"
+            android:enabled="true"
+            android:exported="false"></service>
     </application>
 
 </manifest>

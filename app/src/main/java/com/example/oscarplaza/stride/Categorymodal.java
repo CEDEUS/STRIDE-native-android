@@ -43,7 +43,7 @@ public class Categorymodal {
                 View radioButton = radioGroup.findViewById(i);
                 int index = radioGroup.indexOfChild(radioButton);
                 setCategory(nameCategory(index,activity));
-                semaforoFragment.Metodoenvio(getCategory(),votacion);
+                    semaforoFragment.Metodoenvio(getCategory(),votacion);
                 dialog.dismiss();
 
 
