@@ -168,20 +168,11 @@ public class Semaforo extends AppCompatActivity {
                 Oold.getPuntos().add(new PuntoVotadosOld(ts, Pnew.getVotacion(), getObservacion().getAge(), getObservacion().getAbility(), getObservacion().getSex(), ts, Pnew.getLat(), getObservacion().getCreate_by(), Pnew.getLon(), Pnew.getHdop(), getObservacion().getVersion()));
 
             }
-
-
             String jsArrayOld = gson.toJson(Oold.getPuntos());
             String jsArray = gson.toJson(getObservacion());
-
-
-            Log.d("casa", "onResponse: " + jsArray);
-            Log.d("casa", "onResponse2: " + jsArrayOld);
             final String requestBody2 = jsArrayOld;
-
-
             final String requestBody = jsArray;
             String EndPoint = "http://146.155.17.18:18080/observed/";
-
             RequestQueue queue = Volley.newRequestQueue(this);
             StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoint, new Response.Listener<String>() {
                 @Override

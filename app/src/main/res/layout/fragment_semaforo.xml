@@ -11,9 +11,11 @@
 
 
         android:paddingLeft="20dp"
-        android:text="Is this place safe, nice and easy?"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        android:text="@string/is_this_place_safe_nice_and_easy"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingStart="20dp"
+        tools:ignore="RtlSymmetry" />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal|center"
@@ -41,7 +43,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/round_buttonred"
             android:gravity="center"
-            android:text="risky, unfriendly, dificult" />
+            android:text="@string/risky_unfriendly_dificult" />
 
         <Button
             android:id="@+id/button_2"
@@ -61,12 +63,12 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/round_buttongreen"
-            android:text="safe, nice, easy" />
+            android:text="@string/safe_nice_easy" />
     </LinearLayout>
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Undo Last Vote"
+        android:text="@string/undo_last_vote"
         android:id="@+id/undo"/>
     </LinearLayout>
 

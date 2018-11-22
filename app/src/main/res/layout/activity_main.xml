@@ -50,7 +50,7 @@
         app:fabCustomSize="110dp"/>
     <TextView android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Your\n Walking \n Experience"
+        android:text="@string/your_n_walking_n_experience"
         android:elevation="6dp"
         android:textSize="13sp"
         android:textStyle="bold"
@@ -58,6 +58,7 @@
 
         android:textColor="#fff"
         app:layout_anchor="@id/fab"
-        app:layout_anchorGravity="center"/>
+        app:layout_anchorGravity="center"
+        tools:targetApi="lollipop" />
 
 </android.support.design.widget.CoordinatorLayout>

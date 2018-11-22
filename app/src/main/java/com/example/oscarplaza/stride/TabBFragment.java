@@ -43,6 +43,15 @@ public class TabBFragment extends Fragment {
     TextView total_points_voted;
     TextView today_observed_person;
     TextView days_surveyed;
+    TextView points_today;
+
+    public TextView getPoints_today() {
+        return points_today;
+    }
+
+    public void setPoints_today(TextView points_today) {
+        this.points_today = points_today;
+    }
 
     public TextView getEmails() {
         return emails;
@@ -141,7 +150,6 @@ public class TabBFragment extends Fragment {
                     e.printStackTrace();
                 }
 
-
                 getDate_joined().setText(format.format(date));
                 getDays_surveyed().setText(r.getDaysSurveyed().toString());
                 getEmails().setText(r.getEmail().toString());
@@ -151,6 +159,7 @@ public class TabBFragment extends Fragment {
                 getToday_observed_person().setText(r.getTodayObservedPerson().toString());
                 getTotal_observed_person().setText(r.getTotalObservedPerson().toString());
                 getTotal_points_voted().setText(r.getTotalPointsVoted().toString());
+                getPoints_today().setText(r.getTodayPoints().toString());
 
 
 
@@ -203,6 +212,7 @@ public class TabBFragment extends Fragment {
         setTotal_points_voted((TextView)rootView.findViewById(R.id.total_points_voted_ex));
         setDays_surveyed((TextView)rootView.findViewById(R.id.days_surveyed_ex));
         setToday_observed_person((TextView)rootView.findViewById(R.id.today_observed_person_ex));
+        setPoints_today((TextView)rootView.findViewById(R.id.number_of_points_today_ex));
         getInfo();
         return rootView;
     }

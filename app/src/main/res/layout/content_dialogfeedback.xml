@@ -6,6 +6,6 @@
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please feel free to send comments and feedback on the STRIDE app to Stefan Steiniger, from CEDEUS, via email to: ssteiniger@uc.cl"/>
+        android:text="@string/please_feel_free_to_send_comments_and_feedback_on_the_stride_app_to_stefan_steiniger_from_cedeus_via_email_to_ssteiniger_uc_cl"/>
 
 </android.support.constraint.ConstraintLayout>

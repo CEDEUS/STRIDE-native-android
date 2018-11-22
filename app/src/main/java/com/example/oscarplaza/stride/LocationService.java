@@ -20,7 +20,7 @@ public class LocationService extends Service implements LocationListener, GpsSta
 
     @Override
     public void onGpsStatusChanged(int i) {
-        
+
     }
 
     @Override

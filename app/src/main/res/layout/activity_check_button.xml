@@ -43,7 +43,7 @@
 
                 android:layout_height="wrap_content"
                 android:paddingLeft="10sp"
-                android:text="Please describe yourself or the person you will observe:"
+                android:text="@string/please_describe_yourself_or_the_person_you_will_observe"
                 android:textStyle="bold" />
 
             <LinearLayout

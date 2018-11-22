@@ -24,6 +24,11 @@ public class RespStatics {
     @SerializedName("total_observed_person")
     @Expose
     private Integer totalObservedPerson;
+
+
+    @SerializedName("today_points")
+    @Expose
+    private Integer TodayPoints;
     @SerializedName("total_points_voted")
     @Expose
     private Integer totalPointsVoted;
@@ -131,4 +136,25 @@ public class RespStatics {
     public void setDaysSurveyed(Integer daysSurveyed) {
         this.daysSurveyed = daysSurveyed;
     }
+    public Integer getTodayPoints() {
+        return TodayPoints;
+    }
+
+    public void setTodayPoints(Integer todayPoints) {
+        TodayPoints = todayPoints;
+    }
+
+    public RespStatics(String email, Integer id, String username, String dateJoined, List<String> groups, Integer totalObservedPerson, Integer todayPoints, Integer totalPointsVoted, Integer todayObservedPerson, Integer daysSurveyed) {
+        this.email = email;
+        this.id = id;
+        this.username = username;
+        this.dateJoined = dateJoined;
+        this.groups = groups;
+        this.totalObservedPerson = totalObservedPerson;
+        TodayPoints = todayPoints;
+        this.totalPointsVoted = totalPointsVoted;
+        this.todayObservedPerson = todayObservedPerson;
+        this.daysSurveyed = daysSurveyed;
+    }
+
 }

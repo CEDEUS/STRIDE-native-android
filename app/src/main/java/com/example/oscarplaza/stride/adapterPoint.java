@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,8 +21,19 @@ import java.util.ArrayList;
 public class adapterPoint extends ArrayAdapter<PuntoVotados> {
     private final Object mContext;
 
-    public adapterPoint(Context listFragmentandDelete, ArrayList<PuntoVotados> data) {
+    public adapterPoint(Context listFragmentandDelete, ArrayList<PuntoVotados> data, Button save, ListView lv, TextView mensaje) {
         super(listFragmentandDelete,0,data);
+        if(data.size() > 0){
+            save.setVisibility(View.VISIBLE);
+            lv.setVisibility(View.VISIBLE);
+            mensaje.setVisibility(View.GONE);
+        }
+        else if (data.isEmpty())
+        {
+            save.setVisibility(View.GONE);
+            lv.setVisibility(View.GONE);
+            mensaje.setVisibility(View.VISIBLE);
+        }
 
         this.mContext= listFragmentandDelete;
 

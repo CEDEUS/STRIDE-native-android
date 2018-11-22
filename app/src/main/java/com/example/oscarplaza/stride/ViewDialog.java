@@ -17,6 +17,8 @@ import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.OnItemClickListener;
 import com.orhanobut.dialogplus.ViewHolder;
 
+import java.util.Date;
+
 public class ViewDialog {
     public void showDialog(Context activity, String msg, LatLng latLng){
         DialogPlus dialog = DialogPlus.newDialog(activity)
@@ -45,6 +47,14 @@ public class ViewDialog {
 
                 .setExpanded(true)  // This will enable the expand feature, (similar to android L share dialog)
                 .create();
+        View content = dialog.getHolderView();
+        TextView tx = (TextView)content.findViewById(R.id.about_text_info);
+        String about = (String) tx.getText();
+        Date buildDate = new Date(BuildConfig.TIMESTAMP);
+
+        about = about+'\n'+BuildConfig.VERSION_NAME +'\n'+buildDate.toString();
+        tx.setText(about);
+
         dialog.show();
 
 

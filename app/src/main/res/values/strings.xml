@@ -82,4 +82,26 @@
     <string name="not_notacion_yet">No location evaluations yet</string>
     <string name="saved">Saving...</string>
     <string name="category.category7">Other</string>
+    <string name="number_of_points_today">Number of points today</string>
+    <string name="about_Text">The Stride app has been developed in a cooperation of CEDEUS.cl and Walk21.com</string>
+    <string name="new_person">New person</string>
+    <string name="save">Save</string>
+    <string name="vote">Vote</string>
+    <string name="voted_points">Voted Points</string>
+    <string name="list_voted_points">List Voted Points</string>
+    <string name="your_n_walking_n_experience">
+        "Your
+        Walking
+        Experience"</string>
+    <string name="please_describe_yourself_or_the_person_you_will_observe">Please describe yourself or the person you will observe:</string>
+    <string name="is_this_place_safe_nice_and_easy">Is this place safe, nice and easy?</string>
+    <string name="risky_unfriendly_dificult">risky, unfriendly, dificult</string>
+    <string name="safe_nice_easy">safe, nice, easy</string>
+    <string name="undo_last_vote">Undo Last Vote</string>
+    <string name="shared_travel_reality_of_individual_deficient_environments">Shared Travel Reality of Individual Deficient Environments</string>
+    <string name="stride">STRIDE</string>
+    <string name="no_element">no element</string>
+    <string name="please_feel_free_to_send_comments_and_feedback_on_the_stride_app_to_stefan_steiniger_from_cedeus_via_email_to_ssteiniger_uc_cl">Please feel free to send comments and feedback on the STRIDE app to Stefan Steiniger, from CEDEUS, via email to: ssteiniger@uc.cl</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="save_in_file">Save in file</string>
 </resources>

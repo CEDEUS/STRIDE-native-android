@@ -45,5 +45,6 @@
     <string name="category.category5">seguro</string>
     <string name="category.category6">protegido</string>
     <string name="category.category7">other</string>
+    <string name="my_statistics">Mi Estadisticas</string>
 
 </resources>
