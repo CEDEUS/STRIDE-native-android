@@ -104,4 +104,5 @@
     <string name="please_feel_free_to_send_comments_and_feedback_on_the_stride_app_to_stefan_steiniger_from_cedeus_via_email_to_ssteiniger_uc_cl">Please feel free to send comments and feedback on the STRIDE app to Stefan Steiniger, from CEDEUS, via email to: ssteiniger@uc.cl</string>
     <string name="dismiss">Dismiss</string>
     <string name="save_in_file">Save in file</string>
+    <string name="my_last_point">My last point</string>
 </resources>

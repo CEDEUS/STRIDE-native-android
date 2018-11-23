@@ -333,6 +333,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                 case 1:
                     tabFragment = new TabBFragment();
                     break;
+                case 2:
+                    tabFragment = new TabCFragment();
             }
 
             return tabFragment;
@@ -340,7 +342,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
 
         @Nullable
@@ -355,6 +357,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                 case 1:
                     section = getString(R.string.my_statistics);
                     break;
+                case 2:
+                    section = getString(R.string.my_last_point);
             }
             return section;
 
