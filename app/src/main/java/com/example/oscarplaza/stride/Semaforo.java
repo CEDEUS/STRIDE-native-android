@@ -362,7 +362,7 @@ public class Semaforo extends AppCompatActivity {
                     findViewById(R.id.sucsessess).setClickable(false);
                     Toast.makeText(getApplicationContext(),getString(R.string.error_no_internet),Toast.LENGTH_SHORT).show();
                     wheel.destroyDrawingCache();
-                    
+
                     v.setClickable(true);
 
 

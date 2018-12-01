@@ -33,16 +33,11 @@ import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class TabCFragment extends android.support.v4.app.Fragment
-        {
+public class TabCFragment extends android.support.v4.app.Fragment {
 
     public TabCFragment() {
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Nullable
     @Override
@@ -118,3 +113,4 @@ public class TabCFragment extends android.support.v4.app.Fragment
 
     }
         }
+
