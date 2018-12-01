@@ -2,12 +2,19 @@ package com.example.oscarplaza.stride;
 
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -34,6 +41,8 @@ public class semaforoFragment extends Fragment implements  GoogleApiClient.Conne
     ArrayList<PuntoVotados> p = new ArrayList<PuntoVotados>();
     private final Observacion observacion = new Observacion(p);
     private FusedLocationProviderClient mFusedLocationClient;
+    public LocationService locationService;
+
 
     private float accuary;
 
@@ -61,6 +70,15 @@ public class semaforoFragment extends Fragment implements  GoogleApiClient.Conne
     private double lat=0;
     private double latgoogle=0;
     private double lngoogle=0;
+    private double accuren;
+
+    public double getAccuren() {
+        return accuren;
+    }
+
+    public void setAccuren(double accuren) {
+        this.accuren = accuren;
+    }
 
     public double getLatgoogle() {
         return latgoogle;
@@ -154,6 +172,23 @@ public class semaforoFragment extends Fragment implements  GoogleApiClient.Conne
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
+        final Intent locationService = new Intent(getActivity().getApplication(), LocationService.class);
+        getActivity().getApplication().startService(locationService);
+        getActivity().getApplication().bindService(locationService, serviceConnection(), Context.BIND_AUTO_CREATE);
+        BroadcastReceiver locationUpdateReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Location newLocation = intent.getParcelableExtra("location");
+                setLat(newLocation.getLatitude());
+                setLng(newLocation.getLatitude());
+                setAccuary(newLocation.getAccuracy());
+
+            }
+        };
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(
+                locationUpdateReceiver,
+                new IntentFilter("LocationUpdated"));
+
         // Inflate the layout for this fragment
         Log.d("TAG", "onCreateView: ");
         View rootView = inflater.inflate(R.layout.fragment_semaforo, container, false);
@@ -188,7 +223,7 @@ public class semaforoFragment extends Fragment implements  GoogleApiClient.Conne
         getObservacion().setAbility(getAbility());
         getObservacion().setAge(getEdad());
         getObservacion().setSex(getGenero());
-        getObservacion().setVersion("1.1.0-beta");
+        getObservacion().setVersion(BuildConfig.VERSION_NAME);
 
         if (getAccuary() >=  20) {
             if(!samepoint(Votacion,getLatgoogle(),getLngoogle()))
@@ -331,20 +366,11 @@ public class semaforoFragment extends Fragment implements  GoogleApiClient.Conne
         toppings[0] = getActivity().getIntent().getExtras().getString("sex");
         toppings[1] = String.valueOf(getActivity().getIntent().getExtras().getInt("etario"));
         toppings[2]  = getActivity().getIntent().getExtras().getString("ability");
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
-        mFusedLocationClient.getLastLocation()
-                .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        // Got last known location. In some rare situations this can be null.
-                        if (location != null) {
-                            setLatgoogle(location.getLatitude());
-                            setLngoogle(location.getLongitude());
-                            setAccuary(location.getAccuracy());
+        Semaforo activity = (Semaforo) getActivity();
+        setLatgoogle(getLat());
+        setLngoogle(getLng());
+        setAccuary(getAccuary());
 
-                        }
-                    }
-                });
         return toppings;
 
     }
@@ -443,4 +469,46 @@ public class semaforoFragment extends Fragment implements  GoogleApiClient.Conne
         }
     return  false;
     }*/
+private ServiceConnection serviceConnection() {
+    return  new ServiceConnection() {
+        @SuppressLint("NewApi")
+        public void onServiceConnected(ComponentName className, IBinder service) {
+            // This is called when the connection with the service has been
+            // established, giving us the service object we can use to
+            // interact with the service.  Because we have bound to a explicit
+            // service that we know is running in our own process, we can
+            // cast its IBinder to a concrete class and directly access it.
+            String name = className.getClassName();
+
+            if (name.endsWith("LocationService")) {
+                locationService = ((LocationService.LocationServiceBinder) service).getService();
+
+                locationService.startUpdatingLocation();
+
+
+            }
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            // This is called when the connection with the service has been
+            // unexpectedly disconnected -- that is, its process crashed.
+            // Because it is running in our same process, we should never
+            // see this happen.
+            Toast.makeText(getActivity().getApplication(),"desconectado",Toast.LENGTH_SHORT).show();
+
+            if (componentName.getClassName().equals("LocationService")) {
+                locationService.stopUpdatingLocation();
+                locationService = null;
+            }
+
+        }
+
+        @Override
+        public void onBindingDied(ComponentName name) {
+            Toast.makeText(getActivity().getApplication(),"auch",Toast.LENGTH_SHORT).show();
+
+
+        }
+    };}
 }

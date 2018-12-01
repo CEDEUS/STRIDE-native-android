@@ -283,6 +283,7 @@ public class LoginActivity extends AppCompatActivity{
         SharedPreferences.Editor editor = loginPreferences.edit();
         editor.putString("token", Tokken);
         editor.putInt("id",userId);
+        editor.putInt("count",10);
         editor.commit();
     }
 }

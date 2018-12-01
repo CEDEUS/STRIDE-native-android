@@ -1,13 +1,23 @@
 package com.example.oscarplaza.stride;
 
+import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.location.Address;
+import android.content.ServiceConnection;
 import android.location.Geocoder;
+import android.location.Location;
 import android.os.Handler;
+import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -42,6 +52,7 @@ import com.example.oscarplaza.stride.Entidades.ObservacionOld;
 import com.example.oscarplaza.stride.Entidades.PuntoVotados;
 import com.example.oscarplaza.stride.Entidades.PuntoVotadosOld;
 import com.google.gson.Gson;
+import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -54,10 +65,37 @@ import java.util.Map;
 public class Semaforo extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
+    public LocationService locationService;
     private ViewPager mViewPager;
     ArrayList<PuntoVotados> p = new ArrayList<PuntoVotados>();
     private  Observacion observacion = new Observacion(p);
+    private double  lat;
+    private  double lng;
+    private  double acctuary;
+
+    public double getAcctuary() {
+        return acctuary;
+    }
+
+    public void setAcctuary(double acctuary) {
+        this.acctuary = acctuary;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
 
     public String getMarktimeinicio() {
         return marktimeinicio;
@@ -89,6 +127,9 @@ public class Semaforo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_semaforo);
+        final Intent locationService = new Intent(this.getApplication(), LocationService.class);
+        this.getApplication().startService(locationService);
+        this.getApplication().bindService(locationService, serviceConnection(), Context.BIND_AUTO_CREATE);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_layour_recycler);
         //mRecyclerView.setHasFixedSize(true);
@@ -97,6 +138,19 @@ public class Semaforo extends AppCompatActivity {
         // specify an adapter (see also next example)
         //mAdapter = new AdapterObservacion(getObservacion().getData());
         ///mRecyclerView.setAdapter(mAdapter);
+        BroadcastReceiver locationUpdateReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Location newLocation = intent.getParcelableExtra("location");
+                setLat(newLocation.getLatitude());
+                setLng(newLocation.getLatitude());
+                setAcctuary(newLocation.getAccuracy());
+
+            }
+        };
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                locationUpdateReceiver,
+                new IntentFilter("LocationUpdated"));
 
 
 
@@ -117,9 +171,11 @@ public class Semaforo extends AppCompatActivity {
 
                 }
                 else{
+                    ProgressWheel wheel = new ProgressWheel(getApplication());
+                    wheel.setBarColor(Color.BLUE);
                     v.setClickable(false);
 
-                    sendData();
+                    sendData(v,wheel);
 
 
                 }
@@ -135,6 +191,49 @@ public class Semaforo extends AppCompatActivity {
         });
     }
 
+    private ServiceConnection serviceConnection() {
+        return  new ServiceConnection() {
+            @SuppressLint("NewApi")
+            public void onServiceConnected(ComponentName className, IBinder service) {
+                // This is called when the connection with the service has been
+                // established, giving us the service object we can use to
+                // interact with the service.  Because we have bound to a explicit
+                // service that we know is running in our own process, we can
+                // cast its IBinder to a concrete class and directly access it.
+                String name = className.getClassName();
+
+                if (name.endsWith("LocationService")) {
+                    locationService = ((LocationService.LocationServiceBinder) service).getService();
+
+                    locationService.startUpdatingLocation();
+
+
+                }
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName componentName) {
+                // This is called when the connection with the service has been
+                // unexpectedly disconnected -- that is, its process crashed.
+                // Because it is running in our same process, we should never
+                // see this happen.
+                Toast.makeText(getApplication(),"desconectado",Toast.LENGTH_SHORT).show();
+
+                if (componentName.getClassName().equals("LocationService")) {
+                    locationService.stopUpdatingLocation();
+                    locationService = null;
+                }
+
+            }
+
+            @Override
+            public void onBindingDied(ComponentName name) {
+                Toast.makeText(getApplication(),"auch",Toast.LENGTH_SHORT).show();
+
+
+            }
+        };}
+
     private void showMyalert() {
         ConfigOrNotSend alert = new ConfigOrNotSend();
         alert.showDialog(this,getObservacion());
@@ -142,7 +241,7 @@ public class Semaforo extends AppCompatActivity {
 
 }
 
-    private void sendData() {
+    private void sendData(final View v, final ProgressWheel wheel) {
 
 
 
@@ -262,6 +361,9 @@ public class Semaforo extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
                     findViewById(R.id.sucsessess).setClickable(false);
                     Toast.makeText(getApplicationContext(),getString(R.string.error_no_internet),Toast.LENGTH_SHORT).show();
+                    wheel.destroyDrawingCache();
+                    
+                    v.setClickable(true);
 
 
 
