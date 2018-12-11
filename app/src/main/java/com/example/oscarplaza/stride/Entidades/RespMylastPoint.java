@@ -41,17 +41,17 @@ public class RespMylastPoint {
         this.previous = previous;
     }
 
-    public ArrayList<Observacion> getResults() {
+    public RespResult getResults() {
         return results;
     }
 
-    public void setResults(ArrayList<Observacion> results) {
+    public void setResults(RespResult results) {
         this.results = results;
     }
 
     @SerializedName("results")
     @Expose
-    private ArrayList<Observacion> results;
+    private RespResult results;
 
 
 }
