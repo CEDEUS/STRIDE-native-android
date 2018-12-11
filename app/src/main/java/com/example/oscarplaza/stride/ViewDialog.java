@@ -38,6 +38,27 @@ public class ViewDialog {
         dialog.show();
 
     }
+    public void  ConfirmYou(Context activity,String direccion)
+    {
+        final DialogPlus dialog = DialogPlus.newDialog(activity).setAdapter(new Simpleadaptera())
+                .setContentHolder(new ViewHolder(R.layout.content_dialog_confirm))
+                .setFooter(R.layout.footer)
+                .setGravity(Gravity.CENTER)
+                .setExpanded(true)
+                .create();
+        View content = dialog.getHolderView();
+        View footer = dialog.getFooterView();
+
+        dialog.show();
+        ((TextView)content.findViewById(R.id.mensaje)).setText(direccion);
+        ((Button)footer.findViewById(R.id.footer_close_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+    }
 
     public void showAbout(Context activity) {
         DialogPlus dialog = DialogPlus.newDialog(activity)
