@@ -73,8 +73,8 @@
     <string name="id_for_user">User ID</string>
     <string name="user_name_in_app">Registered user name</string>
     <string name="date_joined_in_stride">Date joined</string>
-    <string name="total_observed_person">Number of people observed</string>
-    <string name="total_points_voted">Number of points evaluated</string>
+    <string name="total_observed_person">People observed</string>
+    <string name="total_points_voted">Points evaluated</string>
     <string name="today_observed_person">People observed today</string>
     <string name="days_surveyed">Days surveyed</string>
     <string name="user">User</string>
