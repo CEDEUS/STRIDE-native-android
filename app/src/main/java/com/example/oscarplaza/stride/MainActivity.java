@@ -137,8 +137,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         // preguntar la opcion de poner un mas opciones y abrir un modal
-        getMenuInflater().inflate(R.menu.activity_forms_drawer, menu);
-        return true;
+            getMenuInflater().inflate(R.menu.activity_forms_drawer, menu);
+        return false;
     }
 
     @Override
@@ -207,11 +207,29 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         }else if (id == R.id.change_idioms){
             ShowIdiomsAvaible();
+        }else if (id == R.id.change_points_number)
+        {
+            ShowPointOptions();
+        }
+        else if(id == R.id.street_mode)
+        {
+            allowandresetmodestreet();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    private void allowandresetmodestreet() {
+    }
+
+    private void ShowPointOptions() {
+        ViewDialog points = new ViewDialog();
+        SharedPreferences prefs = this.getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        int count = prefs.getInt("count",10);// 10 if no initialize
+
+
+        points.ShowSelectedpoints(this,count);
     }
 
     private void ShowIdiomsAvaible() {
@@ -273,6 +291,24 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         Intent refresh = new Intent(this, MainActivity.class);
 
         startActivity(refresh);
+
+    }
+
+    public void setLastPointRequest(String in) {
+
+
+
+        SharedPreferences loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = loginPreferences.edit();
+        editor.putInt("count", Integer.parseInt(in));
+        editor.commit();
+
+
+
+        Intent refresh = new Intent(this, MainActivity.class);
+
+        startActivity(refresh);
+
 
     }
 
