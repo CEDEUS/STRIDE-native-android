@@ -1,27 +1,28 @@
-package com.example.oscarplaza.stride;
+package com.example.oscarplaza.stride.Entidades;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.view.LayoutInflater;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.oscarplaza.stride.Entidades.Observacion;
+
+import com.example.oscarplaza.stride.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
-class ObservacionAdapter extends ArrayAdapter<Observacion> {
+public class ObservacionAdapter extends ArrayAdapter<RespResult> {
     private Context mContext;
-    private List<Observacion> moviesList = new ArrayList<Observacion>();
-    public ObservacionAdapter(Context listener, ArrayList<Observacion> results) {
-        super(listener,0,results);
-        mContext = listener;
-        moviesList = results;
+    private ArrayList<RespResult> moviesList = new ArrayList<RespResult>();
+    public ObservacionAdapter(FragmentActivity activity, ArrayList<RespResult> arr) {
+        super(activity,0,arr);
+        mContext = activity;
+        moviesList = arr;
+
     }
 
     @NonNull
@@ -31,13 +32,12 @@ class ObservacionAdapter extends ArrayAdapter<Observacion> {
         if(listItem == null)
             listItem = LayoutInflater.from(mContext).inflate(R.layout.list_item,parent,false);
 
-        Observacion currentMovie = getItem(position);
+        RespResult currentMovie = getItem(position);
 
 
         TextView tcantidadPuntos =  (TextView)listItem.findViewById(R.id.cantidad_puntos);
-        tcantidadPuntos.setText(currentMovie.getCreate_by());
+        tcantidadPuntos.setText(currentMovie.getScore().toString());
+        return  listItem;
 
-
-        return listItem;
     }
 }

@@ -1,11 +1,17 @@
 package com.example.oscarplaza.stride.Utils;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 import com.example.oscarplaza.stride.CheckButton;
 import com.example.oscarplaza.stride.LoginActivity;
 import com.example.oscarplaza.stride.R;
+
+import java.security.PublicKey;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -112,5 +118,12 @@ public class Utils {
             as="O";
         }
         return as;
+    }
+
+    public boolean isNetworkAvailable(Activity _this) {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) _this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

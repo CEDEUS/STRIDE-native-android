@@ -1,57 +1,54 @@
 package com.example.oscarplaza.stride.Entidades;
 
-import com.example.oscarplaza.stride.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class RespMylastPoint {
-    @SerializedName("count")
-    @Expose
-    private Integer count;
-    @SerializedName("next")
-    @Expose
-    private Integer next;
-    @SerializedName("previous")
-    @Expose
-    private String previous;
+public class RespMylastPoint{
 
-    public Integer getCount() {
-        return count;
-    }
+        @SerializedName("count")
+        @Expose
+        private Integer count;
+        @SerializedName("next")
+        @Expose
+        private String next;
+        @SerializedName("previous")
+        @Expose
+        private String previous;
+        @SerializedName("results")
+        @Expose
+        private List<RespResult> results = null;
 
-    public void setCount(Integer count) {
-        this.count = count;
-    }
+        public Integer getCount() {
+            return count;
+        }
 
-    public Integer getNext() {
-        return next;
-    }
+        public void setCount(Integer count) {
+            this.count = count;
+        }
 
-    public void setNext(Integer next) {
-        this.next = next;
-    }
+        public String getNext() {
+            return next;
+        }
 
-    public String getPrevious() {
-        return previous;
-    }
+        public void setNext(String next) {
+            this.next = next;
+        }
 
-    public void setPrevious(String previous) {
-        this.previous = previous;
-    }
+        public String getPrevious() {
+            return previous;
+        }
 
-    public RespResult getResults() {
-        return results;
-    }
+        public void setPrevious(String previous) {
+            this.previous = previous;
+        }
 
-    public void setResults(RespResult results) {
-        this.results = results;
-    }
+        public java.util.List<RespResult> getResults() {
+            return results;
+        }
 
-    @SerializedName("results")
-    @Expose
-    private RespResult results;
-
-
+        public void setResults(java.util.List<RespResult> results) {
+            this.results = results;
+        }
 }
