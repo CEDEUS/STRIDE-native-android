@@ -170,7 +170,6 @@ public class TabBFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("TabBFragment", "onResponse: " + error.getMessage());
-                Toast.makeText(getActivity(),"hola"+error.getMessage(),Toast.LENGTH_SHORT).show();
 
 
             }

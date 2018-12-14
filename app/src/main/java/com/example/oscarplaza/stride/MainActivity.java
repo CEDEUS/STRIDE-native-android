@@ -1,6 +1,7 @@
 package com.example.oscarplaza.stride;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -42,6 +43,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.oscarplaza.stride.Utils.Utils;
+
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements ActionBar.TabListener, ViewPager.OnPageChangeListener, NavigationView.OnNavigationItemSelectedListener {
@@ -65,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
 
 
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +101,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                 // result of the request.
             }
         }
+        Utils u = new Utils();
+        Toast.makeText(this,""+u.isNetworkAvailable(this),Toast.LENGTH_SHORT).show();
 
         setContentView(R.layout.activity_main_drawable);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -118,6 +124,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+        TextView onFAB = (TextView) findViewById(R.id.onfab);
+        onFAB.setText(getResources().getString(R.string.your)+"\n"+getResources().getString(R.string.walking)+"\n"+getResources().getString(R.string.experience));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

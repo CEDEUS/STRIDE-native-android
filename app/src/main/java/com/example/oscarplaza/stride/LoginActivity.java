@@ -23,6 +23,7 @@ import android.view.WindowManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
@@ -97,6 +98,9 @@ public class LoginActivity extends AppCompatActivity{
                     }
                 }
             });
+            Utils u = new Utils();
+            Toast.makeText(this,""+u.isNetworkAvailable(this),Toast.LENGTH_SHORT).show();
+
         }else{
             super.onCreate(savedInstanceState);
 
