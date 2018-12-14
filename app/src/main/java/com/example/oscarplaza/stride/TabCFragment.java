@@ -23,17 +23,44 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.oscarplaza.stride.Entidades.Observacion;
+import com.example.oscarplaza.stride.Entidades.ObservacionAdapter;
+import com.example.oscarplaza.stride.Entidades.PuntoVotados;
 import com.example.oscarplaza.stride.Entidades.RespMylastPoint;
+import com.example.oscarplaza.stride.Entidades.RespResult;
 import com.example.oscarplaza.stride.Entidades.RespStatics;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class TabCFragment extends android.support.v4.app.Fragment {
+public class TabCFragment extends SupportMapFragment implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener,
+        GoogleMap.OnMarkerDragListener,
+        GoogleMap.OnMapLongClickListener,
+        GoogleMap.OnMarkerClickListener,GoogleMap.OnMapClickListener {
+    private GoogleMap mMap;
+
+    public GoogleMap getmMap() {
+        return mMap;
+    }
+
+    public void setmMap(GoogleMap mMap) {
+        this.mMap = mMap;
+    }
+
 
     public TabCFragment() {
     }
@@ -42,16 +69,20 @@ public class TabCFragment extends android.support.v4.app.Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_lastpoint, container, false);
-        ListView lv= (ListView) rootView.findViewById(R.id.list_last);
+        // Inflate the layout for this fragment
+        //Toast.makeText(getActivity(),"entro on create view",Toast.LENGTH_SHORT).show();
+        // Inflate the layout for this fragment
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        getMapAsync(this);
 
-        getData(lv);
+        getData();
+
 
         return rootView;
 
     }
 
-    private void getData(final ListView lv) {
+    private void getData() {
         SharedPreferences prefs = this.getActivity().getSharedPreferences("loginPrefs", MODE_PRIVATE);
 
         final String tokken = prefs.getString("token", "");//"No name defined" is the default value.
@@ -59,23 +90,41 @@ public class TabCFragment extends android.support.v4.app.Fragment {
         int count = prefs.getInt("count",10);// 10 if no initialize
         String EndPoint = "http://146.155.17.18:18080/my_last_point?count="+count;
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, EndPoint, new Response.Listener<String>() {
+        ArrayList<RespResult> arr = new ArrayList<RespResult>();
+        capturedataandrecursive(arr,EndPoint,tokken);
+
+
+
+    }
+
+    private void capturedataandrecursive(final ArrayList<RespResult> arr, String endPoint, final String tokken) {
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, endPoint, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Gson g = new Gson();
                 RespMylastPoint r = g.fromJson(response,RespMylastPoint.class);
+                arr.addAll(r.getResults());
+                //ObservacionAdapter oba = new ObservacionAdapter(getActivity(),arr);
+                //lv.setAdapter(oba);
+                for(RespResult p : arr)
+                {
+                    CreateMarket(p.getLat(),p.getLon(),p.getScore(),getmMap());
 
-                //ObservacionAdapter oba = new ObservacionAdapter(getActivity(),r.getResults());
+                }
 
+                if (r.getNext() == null){}
+                else{capturedataandrecursive(arr,r.getNext(),tokken);}
 
-               // lv.setAdapter(oba);
 
             }}, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-               Toast.makeText(getActivity(),"error",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"error",Toast.LENGTH_SHORT).show();
             }
-            }
+        }
 
         ){
             @Override
@@ -109,8 +158,74 @@ public class TabCFragment extends android.support.v4.app.Fragment {
             }
         };
         queue.add(stringRequest);
+    }
 
+    private void CreateMarket(Double lat, Double lon, String score, GoogleMap googleMap) {
+        switch (score){
+            case "G":
+                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)).title(score));
+                break;
+            case "Y":
+                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)).title(score));
+                break;
+            case "R":
+                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)).title(score));
+                break;
+        }
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
 
     }
-        }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onMapClick(LatLng latLng) {
+
+    }
+
+    @Override
+    public void onMapLongClick(LatLng latLng) {
+
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        return false;
+    }
+
+    @Override
+    public void onMarkerDragStart(Marker marker) {
+
+    }
+
+    @Override
+    public void onMarkerDrag(Marker marker) {
+
+    }
+
+    @Override
+    public void onMarkerDragEnd(Marker marker) {
+
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+        // Posicionar el mapa en una localización y con un nivel de zoom
+
+        setmMap(googleMap);
+    }
+}
 

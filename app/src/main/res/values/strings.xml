@@ -105,4 +105,13 @@
     <string name="dismiss">Dismiss</string>
     <string name="save_in_file">Save in file</string>
     <string name="my_last_point">My last point</string>
+    <string name="logout">Logout</string>
+    <string name="close_app">Close app</string>
+    <string name="change_option_last_point">Change Option last point</string>
+    <string name="sidewalks">sidewalks option</string>
+    <string name="select_how_many_last_point_you_want_see">Select how many last point you want see</string>
+    <string name="_10">10</string>
+    <string name="_100">100</string>
+    <string name="_200">200</string>
+    <string name="_400">400</string>
 </resources>

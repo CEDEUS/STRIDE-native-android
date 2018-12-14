@@ -17,16 +17,17 @@
 
         <item
             android:id="@+id/nav_slideshow"
-            android:title="Logout" />
+            android:title="@string/logout" />
         <item
             android:id="@+id/nav_manage"
-            android:title="Close app" />
+            android:title="@string/close_app" />
         <item
-            android:id="@+id/myswitch"
-            android:title=""
-            android:showAsAction="always"
-            android:actionLayout="@layout/switch_layout"
-            tools:ignore="AppCompatResource" />
+            android:id="@+id/change_points_number"
+            android:title="@string/change_option_last_point" />
+
+        <item
+            android:id="@+id/street_mode"
+            android:title="@string/sidewalks" />
     </group>
 
 
