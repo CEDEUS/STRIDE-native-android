@@ -1,6 +1,7 @@
 package com.example.oscarplaza.stride;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
@@ -16,12 +17,16 @@ import android.widget.Toast;
 
 import com.example.oscarplaza.stride.Entidades.Observacion;
 import com.google.gson.Gson;
+import com.orhanobut.dialogplus.DialogPlus;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class ListFragmentandDelete extends Fragment
 {
@@ -109,6 +114,7 @@ public class ListFragmentandDelete extends Fragment
         getSave().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                String observedandpoints =  makeJson(activity.getData());
                 try {
                     createandsavefile(observedandpoints);
@@ -124,20 +130,50 @@ public class ListFragmentandDelete extends Fragment
     }
 
     private void createandsavefile(String observedandpoints) throws IOException {
-        String baseFolder;
-        if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            baseFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
+        String baseFolder = Environment.getDataDirectory().getAbsolutePath();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            baseFolder = Environment.DIRECTORY_DOCUMENTS;
         }
-        else {
-            baseFolder = getActivity().getFilesDir().getAbsolutePath();
+        File yourAppDir = new File(Environment.getExternalStorageDirectory()+File.separator+Environment.DIRECTORY_DOCUMENTS+File.separator+"Stride");
+
+        if(!yourAppDir.exists() && !yourAppDir.isDirectory())
+        {
+            // create empty directory
+            if (yourAppDir.mkdirs())
+            {
+                Log.i("CreateDir","App dir created");
+                CreateFile(observedandpoints,yourAppDir);
+            }
+            else
+            {
+                Log.w("CreateDir","Unable to create app dir!");
+            }
         }
-        Toast.makeText(getActivity(),baseFolder,Toast.LENGTH_SHORT).show();
-        File file = new File(baseFolder + File.separator + "test.json");
+        else
+        {
+            CreateFile(observedandpoints,yourAppDir);
+
+            Log.i("CreateDir","App dir already exists");
+        }
+
+
+
+    }
+
+    private void CreateFile(String observedandpoints, File yourAppDir) throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        File file = new File(yourAppDir.getAbsolutePath() + File.separator + timeStamp +".json");
         file.getParentFile().mkdirs();
         FileOutputStream fos = new FileOutputStream(file);
         fos.write(observedandpoints.getBytes());
         fos.flush();
         fos.close();
+        showposition(file.getAbsolutePath());
+    }
+
+    private void showposition(String absolutePath) {
+        ViewDialog vd = new ViewDialog();
+        vd.ConfirmYou(getActivity(),absolutePath);
 
     }
 
