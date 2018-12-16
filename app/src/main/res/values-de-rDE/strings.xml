@@ -95,9 +95,12 @@
     <string name="voted_points">Beobachtungspunkte</string>
     <string name="list_voted_points">Beobachtungsliste</string>
     <string name="your_n_walking_n_experience">
-       "Meine
+        "Meine 
         Erfahrung als
         Fussgänger"</string>
+    <string name="your">Deine</string>
+    <string name="walking">Fussgänger</string>
+    <string name="experience">Erfahrung</string>
     <string name="please_describe_yourself_or_the_person_you_will_observe">Bitte beschreiben sie sich selbst oder die Person die sie beobachten:</string>
     <string name="is_this_place_safe_nice_and_easy">Als Fussgänger, ist dieser Ort sicher, freundlich und leicht zum Gehen?</string>
     <string name="risky_unfriendly_dificult">gefährlich, unfreundlich, schwer</string>
