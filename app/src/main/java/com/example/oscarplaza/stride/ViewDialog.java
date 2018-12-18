@@ -1,8 +1,10 @@
 package com.example.oscarplaza.stride;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
@@ -11,6 +13,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.orhanobut.dialogplus.DialogPlus;
@@ -166,6 +169,19 @@ public class ViewDialog {
                 break;
         }
         return output;
+    }
+
+    public void nohaveinternet(Activity loginActivity) {
+        new AlertDialog.Builder(loginActivity)
+                .setTitle(loginActivity.getString(R.string.title_no_conection))
+                .setMessage(loginActivity.getString(R.string.content_no_conection))
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    }}).show();
+
+
     }
 }
 

@@ -102,7 +102,12 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             }
         }
         Utils u = new Utils();
-        Toast.makeText(this,""+u.isNetworkAvailable(this),Toast.LENGTH_SHORT).show();
+        if (u.isNetworkAvailable(this) == false)
+        {
+
+            ViewDialog v = new  ViewDialog();
+            v.nohaveinternet(this);
+        }
 
         setContentView(R.layout.activity_main_drawable);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

@@ -99,7 +99,11 @@ public class LoginActivity extends AppCompatActivity{
                 }
             });
             Utils u = new Utils();
-            Toast.makeText(this,""+u.isNetworkAvailable(this),Toast.LENGTH_SHORT).show();
+            if (!u.isNetworkAvailable(this))
+            {
+                ViewDialog v = new  ViewDialog();
+                v.nohaveinternet(this);
+            }
 
         }else{
             super.onCreate(savedInstanceState);

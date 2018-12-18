@@ -118,4 +118,6 @@
     <string name="_100">100</string>
     <string name="_200">200</string>
     <string name="_400">400</string>
+    <string name="title_no_conection">problem in you conection</string>
+    <string name="content_no_conection">pleace review you conection or please save the observation in save json</string>
 </resources>
