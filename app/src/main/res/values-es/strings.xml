@@ -7,25 +7,25 @@
     <string name="error_incorrect_password">Esta clave es incorecta</string>
     <string name="error_invalid_email">Este email es invalido</string>
     <string name="Empty" />
-    <string name="Kid">Niño</string>
-    <string name="adole">adolescentes</string>
-    <string name="adults">Adulto</string>
-    <string name="Elderly">Anciano</string>
     <string name="groupE">Grupo etario</string>
+    <string name="Kid">Niño</string>
+    <string name="adole">Adolescente</string>
+    <string name="adults">Adulto</string>
+    <string name="Elderly">Adulto Mayor</string>
     <string name="sexo">Genero</string>
     <string name="male">Hombre</string>
     <string name="female">Mujer</string>
-    <string name="no_define">Otros</string>
-    <string name="movility">Dificultades fisica</string>
+    <string name="no_define">Otro</string>
     <string name="action_settings">Configuraciones</string>
-    <string name="my_position">mi ubicacion</string>
+    <string name="my_position">Mi Ubicacion</string>
     <string name="title_activity_forms">Observacion</string>
-    <string name="normal">Puede</string>
-    <string name="asistida">Dificultad</string>
-    <string name="mecanica">Asistida</string>
+    <string name="movility">Condicion fisica</string>
+    <string name="normal">sin dificultades</string>
+    <string name="asistida">con dificultades</string>
+    <string name="mecanica">requiere ayuda</string>
     <string name="title_activity_check_button">Perfil</string>
     <string name="profile_ok">Siguiente</string>
-    <string name="pdfc">STRIDE : Shared Travel Reality of Individual Deficient Environments</string>
+    <string name="pdfc">STRIDE : Shared Travel Reality of Individual Deficient Environments : comparte tu experiencia</string>
     <string name="category">Categoria</string>
     <string name="my_observation">Registrar</string>
     <string name="saved">Guardando...</string>
@@ -38,13 +38,13 @@
     <string name="total_observed_person">Personas Votadas</string>
 
 
-    <string name="category.category1">inclusivo</string>
-    <string name="category.category2">diseño</string>
-    <string name="category.category3">integracion</string>
-    <string name="category.category4">planeado</string>
-    <string name="category.category5">seguro</string>
-    <string name="category.category6">protegido</string>
-    <string name="category.category7">other</string>
+    <string name="category.category1">Inclusivo - (no) para todos</string>
+    <string name="category.category2">Diseño - (no) diseñado para peatones</string>
+    <string name="category.category3">Integracion - (no) es bien contectado</string>
+    <string name="category.category4">Planeado - (no) priorizacion del peaton</string>
+    <string name="category.category5">Seguro - (no) es seguro del traffico vial</string>
+    <string name="category.category6">Protegido - (no) se siente seguro</string>
+    <string name="category.category7">Otro</string>
     <string name="my_statistics">Mi Estadisticas</string>
 
 
@@ -63,12 +63,12 @@
     <string name="title_activity_splash">" "</string>
     <string name="title_activity_form4votation">Observacion</string>
     <string name="title_activity_semaforo">Semaforo</string>
-    <string name="maps_and_votations">LOcacion Votada</string>
+    <string name="maps_and_votations">Locacion Votada</string>
 
     <string name="are_you_sure_you_want_to_logout">¿estas seguro qu quieres desconectarte?</string>
     <string name="yes">SI</string>
     <string name="no">NO</string>
-    <string name="change_idioms">Cambia de idioma</string>
+    <string name="change_idioms">Cambiar idioma</string>
     <string name="save_data">Guardar observaciones</string>
     <string name="english">Ingles</string>
     <string name="spanish">Español</string>
@@ -88,10 +88,14 @@
         "Your
         Walking
         Experience"</string>
-    <string name="please_describe_yourself_or_the_person_you_will_observe">Describe a la persona observada</string>
-    <string name="is_this_place_safe_nice_and_easy">este lugar es lindo y facil?</string>
-    <string name="risky_unfriendly_dificult">riesgoso,dificil</string>
-    <string name="safe_nice_easy">seguro,lindo</string>
+    <string name="your">Mi</string>
+    <string name="walking">Experiencia</string>
+    <string name="experience">Como Peaton</string>
+ 
+    <string name="please_describe_yourself_or_the_person_you_will_observe">Describe a la persona observada:</string>
+    <string name="is_this_place_safe_nice_and_easy">En este lugar se puede caminar seguro, amable y facil?</string>
+    <string name="risky_unfriendly_dificult">peligroso, feo, dificil</string>
+    <string name="safe_nice_easy">seguro, amable, facil</string>
     <string name="undo_last_vote">borrar el ultimo punto</string>
     <string name="shared_travel_reality_of_individual_deficient_environments">Shared Travel Reality of Individual Deficient Environments</string>
     <string name="stride">STRIDE</string>

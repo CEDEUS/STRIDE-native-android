@@ -55,12 +55,12 @@
     <string name="maps_and_votations">Voted Locations</string>
     <string name="pdfc">STRIDE : Shared Travel Reality of Individual Deficient Environments</string>
     <string name="category">Category</string>
-    <string name="category.category1">Not inclusive - not for everybody</string>
-    <string name="category.category2">Not designed - for people</string>
-    <string name="category.category3">Not integrated - no conectivity</string>
-    <string name="category.category4">Not planned - no priority for walkers</string>
-    <string name="category.category5">Not safe - dangerous traffic</string>
-    <string name="category.category6">Not secure - feels unwelcome </string>
+    <string name="category.category1">Inclusive - not/for everybody</string>
+    <string name="category.category2">Design - not/for people</string>
+    <string name="category.category3">Integrated - has/no conectivity</string>
+    <string name="category.category4">Planneded - has/no priority for walkers</string>
+    <string name="category.category5">Safe - (no) dangerous traffic</string>
+    <string name="category.category6">Secure - feels unwelcome/welcome </string>
     <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout?</string>
     <string name="yes">YES</string>
     <string name="no">NO</string>
@@ -90,11 +90,9 @@
     <string name="voted_points">Voted Points</string>
     <string name="list_voted_points">List Voted Points</string>
     <string name="your_n_walking_n_experience">Your Walking Experience</string>
-    <string name="your">Your</string>
+    <string name="your">My</string>
     <string name="walking">Walking</string>
     <string name="experience">Experience</string>
-
-
 
     <string name="please_describe_yourself_or_the_person_you_will_observe">Please describe yourself or the person you will observe:</string>
     <string name="is_this_place_safe_nice_and_easy">Is this place safe, nice and easy?</string>
