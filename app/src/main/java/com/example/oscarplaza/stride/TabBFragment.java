@@ -1,8 +1,10 @@
 package com.example.oscarplaza.stride;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -26,8 +28,11 @@ import com.google.gson.Gson;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -141,17 +146,19 @@ public class TabBFragment extends Fragment {
             public void onResponse(String response) {
 
                 Gson g = new Gson();
-                RespStatics r = g.fromJson(response,RespStatics.class);
-                DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-                Date date =new Date();
+                RespStatics r = g.fromJson(response, RespStatics.class);
+                Date sdf = null;
                 try {
-                     date  = format.parse(r.getDateJoined());
+                    sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(r.getDateJoined());
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                String parsedDate = formatter.format(sdf);
 
-                getDate_joined().setText(format.format(date));
-                getDays_surveyed().setText(r.getDaysSurveyed().toString());
+
+                getDate_joined().setText(parsedDate);
+                getDays_surveyed().setText(r.getTodayPoints().toString());
                 getEmails().setText(r.getEmail().toString());
                 //getGroups().setText(r.getGroups().toString());
                 getUsername().setText(r.getUsername().toString());
@@ -159,10 +166,7 @@ public class TabBFragment extends Fragment {
                 getToday_observed_person().setText(r.getTodayObservedPerson().toString());
                 getTotal_observed_person().setText(r.getTotalObservedPerson().toString());
                 getTotal_points_voted().setText(r.getTotalPointsVoted().toString());
-                getPoints_today().setText(r.getTodayPoints().toString());
-
-
-
+                getPoints_today().setText(r.getDaysSurveyed().toString());
 
 
             }

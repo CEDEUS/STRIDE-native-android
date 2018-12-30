@@ -290,40 +290,22 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
     public void setIdioms(String s) {
         Locale myLocale = new Locale(s);
-
         Resources res = getResources();
-
         DisplayMetrics dm = res.getDisplayMetrics();
-
         Configuration conf = res.getConfiguration();
-
         conf.locale = myLocale;
-
         res.updateConfiguration(conf, dm);
-
         Intent refresh = new Intent(this, MainActivity.class);
-
         startActivity(refresh);
-
-    }
-
-    public void setLastPointRequest(String in) {
-
-
-
+        }
+        public void setLastPointRequest(String in) {
         SharedPreferences loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = loginPreferences.edit();
         editor.putInt("count", Integer.parseInt(in));
         editor.commit();
-
-
-
         Intent refresh = new Intent(this, MainActivity.class);
-
         startActivity(refresh);
-
-
-    }
+        }
 
     /**
      * A placeholder fragment containing a simple view.

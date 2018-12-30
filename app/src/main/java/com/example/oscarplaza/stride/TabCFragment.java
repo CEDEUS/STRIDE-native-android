@@ -4,12 +4,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -18,18 +15,14 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.oscarplaza.stride.Entidades.Observacion;
-import com.example.oscarplaza.stride.Entidades.ObservacionAdapter;
-import com.example.oscarplaza.stride.Entidades.PuntoVotados;
 import com.example.oscarplaza.stride.Entidades.RespMylastPoint;
 import com.example.oscarplaza.stride.Entidades.RespResult;
-import com.example.oscarplaza.stride.Entidades.RespStatics;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -52,6 +45,7 @@ public class TabCFragment extends SupportMapFragment implements OnMapReadyCallba
         GoogleMap.OnMapLongClickListener,
         GoogleMap.OnMarkerClickListener,GoogleMap.OnMapClickListener {
     private GoogleMap mMap;
+    private int cuenta;
 
     public GoogleMap getmMap() {
         return mMap;
@@ -65,6 +59,10 @@ public class TabCFragment extends SupportMapFragment implements OnMapReadyCallba
     public TabCFragment() {
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+    }
 
     @Nullable
     @Override
@@ -91,13 +89,14 @@ public class TabCFragment extends SupportMapFragment implements OnMapReadyCallba
         String EndPoint = "http://146.155.17.18:18080/my_last_point?count="+count;
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         ArrayList<RespResult> arr = new ArrayList<RespResult>();
-        capturedataandrecursive(arr,EndPoint,tokken);
+        int cuantos =1;
+        capturedataandrecursive(arr,EndPoint,tokken,cuantos);
 
 
 
     }
 
-    private void capturedataandrecursive(final ArrayList<RespResult> arr, String endPoint, final String tokken) {
+    private void capturedataandrecursive(final ArrayList<RespResult> arr, String endPoint, final String tokken, final int cuantos) {
         RequestQueue queue = Volley.newRequestQueue(getActivity());
 
 
@@ -109,14 +108,28 @@ public class TabCFragment extends SupportMapFragment implements OnMapReadyCallba
                 arr.addAll(r.getResults());
                 //ObservacionAdapter oba = new ObservacionAdapter(getActivity(),arr);
                 //lv.setAdapter(oba);
+                int i = 0;
+
                 for(RespResult p : arr)
                 {
-                    CreateMarket(p.getLat(),p.getLon(),p.getScore(),getmMap());
+                    CreateMarket(p.getLat(),p.getLon(),p.getScore(),getmMap(),cuantos+i);
+
+                    if(i == arr.size() - 1){
+                        float zoom = 19;
+                        LatLng latLng = new LatLng(p.getLat(), p.getLon());
+                        getmMap().moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
+
+
+                        // Last iteration
+                    }
+                    i++;
 
                 }
+                setCuenta(getCuenta()+arr.size()-1);
+                arr.clear();
 
                 if (r.getNext() == null){}
-                else{capturedataandrecursive(arr,r.getNext(),tokken);}
+                else{capturedataandrecursive(arr,r.getNext(),tokken, getCuenta());}
 
 
             }}, new Response.ErrorListener() {
@@ -160,16 +173,16 @@ public class TabCFragment extends SupportMapFragment implements OnMapReadyCallba
         queue.add(stringRequest);
     }
 
-    private void CreateMarket(Double lat, Double lon, String score, GoogleMap googleMap) {
+    private void CreateMarket(Double lat, Double lon, String score, GoogleMap googleMap, int i) {
         switch (score){
             case "G":
-                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)).title(score));
+                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)).title(i+")"));
                 break;
             case "Y":
-                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)).title(score));
+                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)).title(i+")"));
                 break;
             case "R":
-                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)).title(score));
+                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)).title(i+")"));
                 break;
         }
     }
@@ -226,6 +239,14 @@ public class TabCFragment extends SupportMapFragment implements OnMapReadyCallba
         // Posicionar el mapa en una localización y con un nivel de zoom
 
         setmMap(googleMap);
+    }
+
+    public int getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(int cuenta) {
+        this.cuenta = cuenta;
     }
 }
 

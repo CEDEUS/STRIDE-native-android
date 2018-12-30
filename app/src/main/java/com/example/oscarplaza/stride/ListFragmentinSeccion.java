@@ -92,10 +92,11 @@ public class ListFragmentinSeccion extends SupportMapFragment implements OnMapRe
                 getmMap().clear();
                 getmMap().moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
 
-
+                int  contando=1;
                 for(PuntoVotados p : o.getData())
                 {
-                        CreateMarket(p.getLat(),p.getLng(),p.getScore(),getmMap());
+                        CreateMarket(p.getLat(),p.getLng(),p.getScore(),getmMap(),contando);
+                        contando++;
 
                 }
                 }else{ }
@@ -108,17 +109,17 @@ public class ListFragmentinSeccion extends SupportMapFragment implements OnMapRe
         }
     }
 
-    public void CreateMarket(double lat, double lng, String score, GoogleMap googleMap)  {
+    public void CreateMarket(double lat, double lng, String score, GoogleMap googleMap, int contando)  {
 
         switch (score){
             case "G":
-                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat,lng)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)).title(score));
+                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat,lng)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)).title(contando+")"));
                 break;
             case "Y":
-                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat,lng)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)).title(score));
+                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat,lng)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)).title(contando+")"));
                 break;
             case "R":
-                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat,lng)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)).title(score));
+                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat,lng)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)).title(contando+")"));
                 break;
         }
         }

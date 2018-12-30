@@ -125,6 +125,8 @@ public class ViewDialog {
             case 1:
                 output="en";
                 break;
+            case 2:
+                output="de";
                 }
         return output;
     }
@@ -180,6 +182,20 @@ public class ViewDialog {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
                     }}).show();
+
+
+    }
+
+    public void NewAccount(Context activity) {
+        Toast.makeText(activity,"entra",Toast.LENGTH_SHORT).show();
+        DialogPlus dialog = DialogPlus.newDialog(activity)
+                .setAdapter(new Simpleadaptera())
+                .setContentHolder(new ViewHolder(R.layout.content_new_user))
+                .setGravity(Gravity.CENTER)
+
+                .setExpanded(true)  // This will enable the expand feature, (similar to android L share dialog)
+                .create();
+        dialog.show();
 
 
     }

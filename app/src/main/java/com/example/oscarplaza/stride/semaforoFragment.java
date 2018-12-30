@@ -332,7 +332,7 @@ public class semaforoFragment extends Fragment implements  GoogleApiClient.Conne
 
                             break;
                         case R.id.button_3 :
-                            process("G","none");
+                            preprocces("G");
                             break;
                             }
                 }else

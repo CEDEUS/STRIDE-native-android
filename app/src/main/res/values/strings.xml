@@ -118,4 +118,12 @@
     <string name="_400">400</string>
     <string name="title_no_conection">problem in you conection</string>
     <string name="content_no_conection">pleace review you conection or please save the observation in save json</string>
+    <string name="german">German</string>
+    <string name="new_account">New Account</string>
+    <string name="_login_sride">Stride</string>
+    <string name="email">Email</string>
+    <string name="about">About</string>
+    <string name="feedback">Feedback</string>
+    <string name="confirm_info_new_user">Confirm Info New User</string>
+    <string name="you_now_haveaccount">Now you have account</string>
 </resources>

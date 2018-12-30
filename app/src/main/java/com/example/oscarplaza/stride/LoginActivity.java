@@ -54,6 +54,8 @@ public class LoginActivity extends AppCompatActivity{
     private View mProgressView;
     private View mLoginFormView;
     private Button btnlogin;
+    private Button btnaccount;
+
     private static String TAG ="LoginActivity";
     public static final int TAG_CODE_PERMISSION_LOCATION = 301;
 
@@ -88,6 +90,7 @@ public class LoginActivity extends AppCompatActivity{
             mLoginFormView = findViewById(R.id.login_form);
             mProgressView = findViewById(R.id.login_progress);
             btnlogin = findViewById(R.id.login);
+            btnaccount = findViewById(R.id.new_account);
             btnlogin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -104,6 +107,13 @@ public class LoginActivity extends AppCompatActivity{
                 ViewDialog v = new  ViewDialog();
                 v.nohaveinternet(this);
             }
+            btnaccount.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    OpenNerUser();
+
+                }
+            });
 
         }else{
             super.onCreate(savedInstanceState);
@@ -114,6 +124,12 @@ public class LoginActivity extends AppCompatActivity{
 
         }
         }
+
+    private void OpenNerUser() {
+        ConfirLogout alert = new ConfirLogout();
+        alert.NewAccount(this);
+
+    }
 
     private void attemptLogin() throws JSONException {
         // Reset errors.
