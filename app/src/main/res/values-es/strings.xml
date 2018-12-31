@@ -101,9 +101,18 @@
     <string name="stride">STRIDE</string>
     <string name="no_element">no element</string>
     <string name="please_feel_free_to_send_comments_and_feedback_on_the_stride_app_to_stefan_steiniger_from_cedeus_via_email_to_ssteiniger_uc_cl">por favor escriba comentarios de STRIDE app a Stefan Steiniger, de CEDEUS, via email a: ssteiniger@uc.cl</string>
-    <string name="dismiss">cerrar</string>
+    <string name="dismiss">Descartar</string>
     <string name="save_in_file">Guardar en archivo(json)</string>
     <string name="my_last_point">Ultimos puntos</string>
     <string name="confirm">confirmar</string>
-
+    
+    <!-- Main menu and new user registration -->
+    <string name="german">Aleman</string>
+    <string name="new_account">Nuevo Usuario</string>
+    <string name="_login_sride">Stride</string>
+    <string name="email">Email</string>
+    <string name="about">Sobre Stride</string>
+    <string name="feedback">Contacto</string>
+    <string name="confirm_info_new_user">Confirmar informacion del nuevo usuario</string>
+    <string name="you_now_haveaccount">Nuevo usuario registrado con exito</string>
 </resources>
