@@ -98,7 +98,7 @@
         "Meine 
         Erfahrung als
         Fussgänger"</string>
-    <string name="your">Deine</string>
+    <string name="your">Meine</string>
     <string name="walking">Fussgänger</string>
     <string name="experience">Erfahrung</string>
     <string name="please_describe_yourself_or_the_person_you_will_observe">Bitte beschreiben sie sich selbst oder die Person die sie beobachten:</string>
@@ -110,8 +110,17 @@
     <string name="stride">STRIDE</string>
     <string name="no_element">no element</string>
     <string name="please_feel_free_to_send_comments_and_feedback_on_the_stride_app_to_stefan_steiniger_from_cedeus_via_email_to_ssteiniger_uc_cl">Wenn sie Fragen oder Anregungen zur STRIDE Anwendung haben, dann können sie diese per Email an Stefan Steiniger, CEDEUS, senden: ssteiniger@uc.cl</string>
-    <string name="dismiss">OK</string>
+    <string name="dismiss">Verwerfen</string>
     <string name="save_in_file">In Datei Speichern</string>
     <string name="my_last_point">Meine Letzten Punkte</string>
     <string name="confirm">OK</string>
+    <!-- Main Menu and User Account --> 
+    <string name="german">Deutsch</string>
+    <string name="new_account">Neuer Nutzer</string>
+    <string name="_login_sride">Stride</string>
+    <string name="email">Email</string>
+    <string name="about">Über</string>
+    <string name="feedback">Kontakt</string>
+    <string name="confirm_info_new_user">Neue Nutzerdaten bestätigen</string>
+    <string name="you_now_haveaccount">Ein neuer Nutzer wurde erstellt</string>
 </resources>
