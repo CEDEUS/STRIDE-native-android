@@ -80,7 +80,7 @@
     <string name="date_joined_in_stride">Beitrittsdatum</string>
     <string name="total_observed_person">Beobachtete Personen</string>
     <string name="total_points_voted">Beobachtungen</string>
-    <string name="today_observed_person">Heute beobachtete Personen</string>
+    <string name="today_observed_person">Personen heute</string>
     <string name="days_surveyed">Tage mit Beobachtungen</string>
     <string name="number_of_points_today">Beobachtungen heute</string>
     <string name="user">Nutzer</string>
