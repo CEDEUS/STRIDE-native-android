@@ -1,5 +1,7 @@
 package com.example.oscarplaza.stride;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -77,26 +79,10 @@ public class ListFragmentandDelete extends Fragment
         if (isVisibleToUser && element != null)
         {
             Semaforo activity = (Semaforo) getActivity();
-
             if(!activity.getData().getData().isEmpty() && !activity.getData().getData().contains(null) )
-            {
-                getSave().setVisibility(View.VISIBLE);
-
-
-
-
-
-            }
-            else{
-                Log.d("TAG", "setUserVisibleHint:no ayuda divina");
-
-
-
-            }
-        }
-        else{
-
-        }
+            { getSave().setVisibility(View.VISIBLE);}
+            else{Log.d("TAG", "setUserVisibleHint:no ayuda divina");}}
+        else{}
     }
 
     @Override
@@ -119,7 +105,10 @@ public class ListFragmentandDelete extends Fragment
                 try {
                     createandsavefile(observedandpoints);
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("data",observedandpoints);
+                    clipboard.setPrimaryClip(clip);
+                    Toast.makeText(getActivity(),getActivity().getText(R.string._aviso_copyblipboard),Toast.LENGTH_LONG).show();
                 }
             }
         });

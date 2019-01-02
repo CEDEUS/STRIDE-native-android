@@ -148,13 +148,16 @@ public class TabBFragment extends Fragment {
                 Gson g = new Gson();
                 RespStatics r = g.fromJson(response, RespStatics.class);
                 Date sdf = null;
+                String parsedDate = r.getDateJoined().toString()    ;
+
                 try {
                     sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(r.getDateJoined());
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                     parsedDate = formatter.format(sdf);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                String parsedDate = formatter.format(sdf);
+
 
 
                 getDate_joined().setText(parsedDate);

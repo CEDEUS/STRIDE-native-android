@@ -72,8 +72,9 @@ public class TabCFragment extends SupportMapFragment implements OnMapReadyCallba
         // Inflate the layout for this fragment
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         getMapAsync(this);
-
-        getData();
+        try{
+        getData();}
+        catch (Exception e){}
 
 
         return rootView;
