@@ -18,17 +18,18 @@
         <item
             android:id="@+id/nav_slideshow"
             android:title="@string/logout" />
-        <item
-            android:id="@+id/nav_manage"
-            android:title="@string/close_app" />
+
         <item
             android:id="@+id/change_points_number"
             android:title="@string/change_option_last_point" />
-
+        <!--
+                <item
+                    android:id="@+id/street_mode"
+                    android:title="@string/sidewalks" />-->
         <item
-            android:id="@+id/street_mode"
-            android:title="@string/sidewalks" />
-    </group>
+            android:id="@+id/nav_manage"
+            android:title="@string/close_app" />
+            </group>
 
 
-</menu>
+        </menu>

@@ -67,15 +67,9 @@ public class ListFragmentandDelete extends Fragment
     }
 
     @Override
-
     public void setUserVisibleHint(boolean isVisibleToUser) {
-
-
         Log.d("TAG", "setUserVisibleHint:no aca divina");
-
-
         super.setUserVisibleHint(isVisibleToUser);
-
         if (isVisibleToUser && element != null)
         {
             Semaforo activity = (Semaforo) getActivity();
@@ -84,7 +78,6 @@ public class ListFragmentandDelete extends Fragment
             else{Log.d("TAG", "setUserVisibleHint:no ayuda divina");}}
         else{}
     }
-
     @Override
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         Log.d("TAG", "onCreateView: 1");
@@ -102,14 +95,7 @@ public class ListFragmentandDelete extends Fragment
             public void onClick(View view) {
 
                String observedandpoints =  makeJson(activity.getData());
-                try {
-                    createandsavefile(observedandpoints);
-                } catch (IOException e) {
-                    ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                    ClipData clip = ClipData.newPlainText("data",observedandpoints);
-                    clipboard.setPrimaryClip(clip);
-                    Toast.makeText(getActivity(),getActivity().getText(R.string._aviso_copyblipboard),Toast.LENGTH_LONG).show();
-                }
+                createandsavefile(observedandpoints);
             }
         });
 
@@ -118,46 +104,36 @@ public class ListFragmentandDelete extends Fragment
 
     }
 
-    private void createandsavefile(String observedandpoints) throws IOException {
+    private void createandsavefile(String observedandpoints)  {
         String baseFolder = Environment.getDataDirectory().getAbsolutePath();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             baseFolder = Environment.DIRECTORY_DOCUMENTS;
-        }
-        File yourAppDir = new File(Environment.getExternalStorageDirectory()+File.separator+Environment.DIRECTORY_DOCUMENTS+File.separator+"Stride");
-
+        }File yourAppDir = new File(Environment.getExternalStorageDirectory()+File.separator+Environment.DIRECTORY_DOCUMENTS+File.separator+"Stride");
         if(!yourAppDir.exists() && !yourAppDir.isDirectory())
-        {
-            // create empty directory
-            if (yourAppDir.mkdirs())
-            {
-                Log.i("CreateDir","App dir created");
-                CreateFile(observedandpoints,yourAppDir);
-            }
-            else
-            {
-                Log.w("CreateDir","Unable to create app dir!");
-            }
+        {if (yourAppDir.mkdirs()){ CreateFile(observedandpoints,yourAppDir);} else{ }
         }
         else
         {
             CreateFile(observedandpoints,yourAppDir);
-
-            Log.i("CreateDir","App dir already exists");
+        }
         }
 
-
-
-    }
-
-    private void CreateFile(String observedandpoints, File yourAppDir) throws IOException {
+    private void CreateFile(String observedandpoints, File yourAppDir) {
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         File file = new File(yourAppDir.getAbsolutePath() + File.separator + timeStamp +".json");
         file.getParentFile().mkdirs();
+        try{
         FileOutputStream fos = new FileOutputStream(file);
         fos.write(observedandpoints.getBytes());
         fos.flush();
         fos.close();
-        showposition(file.getAbsolutePath());
+        showposition(file.getAbsolutePath());}
+        catch (Exception ex){
+            ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("data",observedandpoints);
+            clipboard.setPrimaryClip(clip);
+            Toast.makeText(getActivity(),getActivity().getText(R.string._aviso_copyblipboard),Toast.LENGTH_LONG).show();
+        }
     }
 
     private void showposition(String absolutePath) {
@@ -178,21 +154,17 @@ public class ListFragmentandDelete extends Fragment
     public void onResume() {
         super.onResume();   
     }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
     }
-
     @Override
     public void onPause() {
         super.onPause();
     }
-
     public View getElement() {
         return element;
     }
-
     public void setElement(View element) {
         this.element = element;
     }
