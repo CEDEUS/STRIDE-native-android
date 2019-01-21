@@ -224,10 +224,11 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         {
             ShowPointOptions();
         }
-        else if(id == R.id.street_mode)
-        {
-            allowandresetmodestreet();
-        }
+
+       // else if(id == R.id.street_mode)
+       // {
+         //   allowandresetmodestreet();
+       // }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

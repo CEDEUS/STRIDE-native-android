@@ -41,6 +41,7 @@ public class Utils {
     }
     public Utils() {
     }
+
     public String generateurlmaps(String lat ,String lng)
     {
         String URL = "http://maps.google.com/maps/api/geocode/json?latlng="+lat+","+lng+"&sensor=false";
@@ -49,7 +50,11 @@ public class Utils {
     }
 
 
-
+    /**
+     *
+     * @param loginActivity the context
+     * @return boolean
+     */
     public boolean seesion(LoginActivity loginActivity){
         SharedPreferences loginPreferences = loginActivity.getSharedPreferences("loginPrefs", MODE_PRIVATE);
         if (loginPreferences.contains("id"))
@@ -64,6 +69,12 @@ public class Utils {
 
     }
 
+    /**
+     *
+     * @param s
+     * @param forms
+     * @return
+     */
     public String getIdAbility(String s,CheckButton forms) {
         String as = "";
         if (s.equals(forms.getString(R.string.normal)))
