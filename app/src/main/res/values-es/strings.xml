@@ -20,22 +20,14 @@
     <string name="my_position">Mi Ubicacion</string>
     <string name="title_activity_forms">Observacion</string>
     <string name="movility">Condicion fisica</string>
-    <string name="normal">sin dificultades</string>
-    <string name="asistida">con dificultades</string>
-    <string name="mecanica">requiere ayuda</string>
+    <string name="normal">Sin dificultades</string>
+    <string name="asistida">Con dificultades</string>
+    <string name="mecanica">Requiere ayuda</string>
     <string name="title_activity_check_button">Perfil</string>
     <string name="profile_ok">Siguiente</string>
     <string name="pdfc">STRIDE : Shared Travel Reality of Individual Deficient Environments : comparte tu experiencia</string>
     <string name="category">Categoria</string>
     <string name="my_observation">Registrar</string>
-    <string name="saved">Guardando...</string>
-    <string name="not_notacion_yet">No hay votacion Registrada</string>
-    <string name="user">Usuario</string>
-    <string name="error_no_internet">No hay conexion de internet</string>
-    <string name="days_surveyed">Dias Observados</string>
-    <string name="today_observed_person">Personas observadas hoy</string>
-    <string name="total_points_voted">Puntos votados</string>
-    <string name="total_observed_person">Personas Votadas</string>
 
 
     <string name="category.category1">Inclusivo - (no) para todos</string>
@@ -45,8 +37,6 @@
     <string name="category.category5">Seguro - (no) es seguro del traffico vial</string>
     <string name="category.category6">Protegido - (no) se siente seguro</string>
     <string name="category.category7">Otro</string>
-    <string name="my_statistics">Mi Estadisticas</string>
-
 
     <!-- Strings related to login -->
 
@@ -72,18 +62,31 @@
     <string name="save_data">Guardar observaciones</string>
     <string name="english">Ingles</string>
     <string name="spanish">Español</string>
+    <string name="german">Aleman</string>
+    <string name="dutch">Holandes</string>    
+   
+    <string name="my_statistics">Mi Estadistica</string>
     <string name="email_ex">Email</string>
-    <string name="id_for_user">User ID</string>
+    <string name="id_for_user">Usuario</string>
     <string name="user_name_in_app">Registro del usuario</string>
     <string name="date_joined_in_stride">Ingreso</string>
-
+    <string name="total_observed_person">Personas Votadas</string>    
+    <string name="total_points_voted">Puntos votados</string>    
+    <string name="today_observed_person">Personas observadas hoy</string>
+    <string name="days_surveyed">Dias Observados</string>
     <string name="number_of_points_today">Puntos por dia</string>
+   
+    <string name="user">Usuario</string>
+    <string name="error_no_internet">No hay conexion de internet</string>
+    <string name="not_notacion_yet">No hay votacion Registrada</string>
+    <string name="saved">Guardando...</string>
+    
     <string name="about_Text">Stride app fue creada en conjunto por CEDEUS.cl y Walk21.com</string>
     <string name="new_person">Nueva persona</string>
     <string name="save">Guardar</string>
     <string name="vote">Votar</string>
-    <string name="voted_points">Puntos Votados</string>
-    <string name="list_voted_points">Lista Puntos votados</string>
+    <string name="voted_points">Mapa de Puntos</string>
+    <string name="list_voted_points">Lista de Puntos</string>
     <string name="your_n_walking_n_experience">
         "Your
         Walking
@@ -97,17 +100,22 @@
     <string name="risky_unfriendly_dificult">peligroso, feo, dificil</string>
     <string name="safe_nice_easy">seguro, amable, facil</string>
     <string name="undo_last_vote">borrar el ultimo punto</string>
+    
     <string name="shared_travel_reality_of_individual_deficient_environments">Shared Travel Reality of Individual Deficient Environments</string>
     <string name="stride">STRIDE</string>
     <string name="no_element">no element</string>
-    <string name="please_feel_free_to_send_comments_and_feedback_on_the_stride_app_to_stefan_steiniger_from_cedeus_via_email_to_ssteiniger_uc_cl">por favor escriba comentarios de STRIDE app a Stefan Steiniger, de CEDEUS, via email a: ssteiniger@uc.cl</string>
+    <string name="please_feel_free_to_send_comments_and_feedback_on_the_stride_app_to_stefan_steiniger_from_cedeus_via_email_to_ssteiniger_uc_cl">Por favor escriba dudas o comentarios sobre STRIDE app a Stefan Steiniger, de CEDEUS, via email a: ssteiniger@uc.cl</string>
     <string name="dismiss">Descartar</string>
     <string name="save_in_file">Guardar en archivo(json)</string>
     <string name="my_last_point">Ultimos puntos</string>
     <string name="confirm">confirmar</string>
+    <string name="logout">Desconnectar</string>    
+    <string name="close_app">Cerrar Aplicacion</string>
+    <string name="change_option_last_point">Cambiar Visualisacion - Ultimos Puntos</string>    
+    <string name=“select_how_many_last_point_you_want_see">Elige cuantas puntos se debe visualizar</string>  
+    <string name="title_no_conection">Sin conexion al servidor</string>                                                          
     
     <!-- Main menu and new user registration -->
-    <string name="german">Aleman</string>
     <string name="new_account">Nuevo Usuario</string>
     <string name="_login_sride">Stride</string>
     <string name="email">Email</string>
