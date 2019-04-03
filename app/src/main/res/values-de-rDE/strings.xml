@@ -36,9 +36,9 @@
     <string name="Elderly">Rentner</string>
     <string name="groupE">Altersgruppe</string>
     <string name="sexo">Geschlecht</string>
-    <string name="male">Man</string>
+    <string name="male">Mann</string>
     <string name="female">Frau</string>
-    <string name="no_define">Andere</string>
+    <string name="no_define">Unbekannt</string>
     <string name="movility">Physische Kondition / Selbständiges Laufen</string>
     <string name="normal">Ohne Einschränkungen</string>
     <string name="asistida">Mit Einschräkungen</string>
@@ -57,7 +57,7 @@
     
     <string name="profile_ok">Weiter</string>
     <string name="maps_and_votations">Beobachtungskarte</string>
-    <string name="pdfc">STRIDE : Shared Travel Reality of Individual Deficient Environments : Teile deine Fussgängererfahrung)</string>
+    <string name="pdfc">STRIDE : Teile deine Fussgängererfahrung)</string>
     <string name="category">Beobachtungs-Typ</string>
     <string name="category.category1">Inklusiv  - nicht/für alle (Behinderte, Ältere, etc.)</string>
     <string name="category.category2">Design - nicht/für Personen </string>
@@ -66,7 +66,7 @@
     <string name="category.category5">Gefährlich - (kein) gefährlicher Verkehr</string>
     <string name="category.category6">Sicher - nicht/einladend</string>
     
-    <string name="are_you_sure_you_want_to_logout">Willst du wirklich ausloggen?</string>
+    <string name="are_you_sure_you_want_to_logout">Wollen sie wirklich ausloggen?</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
     <string name="change_idioms">Spracheinstellungen</string>
@@ -92,8 +92,8 @@
     <string name="new_person">Neue Person</string>
     <string name="save">Speichern</string>
     <string name="vote">Beobachtung</string>
-    <string name="voted_points">Beobachtungspunkte</string>
-    <string name="list_voted_points">Beobachtungsliste</string>
+    <string name="voted_points">Beobachtungs-Karte</string>
+    <string name="list_voted_points">Beobachtungs-Liste</string>
     <string name="your_n_walking_n_experience">
         "Meine 
         Erfahrung als
@@ -103,24 +103,30 @@
     <string name="experience">Erfahrung</string>
     <string name="please_describe_yourself_or_the_person_you_will_observe">Bitte beschreiben sie sich selbst oder die Person die sie beobachten:</string>
     <string name="is_this_place_safe_nice_and_easy">Als Fussgänger, ist dieser Ort sicher, freundlich und leicht zum Gehen?</string>
-    <string name="risky_unfriendly_dificult">gefährlich, unfreundlich, schwer</string>
+    <string name="risky_unfriendly_dificult">gefährlich, unfreundlich, beschwerlich</string>
     <string name="safe_nice_easy">sicher, freundlich, leicht</string>
-    <string name="undo_last_vote">Letze Beobachtung löschen</string>
+    <string name="undo_last_vote">Letzen Punkt löschen</string>
     <string name="shared_travel_reality_of_individual_deficient_environments">Shared Travel Reality of Individual Deficient Environments</string>
     <string name="stride">STRIDE</string>
     <string name="no_element">no element</string>
     <string name="please_feel_free_to_send_comments_and_feedback_on_the_stride_app_to_stefan_steiniger_from_cedeus_via_email_to_ssteiniger_uc_cl">Wenn sie Fragen oder Anregungen zur STRIDE Anwendung haben, dann können sie diese per Email an Stefan Steiniger, CEDEUS, senden: ssteiniger@uc.cl</string>
     <string name="dismiss">Verwerfen</string>
-    <string name="save_in_file">In Datei Speichern</string>
+    <string name="save_in_file">In Datei Speichern (ohne Funktion)</string>
     <string name="my_last_point">Meine Letzten Punkte</string>
     <string name="confirm">OK</string>
+    <string name="logout">Ausloggen</string> 
+    <string name="close_app">Anwendung Schliessen</string>
+    <string name="change_option_last_point">Einstellung - Meine Letze Punkte</string>    
+    <string name=“select_how_many_last_point_you_want_see">Wählen sie wieviele Punkte angezeigt werden sollen</string>
+    <string name="title_no_conection">Keine Verbindung zum Server</string>    
     <!-- Main Menu and User Account --> 
     <string name="german">Deutsch</string>
+    <string name="dutch">Holländisch</string>    
     <string name="new_account">Neuer Nutzer</string>
     <string name="_login_sride">Stride</string>
     <string name="email">Email</string>
     <string name="about">Über</string>
     <string name="feedback">Kontakt</string>
-    <string name="confirm_info_new_user">Neue Nutzerdaten bestätigen</string>
+    <string name="confirm_info_new_user">Neue Nutzerinformationen bestätigen</string>
     <string name="you_now_haveaccount">Ein neuer Nutzer wurde erstellt</string>
 </resources>
