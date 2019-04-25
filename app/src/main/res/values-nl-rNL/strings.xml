@@ -47,7 +47,7 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="todo">TODO</string>
-    <string name=“title_activity_form4votation">Observation</string>
+    <string name="title_activity_form4votation">Observation</string>
     <string name="my_observation">Register</string>
     <string name="title_activity_check_button">Profiel</string>
     <string name="title_activity_semaforo">Semaforo</string>
@@ -109,11 +109,11 @@
     <string name="safe_nice_easy">Veilig, mooi, makkelijk</string>
     <string name="undo_last_vote">Laatste beoordeling ongedaan maken</string>
 <!-- Startup -->
-    <string name=“shared_travel_reality_of_individual_deficient_environments">Shared Travel Reality of Individual Deficient Environments</string>
+    <string name="shared_travel_reality_of_individual_deficient_environments">Shared Travel Reality of Individual Deficient Environments</string>
     <string name="stride">STRIDE</string>
     <string name="no_element">no element</string>
 
-    <string name=“please_feel_free_to_send_comments_and_feedback_on_the_stride_app_to_stefan_steiniger_from_cedeus_via_email_to_ssteiniger_uc_cl">Please feel free to send comments and feedback on the STRIDE app to Stefan Steiniger, from CEDEUS, via email to: ssteiniger@uc.cl</string>
+    <string name="please_feel_free_to_send_comments_and_feedback_on_the_stride_app_to_stefan_steiniger_from_cedeus_via_email_to_ssteiniger_uc_cl">Please feel free to send comments and feedback on the STRIDE app to Stefan Steiniger, from CEDEUS, via email to: ssteiniger@uc.cl</string>
     <string name="dismiss">Afwijzen</string>
     <string name="save_in_file">Bestand opslaan (werkt nog niet)</string>
     <string name="my_last_point">Mijn laatste punten</string>
@@ -122,7 +122,7 @@
     <string name="close_app">Applicatie sluiten</string>
     <string name="change_option_last_point">Instelling - mijn laatste plekken</string>
     <string name="sidewalks">sidewalks option</string>
-    <string name=“select_how_many_last_point_you_want_see">Selecteer hoeveel plekken u wilt weergeven</string>
+    <string name="select_how_many_last_point_you_want_see">Selecteer hoeveel plekken u wilt weergeven</string>
     <string name="_10">10</string>
     <string name="_100">100</string>
     <string name="_200">200</string>
