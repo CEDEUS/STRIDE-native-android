@@ -1,4 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Stride</string>
+        <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in_short">Login</string>
+    <string name="error_incorrect_password">Dit wachtwoord is onjuist</string>
+    <string name="error_invalid_email">Dit email adres is onjuist </string>
+    <string name="Success">Succesvol ingelogd</string>
+    <string name="Loading">Laden</string>
+    <string  name="title_activity_dashboard">Dashboard</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="title_activity_maps">Plattegrond</string>
+    <string name="my_position">Mijn locatie</string>
+    <string name="title_activity_forms">Observatory</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="Empty" />
+    <string name="Kid">Kind</string>
+    <string name="adole">Jongvolwassen</string>
+    <string name="adults">Volwassen</string>
+    <string name="Elderly">Gepensioneerd</string>
+    <string name="groupE">Leeftijdsgroep</string>
+    <string name="sexo">Geslacht </string>
+    <string name="male">Man</string>
+    <string name="female">Vrouw</string>
+    <string name="no_define">Anders</string>
+    <string name="movility">Fysieke conditie</string>
+    <string name="normal">Geen beperkingen</string>
+    <string name="asistida">Invalide</string>
+    <string name="mecanica">Hulpbehoevend</string>
+
+    <string name="error_incorrect_email">Dit email adres is niet bekend</string>
+    <string name="title_activity_splash">" "</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="todo">TODO</string>
+    <string name=“title_activity_form4votation">Observation</string>
+    <string name="my_observation">Register</string>
+    <string name="title_activity_check_button">Profiel</string>
+    <string name="title_activity_semaforo">Semaforo</string>
+    <string name="profile_ok">Volgende</string>
+    <string name="maps_and_votations">Beoordeelde locaties</string>
+    <string name="pdfc">STRIDE : deel uw ervaring als voetganger</string>
+    <string name="category">Categorie</string>
+    <string name="category.category1">Inclusief - (niet) voor iedereen toegankelijk</string>
+    <string name="category.category2">Ontwerp - (niet) gericht op mensen/voetgangers</string>
+    <string name="category.category3">Verbindingen - slechte/ goede verbindingen met andere plekken</string>
+    <string name="category.category4">Inrichting - (geen) prioriteit voor voetgangers</string>
+    <string name="category.category5">Veiligheid - (geen) gevaarlijk verkeer</string>
+    <string name="category.category6">Veiligheidsgevoel - voelt (niet) welkom</string>
+    <string name="category.category7">Anders</string>
+
+    <string name="are_you_sure_you_want_to_logout">Weet u zeker dat u wilt uitloggen?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nee</string>
+    <string name="change_idioms">Taalinstelling</string>
+    <string name="save_data">Invoer opslaan?</string>
+
+    <!-- TODO: add language names here -->
+    <string name="english">Engels</string>
+    <string name="spanish">Spaans</string>
+    <string name="german">Duits</string>
+    <string name="dutch">Nederlands</string>
+
+    <string name="my_statistics">Mijn statistieken</string>
+    <string name="email_ex">Email</string>
+    <string name="id_for_user">Gebruikersnaam</string>
+    <string name="user_name_in_app">Geregistreerde gebruikersnaam</string>
+    <string name="date_joined_in_stride">Start datum</string>
+    <string name="total_observed_person">Geoberveerde personen</string>
+    <string name="total_points_voted">Beoordeelde plekken</string>
+    <string name="today_observed_person">Vandaag geobserveerde personen<string>
+    <string name="days_surveyed">Dagen van observatie</string>
+    <string name="number_of_points_today">Aantal geobserveerde plekken vandaag</string>
+
+    <string name="user">Gebruiker</string>
+    <string name="error_no_internet">Geen internet connectie</string>
+    <string name="not_notacion_yet">Nog geen locatie beoordelingen</string>
+    <string name="saved">Opslaan...</string>
+
+    <string name="about_Text">De Stride app is ontwikkeld in samenwerking met CEDEUS.cl and Walk21.com</string>
+    <string name="new_person">Nieuwe persoon</string>
+    <string name="save">Opslaan</string>
+    <string name="vote">Beoordeling</string>
+    <string name="voted_points">Kaart met beoordeelde plekken</string>
+    <string name="list_voted_points">Lijst met beoordeelde plekken</string>
+    <!-- Red button text -->
+    <string name="your_n_walking_n_experience">Your Walking Experience</string>
+    <string name="your">Mijn</string>
+    <string name="walking">Ervaring Als</string>
+    <string name="experience">Voetganger</string>
+<!-- Voting displays -->
+    <string name=“please_describe_yourself_or_the_person_you _will_observe">Beschrijf uzelf of de persoon die u observeert:</string>
+    <string name="is_this_place_safe_nice_and_easy">Is deze plek veilig, mooi en makkelijk om te lopen?</string>
+    <string name="risky_unfriendly_dificult">Gevaarlijk, onaangenaam, moeilijk</string>
+    <string name="safe_nice_easy">Veilig, mooi, makkelijk</string>
+    <string name="undo_last_vote">Laatste beoordeling ongedaan maken</string>
+<!-- Startup -->
+    <string name=“shared_travel_reality_of_individual_deficient_environments">Shared Travel Reality of Individual Deficient Environments</string>
+    <string name="stride">STRIDE</string>
+    <string name="no_element">no element</string>
+
+    <string name=“please_feel_free_to_send_comments_and_feedback_on_the_stride_app_to_stefan_steiniger_from_cedeus_via_email_to_ssteiniger_uc_cl">Please feel free to send comments and feedback on the STRIDE app to Stefan Steiniger, from CEDEUS, via email to: ssteiniger@uc.cl</string>
+    <string name="dismiss">Afwijzen</string>
+    <string name="save_in_file">Bestand opslaan (werkt nog niet)</string>
+    <string name="my_last_point">Mijn laatste punten</string>
+    <string name="confirm">Bevestigen</string>
+    <string name="logout">Uitloggen</string>
+    <string name="close_app">Applicatie sluiten</string>
+    <string name="change_option_last_point">Instelling - mijn laatste plekken</string>
+    <string name="sidewalks">sidewalks option</string>
+    <string name=“select_how_many_last_point_you_want_see">Selecteer hoeveel plekken u wilt weergeven</string>
+    <string name="_10">10</string>
+    <string name="_100">100</string>
+    <string name="_200">200</string>
+    <string name="_400">400</string>
+    <string name="title_no_conection">Geen verbinding met server</string>
+    <string  name="new_account">Nieuw account</string>
+    <string name="_login_sride">Stride</string>
+    <string  name="email">Email</string>
+    <string name="about">Over</string>
+    <string name="feedback">Contact</string>
+    <string name="confirm_info_new_user">Bevestig informatie nieuwe gebruiker</string>
+    <string name="you_now_haveaccount">Nieuw account is nu aangemaakt</string>
+    <string name="_aviso_copyblipboard">no pudimos hacer eI archivo pero lo guardamos en tu portapapeles por favor copialo en algun lado y despues subelo por las</string>
 </resources>
