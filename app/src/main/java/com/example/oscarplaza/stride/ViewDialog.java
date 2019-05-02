@@ -127,7 +127,11 @@ public class ViewDialog {
                 break;
             case 2:
                 output="de";
-                }
+                break;
+            case 3:
+                output="nl";
+                break;
+        }
         return output;
     }
 

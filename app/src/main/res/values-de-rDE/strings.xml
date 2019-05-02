@@ -117,7 +117,7 @@
     <string name="logout">Ausloggen</string> 
     <string name="close_app">Anwendung Schliessen</string>
     <string name="change_option_last_point">Einstellung - Meine Letze Punkte</string>    
-    <string name=“select_how_many_last_point_you_want_see">Wählen sie wieviele Punkte angezeigt werden sollen</string>
+    <string name="select_how_many_last_point_you_want_see">Wählen sie wieviele Punkte angezeigt werden sollen</string>
     <string name="title_no_conection">Keine Verbindung zum Server</string>    
     <!-- Main Menu and User Account --> 
     <string name="german">Deutsch</string>

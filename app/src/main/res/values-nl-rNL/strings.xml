@@ -82,7 +82,7 @@
     <string name="date_joined_in_stride">Start datum</string>
     <string name="total_observed_person">Geoberveerde personen</string>
     <string name="total_points_voted">Beoordeelde plekken</string>
-    <string name="today_observed_person">Vandaag geobserveerde personen<string>
+    <string name="today_observed_person">Vandaag geobserveerde personen</string>
     <string name="days_surveyed">Dagen van observatie</string>
     <string name="number_of_points_today">Aantal geobserveerde plekken vandaag</string>
 
@@ -103,7 +103,7 @@
     <string name="walking">Ervaring Als</string>
     <string name="experience">Voetganger</string>
 <!-- Voting displays -->
-    <string name="please_describe_yourself_or_the_person_you _will_observe">Beschrijf uzelf of de persoon die u observeert:</string>
+    <string name="please_describe_yourself_or_the_person_you_will_observe">Beschrijf uzelf of de persoon die u observeert:</string>
     <string name="is_this_place_safe_nice_and_easy">Is deze plek veilig, mooi en makkelijk om te lopen?</string>
     <string name="risky_unfriendly_dificult">Gevaarlijk, onaangenaam, moeilijk</string>
     <string name="safe_nice_easy">Veilig, mooi, makkelijk</string>
