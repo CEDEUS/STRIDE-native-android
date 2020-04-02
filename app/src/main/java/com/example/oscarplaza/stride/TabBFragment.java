@@ -139,7 +139,8 @@ public class TabBFragment extends Fragment {
     private void getInfo() {
         SharedPreferences prefs = this.getActivity().getSharedPreferences("loginPrefs", MODE_PRIVATE);
         final String tokken = prefs.getString("token", "");
-        String EndPoint = "http://146.155.17.18:18080/api/me";
+        int idName = prefs.getInt("id", 0);
+        String EndPoint = "http://strideapi.cedeus.cl/api/users/" + idName + "/";
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, EndPoint, new Response.Listener<String>() {
             @Override
@@ -148,7 +149,7 @@ public class TabBFragment extends Fragment {
                 Gson g = new Gson();
                 RespStatics r = g.fromJson(response, RespStatics.class);
                 Date sdf = null;
-                String parsedDate = r.getDateJoined().toString()    ;
+                String parsedDate = r.getDateJoined();
 
                 try {
                     sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(r.getDateJoined());
@@ -183,13 +184,13 @@ public class TabBFragment extends Fragment {
         }){
             @Override
             public String getBodyContentType() {
-                return "application/json; charset=utf-8";
+                return "application/json";
             }
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("Content-Type", "application/json");
+                // params.put("Content-Type", "application/json");
                 params.put("Authorization","Token "+tokken);
                 return  params;
             }

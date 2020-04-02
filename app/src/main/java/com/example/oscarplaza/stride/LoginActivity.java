@@ -208,13 +208,13 @@ public class LoginActivity extends AppCompatActivity{
                     return "application/json; charset=utf-8";
 
                 }
-
+/*
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("Content-Type", "application/json");
                     return  params;
-                }
+                } */
                             /*
 
                         @Override

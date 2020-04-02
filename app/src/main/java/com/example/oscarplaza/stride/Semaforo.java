@@ -45,6 +45,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.oscarplaza.stride.Entidades.Observacion;
@@ -53,6 +55,8 @@ import com.example.oscarplaza.stride.Entidades.PuntoVotados;
 import com.example.oscarplaza.stride.Entidades.PuntoVotadosOld;
 import com.google.gson.Gson;
 import com.pnikosis.materialishprogress.ProgressWheel;
+
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -69,8 +73,8 @@ public class Semaforo extends AppCompatActivity {
     private ViewPager mViewPager;
     ArrayList<PuntoVotados> p = new ArrayList<PuntoVotados>();
     private  Observacion observacion = new Observacion(p);
-    private double  lat;
-    private  double lng;
+    private float  lat;
+    private  float lng;
     private  double acctuary;
 
     public double getAcctuary() {
@@ -85,7 +89,7 @@ public class Semaforo extends AppCompatActivity {
         return lat;
     }
 
-    public void setLat(double lat) {
+    public void setLat(float lat) {
         this.lat = lat;
     }
 
@@ -93,7 +97,7 @@ public class Semaforo extends AppCompatActivity {
         return lng;
     }
 
-    public void setLng(double lng) {
+    public void setLng(float lng) {
         this.lng = lng;
     }
 
@@ -142,8 +146,8 @@ public class Semaforo extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
                 Location newLocation = intent.getParcelableExtra("location");
-                setLat(newLocation.getLatitude());
-                setLng(newLocation.getLatitude());
+                setLat((float) newLocation.getLatitude());
+                setLng((float) newLocation.getLongitude());
                 setAcctuary(newLocation.getAccuracy());
 
             }
@@ -243,17 +247,11 @@ public class Semaforo extends AppCompatActivity {
 
     private void sendData(final View v, final ProgressWheel wheel) {
 
-
-
-
             SharedPreferences prefs = getSharedPreferences("loginPrefs", MODE_PRIVATE);
 
             final String tokken = prefs.getString("token", "");//"No name defined" is the default value.
             int idName = prefs.getInt("id", 0); //0 is the default value.
 
-
-            //final String tokken = prefs.getString("token", "");
-            //String id = prefs.getString("id", "");
             Gson gson = new Gson();
 
             getObservacion().setCreate_by("http://146.155.17.18:18080/users/" + idName + "/");
@@ -263,15 +261,19 @@ public class Semaforo extends AppCompatActivity {
 
             ObservacionOld Oold = new ObservacionOld(p);
             for (PuntoVotados Pnew : getObservacion().getData()) {
+                Double lat = Math.round(Pnew.getLat()*10000000.0) / 10000000.0;
+                Double lon = Math.round(Pnew.getLon()*10000000.0) / 10000000.0;
+                Pnew.setLat(lat);
+                Pnew.setLon(lon);
 
-                Oold.getPuntos().add(new PuntoVotadosOld(ts, Pnew.getVotacion(), getObservacion().getAge(), getObservacion().getAbility(), getObservacion().getSex(), ts, Pnew.getLat(), getObservacion().getCreate_by(), Pnew.getLon(), Pnew.getHdop(), getObservacion().getVersion()));
+                Oold.getPuntos().add(new PuntoVotadosOld(ts, Pnew.getVotacion(), getObservacion().getAge(), getObservacion().getAbility(), getObservacion().getSex(), ts, lat, getObservacion().getCreate_by(), lon, Pnew.getHdop(), getObservacion().getVersion()));
 
             }
             String jsArrayOld = gson.toJson(Oold.getPuntos());
             String jsArray = gson.toJson(getObservacion());
             final String requestBody2 = jsArrayOld;
             final String requestBody = jsArray;
-            String EndPoint = "http://146.155.17.18:18080/observed/";
+            String EndPoint = "http://strideapi.cedeus.cl/observed/";
             RequestQueue queue = Volley.newRequestQueue(this);
             StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoint, new Response.Listener<String>() {
                 @Override
@@ -283,6 +285,7 @@ public class Semaforo extends AppCompatActivity {
                         @Override
                         public void run() {
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             getApplicationContext().startActivity(intent);
 
 
@@ -292,7 +295,7 @@ public class Semaforo extends AppCompatActivity {
                     sendExit();
 
 
-                    String EndPoint2 = "http://146.155.17.18:18080/points/";
+                    /* String EndPoint2 = "http://strideapi.cedeus.cl/points/";
 
 
                     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
@@ -312,7 +315,7 @@ public class Semaforo extends AppCompatActivity {
                     }) {
                         @Override
                         public String getBodyContentType() {
-                            return "application/json; charset=utf-8";
+                            return "application/json";
 
                         }
 
@@ -320,7 +323,7 @@ public class Semaforo extends AppCompatActivity {
                         @Override
                         public Map<String, String> getHeaders() throws AuthFailureError {
                             Map<String, String> params = new HashMap<String, String>();
-                            params.put("Content-Type", "application/json");
+                            // params.put("Content-Type", "application/json");
                             params.put("Authorization", "Token " + tokken);
                             return params;
                         }
@@ -352,13 +355,14 @@ public class Semaforo extends AppCompatActivity {
                             return Response.success(value, HttpHeaderParser.parseCacheHeaders(response));
                         }
                     };
-                    queue.add(stringRequest);
+                    queue.add(stringRequest); */
 
 
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    String string = error.getMessage();
                     findViewById(R.id.sucsessess).setClickable(false);
                     Toast.makeText(getApplicationContext(),getString(R.string.error_no_internet),Toast.LENGTH_SHORT).show();
                     wheel.destroyDrawingCache();
@@ -371,7 +375,7 @@ public class Semaforo extends AppCompatActivity {
             }) {
                 @Override
                 public String getBodyContentType() {
-                    return "application/json; charset=utf-8";
+                    return "application/json";
 
                 }
 
@@ -379,7 +383,7 @@ public class Semaforo extends AppCompatActivity {
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("Content-Type", "application/json");
+                    //params.put("Content-Type", "application/json");
                     params.put("Authorization", "Token " + tokken);
                     return params;
                 }

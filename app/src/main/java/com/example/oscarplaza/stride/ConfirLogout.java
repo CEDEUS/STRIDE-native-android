@@ -109,7 +109,7 @@ public class ConfirLogout {
         final String requestBody = jsonBody.toString();
 
         RequestQueue queue = Volley.newRequestQueue(aThis);
-        String EndPoint = "http://146.155.17.18:18080/api/users/create";
+        String EndPoint = "http://strideapi.cedeus.cl/api/users/create/";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoint, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

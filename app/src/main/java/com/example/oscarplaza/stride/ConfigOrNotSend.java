@@ -67,7 +67,7 @@ public class ConfigOrNotSend {
                 //final String tokken = prefs.getString("token", "");
                 //String id = prefs.getString("id", "");
                 Gson gson = new Gson();
-                latLng.setCreate_by("http://146.155.17.18:18080/users/" + idName + "/");
+                latLng.setCreate_by("http://strideapi.cedeus.cl/api/users/" + idName + "/");
                 ArrayList<PuntoVotadosOld> p = new ArrayList<PuntoVotadosOld>();
                 Long tsLong = System.currentTimeMillis()/1000;
                 String ts = tsLong.toString();
@@ -82,14 +82,14 @@ public class ConfigOrNotSend {
                 String jsArray = gson.toJson(latLng);
                 final String requestBody2 = jsArrayOld;
                 final String requestBody = jsArray;
-                String EndPoint = "http://146.155.17.18:18080/observed/";
+                String EndPoint = "http://strideapi.cedeus.cl/observed/";
 
                 RequestQueue queue = Volley.newRequestQueue(activity);
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoint, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
 
-                        String EndPoint2 = "http://146.155.17.18:18080/points/";
+                        String EndPoint2 = "http://strideapi.cedeus.cl/points/";
                         Toast.makeText(activity,"SAVED...",Toast.LENGTH_SHORT).show();
 
                         new Handler().postDelayed(new Runnable() {

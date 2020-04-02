@@ -87,7 +87,7 @@ public class TabCFragment extends SupportMapFragment implements OnMapReadyCallba
         final String tokken = prefs.getString("token", "");//"No name defined" is the default value.
         int idName = prefs.getInt("id", 0); //0 is the default value.
         int count = prefs.getInt("count",10);// 10 if no initialize
-        String EndPoint = "http://146.155.17.18:18080/my_last_point?count="+count;
+        String EndPoint = "http://strideapi.cedeus.cl/my_last_point?count="+count;
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         ArrayList<RespResult> arr = new ArrayList<RespResult>();
         int cuantos =1;

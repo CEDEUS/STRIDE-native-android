@@ -3,7 +3,7 @@ package com.example.oscarplaza.stride.Entidades;
 public class SeverUrl {
     private String url;
     private String header = "application/json";
-    private String getbase = "http://146.155.17.18:18080/";
+    private String getbase = "http://strideapi.cedeus.cl/";
 
     public String getUrl() {
         return url;
