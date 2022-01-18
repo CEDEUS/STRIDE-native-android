@@ -44,7 +44,7 @@ public class Utils {
 
     public String generateurlmaps(String lat ,String lng)
     {
-        String URL = "http://maps.google.com/maps/api/geocode/json?latlng="+lat+","+lng+"&sensor=false";
+        String URL = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng+"&sensor=false&key=AIzaSyA3qcvZN-S2FRVQpLCwo13B1V9X_hEl6FI";
         setURL(URL);
         return getURL();
     }

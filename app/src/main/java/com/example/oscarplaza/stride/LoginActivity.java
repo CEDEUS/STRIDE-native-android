@@ -1,20 +1,19 @@
 package com.example.oscarplaza.stride;
+
 import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
-import android.os.SystemClock;
-import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Build;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -23,7 +22,6 @@ import android.view.WindowManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
@@ -44,8 +42,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity{
     // UI references.
@@ -110,8 +106,8 @@ public class LoginActivity extends AppCompatActivity{
             btnaccount.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    OpenNerUser();
-
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://strideapp.cedeus.cl/register"));
+                    startActivity(browserIntent);
                 }
             });
 
